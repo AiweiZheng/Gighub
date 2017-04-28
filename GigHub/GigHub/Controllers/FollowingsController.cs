@@ -9,7 +9,7 @@ namespace GigHub.Controllers
     [Authorize]
     public class FollowingsController : ApiController
     {
-        public ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public FollowingsController()
         {
@@ -22,7 +22,7 @@ namespace GigHub.Controllers
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Followers.Any(
+            if (_context.Followings.Any(
                                  f => f.FolloweeId == followerDto.FolloweeId
                                  && f.FollowerId == userId))
                 return BadRequest("Following already exists.");
@@ -33,7 +33,7 @@ namespace GigHub.Controllers
                 FollowerId = userId
             };
 
-            _context.Followers.Add(follower);
+            _context.Followings.Add(follower);
             _context.SaveChanges();
 
             return Ok();

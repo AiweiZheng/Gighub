@@ -1,0 +1,40 @@
+﻿@model List<GigHub.Models.Following>
+
+@{
+    ViewBag.Title = "Following";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Artist I am Following</h2>
+
+<ul class="voffset4">
+    @foreach (var following in Model)
+    {
+        <li>
+            <div class="details">
+                <span class="artist">
+                    @following.Followee.Name
+                    <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@following.FolloweeId" >follow</button>
+                </span>   
+            </div>
+        </li>
+    }
+</ul>
+
+@section scripts
+{
+    <script>
+        $(".js-toggle-follow").click(function(e) {
+            var button = $(e.target);
+            $.post("/api/Followings", { followeeId: button.attr("data-user-id") })
+                .done(function() {
+                    button.text("following");
+                })
+                .fail(function() {
+                    alert("something failed");
+                });
+        });
+    </script>
+}
+
+

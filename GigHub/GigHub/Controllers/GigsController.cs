@@ -38,6 +38,20 @@ namespace GigHub.Controllers
         }
 
         [Authorize]
+        public ActionResult Following()
+        {
+            var userId = User.Identity.GetUserId();
+            var artists = _context.Followings
+                         .Where(f => f.FollowerId == userId)
+                         .Include(f => f.Followee)
+                         .ToList();
+
+            return View(artists);
+        }
+
+
+
+        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel

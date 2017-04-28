@@ -1,4 +1,5 @@
-﻿@model GigHub.ViewModels.GigViewModel
+﻿@using System.ComponentModel
+@model GigHub.ViewModels.GigViewModel
 
 <h1>@Model.Heading</h1>
 <ul class="gigs voffset4">
@@ -16,16 +17,17 @@
             <div class="details">
                 <span class="artist">
                     @gig.Artist.Name
-                    @if (Model.ShowActions)
+                    
+                    @if (gig.IsCancelled)
                     {
-                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId" >follow</button>
+                        <span class="label label-warning">Cancelled</span>
                     }
                    
                 </span>
                 <span class="genre">
                     @gig.Genre.Name
                 </span>
-                @if (Model.ShowActions)
+                @if (Model.ShowActions && !gig.IsCancelled)
                 {
                     <button data-gig-id="@gig.Id" class="btn btn-default btn-sm pull-right js-toggle-attendance">Going ?</button>
                 }
@@ -46,18 +48,6 @@
                             .removeClass("btn-default")
                             .addClass("btn-info")
                             .text("going");
-                    })
-                    .fail(function() {
-                        alert("something failed");
-                    });
-            });
-
-
-            $(".js-toggle-follow").click(function(e) {
-                var button = $(e.target);
-                $.post("/api/Followings", { followeeId: button.attr("data-user-id") })
-                    .done(function() {
-                        button.text("following");
                     })
                     .fail(function() {
                         alert("something failed");

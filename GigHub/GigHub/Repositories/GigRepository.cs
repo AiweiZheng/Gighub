@@ -80,5 +80,10 @@ namespace GigHub.Repositories
                 .Include(g => g.Attendances.Select(a => a.Attendee))
                 .SingleOrDefault(g => g.Id == gigId && g.ArtistId == artistId);
         }
+
+        public void Add(Gig gig)
+        {
+            _context.Gigs.Add(gig);
+        }
     }
 }

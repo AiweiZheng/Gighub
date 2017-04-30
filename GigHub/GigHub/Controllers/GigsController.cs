@@ -44,7 +44,7 @@ namespace GigHub.Controllers
                 .Include(g => g.Genre)
                 .ToList();
 
-            var viewMode = new GigViewModel
+            var viewMode = new GigsViewModel
             {
                 UpcomingGigs = gigs,
                 ShowActions = User.Identity.IsAuthenticated,
@@ -146,6 +146,12 @@ namespace GigHub.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Mine", "Gigs");
+        }
+
+        [HttpPost]
+        public ActionResult Search(GigsViewModel viewModel)
+        {
+            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
         }
     }
 }

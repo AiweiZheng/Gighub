@@ -38,5 +38,20 @@ namespace GigHub.Controllers.Api
 
             return Ok();
         }
+
+        [Authorize]
+        [HttpDelete]
+        public IHttpActionResult UnFollow(string id)
+        {
+            var following = _context.Followings.FirstOrDefault(f => f.FolloweeId == id);
+
+            if (following == null)
+                return NotFound();
+
+            _context.Followings.Remove(following);
+            _context.SaveChanges();
+
+            return Ok(id);
+        }
     }
 }

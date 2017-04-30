@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using GigHub.Dtos;
 using GigHub.Models;
+using GigHub.Repositories;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
@@ -10,10 +10,12 @@ namespace GigHub.Controllers.Api
     public class FollowingsController : ApiController
     {
         private readonly ApplicationDbContext _context;
+        private readonly FollowingRepository _followingRepository;
 
         public FollowingsController()
         {
             _context = new ApplicationDbContext();
+            _followingRepository = new FollowingRepository(_context);
         }
 
         [Authorize]
@@ -22,9 +24,7 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Followings.Any(
-                                 f => f.FolloweeId == followerDto.FolloweeId
-                                 && f.FollowerId == userId))
+            if (_followingRepository.GetFollowing(followerDto.FolloweeId, userId) != null)
                 return BadRequest("Following already exists.");
 
             var follower = new Following
@@ -43,7 +43,8 @@ namespace GigHub.Controllers.Api
         [HttpDelete]
         public IHttpActionResult UnFollow(string id)
         {
-            var following = _context.Followings.FirstOrDefault(f => f.FolloweeId == id);
+            var userId = User.Identity.GetUserId();
+            var following = _followingRepository.GetFollowing(id, userId);
 
             if (following == null)
                 return NotFound();

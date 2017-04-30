@@ -1,10 +1,11 @@
-﻿using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Http;
 using AutoMapper;
 using GigHub.Dtos;
 using GigHub.Models;
+using GigHub.Repositories;
 using Microsoft.AspNet.Identity;
+using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
@@ -12,10 +13,12 @@ namespace GigHub.Controllers.Api
     public class NotificationsController : ApiController
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserNotificationRepository _userNotificationRepository;
 
         public NotificationsController()
         {
             _context = new ApplicationDbContext();
+            _userNotificationRepository = new UserNotificationRepository(_context);
         }
 
         [HttpGet]
@@ -23,19 +26,13 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var userNotifications = _context.UserNotifications
-                .Where(un => un.UserId == userId);
+            var notifications = _userNotificationRepository.GetNotifications(userId);
 
-            var notifications = userNotifications.Select(un => un.Notification)
-                .Include(n => n.Gig.Artist)
-                .OrderBy(n => n.Gig.ArtistId)
-                .ToList();
-
-            var notificationsDto = notifications.Select(
-                Mapper.Map<Notification, NotificationDto>
-                );
-
-            return new NotificationsDto(userNotifications.Count(un => !un.IsRead), notificationsDto);
+            return new NotificationsDto
+            {
+                NewNotificationCount = _userNotificationRepository.GetNewNotificationNum(userId),
+                Notifications = notifications.Select(Mapper.Map<Notification, NotificationDto>)
+            };
         }
 
         [HttpPost]
@@ -43,9 +40,7 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var notifications = _context.UserNotifications
-                .Where(un => un.UserId == userId && !un.IsRead)
-                .ToList();
+            var notifications = _userNotificationRepository.GetUnreadNotifications(userId);
 
             notifications.ForEach(n => n.Read());
 

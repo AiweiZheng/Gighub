@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using GigHub.Dtos;
 using GigHub.Models;
+using GigHub.Repositories;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
@@ -9,11 +9,13 @@ namespace GigHub.Controllers.Api
     [Authorize]
     public class AttendancesController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        private readonly AttendanceRepository _attendanceRepository;
 
         public AttendancesController()
         {
             _context = new ApplicationDbContext();
+            _attendanceRepository = new AttendanceRepository(_context);
         }
 
         [Authorize]
@@ -22,8 +24,7 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            if (_context.Attendances
-                .Any(a => a.AttendeeId == userId && a.GigId == dto.GigId))
+            if (_attendanceRepository.GetAttendance(dto.GigId, userId) != null)
                 return BadRequest("The attendance already exists.");
 
             var attendance = new Attendance
@@ -44,7 +45,7 @@ namespace GigHub.Controllers.Api
         {
             var userId = User.Identity.GetUserId();
 
-            var attendance = _context.Attendances.FirstOrDefault(a => a.AttendeeId == userId && a.GigId == id);
+            var attendance = _attendanceRepository.GetAttendance(id, userId);
 
             if (attendance == null)
                 return NotFound();

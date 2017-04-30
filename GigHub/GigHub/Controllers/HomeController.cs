@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
-using GigHub.Models;
 using GigHub.Persistence;
 using GigHub.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -11,9 +10,9 @@ namespace GigHub.Controllers
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public HomeController()
+        public HomeController(UnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            _unitOfWork = unitOfWork;
         }
         public ActionResult Index(string query = null)
         {
@@ -31,7 +30,6 @@ namespace GigHub.Controllers
                 Heading = "Upcoming Gigs",
                 SearchTerm = query,
                 Attendances = attendances
-
             };
 
             return View("Gigs", viewModel);

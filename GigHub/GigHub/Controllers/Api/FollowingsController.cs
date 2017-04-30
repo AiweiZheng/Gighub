@@ -11,9 +11,9 @@ namespace GigHub.Controllers.Api
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public FollowingsController()
+        public FollowingsController(UnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            _unitOfWork = unitOfWork;
         }
 
         [Authorize]

@@ -14,9 +14,9 @@ namespace GigHub.Controllers.Api
     {
         private readonly UnitOfWork _unitOfWork;
 
-        public NotificationsController()
+        public NotificationsController(UnitOfWork unitOfWork)
         {
-            _unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            _unitOfWork = unitOfWork;
         }
 
         [HttpGet]

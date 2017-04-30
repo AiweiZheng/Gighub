@@ -5,8 +5,7 @@ using GigHub.Models;
 
 namespace GigHub.Repositories
 {
-
-    public class UserNotificationRepository
+    public class UserNotificationRepository : IUserNotificationRepository
     {
         private readonly ApplicationDbContext _context;
 

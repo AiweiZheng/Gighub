@@ -1,7 +1,7 @@
 ﻿using System.Web.Http;
+using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
-using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
@@ -9,9 +9,9 @@ namespace GigHub.Controllers.Api
     [Authorize]
     public class FollowingsController : ApiController
     {
-        private readonly UnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public FollowingsController(UnitOfWork unitOfWork)
+        public FollowingsController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

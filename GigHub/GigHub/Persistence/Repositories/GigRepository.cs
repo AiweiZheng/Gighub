@@ -9,18 +9,11 @@ namespace GigHub.Persistence.Repositories
 {
     public class GigRepository : IGigRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public GigRepository(ApplicationDbContext context)
+        public GigRepository(IApplicationDbContext context)
         {
             _context = context;
-        }
-
-        public Gig GetGigWithAttendantees(int gigId)
-        {
-            return _context.Gigs
-                 .Include(g => Enumerable.Select<Attendance, ApplicationUser>(g.Attendances, a => a.Attendee))
-                 .SingleOrDefault(g => g.Id == gigId);
         }
 
         public IEnumerable<Gig> GetUpcomingGigsByArtist(string userId)
@@ -31,6 +24,13 @@ namespace GigHub.Persistence.Repositories
                             && !g.IsCancelled)
                 .Include(g => g.Genre)
                 .ToList();
+        }
+
+        public Gig GetGigWithAttendees(int gigId)
+        {
+            return _context.Gigs
+                .Include(g => g.Attendances.Select(a => a.Attendee))
+                .SingleOrDefault(g => g.Id == gigId);
         }
 
         private IEnumerable<Gig> GetUpcomingGigs()
@@ -73,13 +73,6 @@ namespace GigHub.Persistence.Repositories
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
                 .ToList();
-        }
-
-        public Gig GetAttendancesInGig(int gigId, string artistId)
-        {
-            return _context.Gigs
-                .Include(g => g.Attendances.Select(a => a.Attendee))
-                .SingleOrDefault(g => g.Id == gigId && g.ArtistId == artistId);
         }
 
         public void Add(Gig gig)

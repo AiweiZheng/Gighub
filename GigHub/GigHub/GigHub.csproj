@@ -266,6 +266,7 @@
     <Compile Include="Persistence\EntityConfigurations\NotificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
+    <Compile Include="Persistence\IApplicationDbContext.cs" />
     <Compile Include="Persistence\Migrations\201704270202083_InitialModel.cs" />
     <Compile Include="Persistence\Migrations\201704270202083_InitialModel.Designer.cs">
       <DependentUpon>201704270202083_InitialModel.cs</DependentUpon>
@@ -313,10 +314,6 @@
     <Compile Include="Persistence\Migrations\201704291553147_RemoveRedundantGigFromNotification.cs" />
     <Compile Include="Persistence\Migrations\201704291553147_RemoveRedundantGigFromNotification.Designer.cs">
       <DependentUpon>201704291553147_RemoveRedundantGigFromNotification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\201705010200069_foo1.cs" />
-    <Compile Include="Persistence\Migrations\201705010200069_foo1.Designer.cs">
-      <DependentUpon>201705010200069_foo1.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -436,7 +433,6 @@
     <Folder Include="Dtos\" />
     <Folder Include="fonts\" />
     <Folder Include="Models\" />
-    <Folder Include="Repositories\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
@@ -490,9 +486,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201704291553147_RemoveRedundantGigFromNotification.resx">
       <DependentUpon>201704291553147_RemoveRedundantGigFromNotification.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201705010200069_foo1.resx">
-      <DependentUpon>201705010200069_foo1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

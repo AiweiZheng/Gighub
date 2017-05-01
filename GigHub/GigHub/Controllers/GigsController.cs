@@ -23,7 +23,6 @@ namespace GigHub.Controllers
             var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(User.Identity.GetUserId());
 
             return View(gigs);
-
         }
 
         [Authorize]
@@ -63,6 +62,32 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(GigFormViewModel viewModel)
+        {
+            if (!ModelState.IsValid)
+            {
+                viewModel.Genres = _unitOfWork.Genres.GetGenres();
+                return View("GigForm", viewModel);
+            }
+
+            var gig = new Gig
+            {
+                ArtistId = User.Identity.GetUserId(),
+                DateTime = viewModel.GetDateTime(),
+                GenreId = viewModel.Genre,
+                Venue = viewModel.Venue
+            };
+
+            _unitOfWork.Gigs.Add(gig);
+            _unitOfWork.Complete();
+
+            return RedirectToAction("Mine", "Gigs");
+        }
+
         [Authorize]
         public ActionResult Edit(int id)
         {
@@ -93,31 +118,6 @@ namespace GigHub.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(GigFormViewModel viewModel)
-        {
-            if (!ModelState.IsValid)
-            {
-                viewModel.Genres = _unitOfWork.Genres.GetGenres();
-                return View("GigForm", viewModel);
-            }
-
-            var gig = new Gig
-            {
-                ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.GetDateTime(),
-                GenreId = viewModel.Genre,
-                Venue = viewModel.Venue
-            };
-
-            _unitOfWork.Gigs.Add(gig);
-            _unitOfWork.Complete();
-
-            return RedirectToAction("Mine", "Gigs");
-        }
-
-        [Authorize]
-        [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Update(GigFormViewModel viewModel)
         {
             if (!ModelState.IsValid)
@@ -126,7 +126,7 @@ namespace GigHub.Controllers
                 return View("GigForm", viewModel);
             }
 
-            var gig = _unitOfWork.Gigs.GetGigWithAttendantees(viewModel.Id);
+            var gig = _unitOfWork.Gigs.GetGigWithAttendees(viewModel.Id);
 
             if (gig == null)
                 return HttpNotFound();

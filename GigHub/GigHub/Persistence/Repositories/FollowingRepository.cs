@@ -8,8 +8,8 @@ namespace GigHub.Persistence.Repositories
 {
     public class FollowingRepository : IFollowingRepository
     {
-        private readonly ApplicationDbContext _context;
-        public FollowingRepository(ApplicationDbContext context)
+        private readonly IApplicationDbContext _context;
+        public FollowingRepository(IApplicationDbContext context)
         {
             _context = context;
         }

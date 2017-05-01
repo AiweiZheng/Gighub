@@ -8,8 +8,8 @@ namespace GigHub.Persistence.Repositories
 {
     public class AttendanceRepository : IAttendanceRepository
     {
-        private readonly ApplicationDbContext _context;
-        public AttendanceRepository(ApplicationDbContext context)
+        private readonly IApplicationDbContext _context;
+        public AttendanceRepository(IApplicationDbContext context)
         {
             _context = context;
         }

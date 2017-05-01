@@ -8,20 +8,20 @@ namespace GigHub.Persistence.Repositories
 {
     public class UserNotificationRepository : IUserNotificationRepository
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IApplicationDbContext _context;
 
-        public UserNotificationRepository(ApplicationDbContext context)
+        public UserNotificationRepository(IApplicationDbContext context)
         {
             _context = context;
         }
 
-        public int GetNewNotificationNum(string userId)
+        public int GetNewNotificationNumFor(string userId)
         {
             return _context.UserNotifications
                 .Count(un => un.UserId == userId && !un.IsRead);
         }
 
-        public IEnumerable<Notification> GetNotifications(string userId)
+        public IEnumerable<Notification> GetNotificationsFor(string userId)
         {
             return _context.UserNotifications
                 .Where(un => un.UserId == userId).Select(un => un.Notification)
@@ -30,7 +30,7 @@ namespace GigHub.Persistence.Repositories
                 .ToList();
         }
 
-        public IEnumerable<UserNotification> GetUnreadNotifications(string userId)
+        public IEnumerable<UserNotification> GetUnreadNotificationsFor(string userId)
         {
             return _context.UserNotifications
                 .Where(un => un.UserId == userId && !un.IsRead)

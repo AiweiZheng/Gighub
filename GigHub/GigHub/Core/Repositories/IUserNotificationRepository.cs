@@ -8,5 +8,6 @@ namespace GigHub.Core.Repositories
         int GetNewNotificationNumFor(string userId);
         IEnumerable<Notification> GetNotificationsFor(string userId);
         IEnumerable<UserNotification> GetUnreadNotificationsFor(string userId);
+        void Dispose();
     }
 }

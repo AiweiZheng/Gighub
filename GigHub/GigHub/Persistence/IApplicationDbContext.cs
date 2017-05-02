@@ -12,5 +12,6 @@ namespace GigHub.Persistence
         DbSet<Notification> Notifications { get; set; }
         DbSet<UserNotification> UserNotifications { get; set; }
         IDbSet<ApplicationUser> Users { get; set; }
+        void Dispose();
     }
 }

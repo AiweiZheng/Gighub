@@ -16,5 +16,10 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Genres.ToList();
         }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

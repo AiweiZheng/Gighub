@@ -79,5 +79,10 @@ namespace GigHub.Persistence.Repositories
         {
             _context.Gigs.Add(gig);
         }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

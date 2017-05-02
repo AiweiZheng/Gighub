@@ -36,5 +36,10 @@ namespace GigHub.Persistence.Repositories
                 .Where(un => un.UserId == userId && !un.IsRead)
                 .ToList();
         }
+
+        public void Dispose()
+        {
+            _context.Dispose();
+        }
     }
 }

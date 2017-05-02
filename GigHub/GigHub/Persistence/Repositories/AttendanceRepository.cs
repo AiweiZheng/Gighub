@@ -13,6 +13,7 @@ namespace GigHub.Persistence.Repositories
         {
             _context = context;
         }
+
         public IEnumerable<Attendance> GetFutureAttendances(string userId)
         {
             return _context.Attendances
@@ -34,6 +35,11 @@ namespace GigHub.Persistence.Repositories
         public void Remove(Attendance attendance)
         {
             _context.Attendances.Remove(attendance);
+        }
+
+        public void Dispose()
+        {
+            _context.Dispose();
         }
     }
 }

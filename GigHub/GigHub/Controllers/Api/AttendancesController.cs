@@ -16,6 +16,10 @@ namespace GigHub.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
+        protected override void Dispose(bool disposing)
+        {
+            _unitOfWork.Dispose();
+        }
         [Authorize]
         [HttpPost]
         public IHttpActionResult Attend(AttendanceDto dto)

@@ -1,5 +1,4 @@
 ﻿using GigHub.Core;
-using GigHub.Core.Models;
 using GigHub.Core.Repositories;
 using GigHub.Persistence.Repositories;
 
@@ -29,6 +28,15 @@ namespace GigHub.Persistence
         public void Complete()
         {
             _context.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            Gigs.Dispose();
+            Attendances.Dispose();
+            Followings.Dispose();
+            Genres.Dispose();
+            UserNotifications.Dispose();
         }
     }
 }

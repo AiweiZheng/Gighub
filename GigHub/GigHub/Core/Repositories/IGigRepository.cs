@@ -11,5 +11,6 @@ namespace GigHub.Core.Repositories
         Gig GetGig(int gigId);
         IEnumerable<Gig> GetGigsUserAttending(string userId);
         void Add(Gig gig);
+        void Dispose();
     }
 }

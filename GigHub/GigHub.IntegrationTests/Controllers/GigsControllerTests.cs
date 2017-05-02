@@ -49,6 +49,39 @@ namespace GigHub.IntegrationTests.Controllers
             (result.ViewData.Model as IEnumerable<Gig>).Should().HaveCount(1);
         }
 
+        //        public ActionResult Attending()
+        //        {
+        //            var userId = User.Identity.GetUserId();
+        //
+        //            var viewMode = new GigsViewModel
+        //            {
+        //                UpcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId),
+        //                ShowActions = User.Identity.IsAuthenticated,
+        //                Heading = "Gigs I'm Attending",
+        //                Attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
+        //                    .ToLookup(a => a.GigId)
+        //            };
+        //
+        //            return View("Gigs", viewMode);
+        //        }
+
+        [Test, Isolated]
+        public void Attending_WhenCalled_ShouldReturnAttendingGigs()
+        {
+            //Arrange
+            var user = _context.Users.First();
+            _controller.MockCurrentUser(user.Id, user.UserName);
+
+            var attendance = new Attendance { AttendeeId = user.Id };
+            _context.Attendances.Add(attendance);
+            _context.SaveChanges();
+
+            var result = _controller.Attending();
+
+            //Assert
+            (result.ViewData.Model as IEnumerable<Gig>).Should().HaveCount(1);
+        }
+
         [Test, Isolated]
         public void Update_WhenCalled_ShouldUpdateTheGivenGig()
         {

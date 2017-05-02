@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
@@ -6,7 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [Authorize]
+    [System.Web.Http.Authorize]
     public class FollowingsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -16,14 +17,14 @@ namespace GigHub.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
-        [HttpPost]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.HttpPost]
         public IHttpActionResult Follow(FollowingDto followerDto)
         {
             var userId = User.Identity.GetUserId();
 
             if (_unitOfWork.Followings.GetFollowing(followerDto.FolloweeId, userId) != null)
-                return BadRequest("Following already exists.");
+                return Content(HttpStatusCode.BadRequest, "Following already exists.");
 
             var follower = new Following
             {
@@ -37,15 +38,15 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
-        [Authorize]
-        [HttpDelete]
+        [System.Web.Http.Authorize]
+        [System.Web.Http.HttpDelete]
         public IHttpActionResult UnFollow(string id)
         {
             var userId = User.Identity.GetUserId();
             var following = _unitOfWork.Followings.GetFollowing(id, userId);
 
             if (following == null)
-                return NotFound();
+                return Content(HttpStatusCode.NotFound, "The following does not exist.");
 
             _unitOfWork.Followings.Remove(following);
             _unitOfWork.Complete();

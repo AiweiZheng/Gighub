@@ -35,7 +35,7 @@ namespace GigHub.Persistence
             Gigs.Dispose();
             Attendances.Dispose();
             Followings.Dispose();
-            Genres.Dispose();
+            Genres.Dispose(); 
             UserNotifications.Dispose();
         }
     }

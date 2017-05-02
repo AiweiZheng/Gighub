@@ -8,10 +8,15 @@ namespace GigHub
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/scripts/app/services/attendanceService.js",
+                        "~/scripts/app/bootbox/dialogs.js",
+                        "~/scripts/app/services/attendanceService.js",//should before controller. look for "requirejs" for better solution
                         "~/scripts/app/controllers/gigsController.js",
                         "~/scripts/app/services/followingService.js",
                         "~/scripts/app/controllers/followingsController.js",
+                        "~/scripts/app/services/notificationService.js",
+                        "~/scripts/app/controllers/notificationController.js",
+                        "~/scripts/app/services/gigActionsService.js",
+                        "~/scripts/app/controllers/gigActionsController.js",
                         "~/scripts/app/app.js"
             ));
 

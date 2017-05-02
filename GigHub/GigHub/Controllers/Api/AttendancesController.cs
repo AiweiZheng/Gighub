@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
@@ -27,7 +28,7 @@ namespace GigHub.Controllers.Api
             var userId = User.Identity.GetUserId();
 
             if (_unitOfWork.Attendances.GetAttendance(dto.GigId, userId) != null)
-                return BadRequest("The attendance already exists.");
+                return Content(HttpStatusCode.BadRequest, "The attendance already exists.");
 
             var attendance = new Attendance
             {
@@ -50,7 +51,7 @@ namespace GigHub.Controllers.Api
             var attendance = _unitOfWork.Attendances.GetAttendance(id, userId);
 
             if (attendance == null)
-                return NotFound();
+                return Content(HttpStatusCode.NotFound, "The attendance does not exist.");
 
             _unitOfWork.Attendances.Remove(attendance);
             _unitOfWork.Complete();

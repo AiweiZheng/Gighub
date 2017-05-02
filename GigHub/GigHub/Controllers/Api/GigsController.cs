@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net;
+using System.Web.Http;
 using GigHub.Core;
 using Microsoft.AspNet.Identity;
 
@@ -21,7 +22,7 @@ namespace GigHub.Controllers.Api
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
 
             if (gig == null || gig.IsCancelled)
-                return NotFound();
+                return Content(HttpStatusCode.NotFound, "The gig does not exist.");
 
             if (gig.ArtistId != userId)
                 return Unauthorized();

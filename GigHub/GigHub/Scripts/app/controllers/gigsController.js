@@ -1,12 +1,12 @@
 ﻿var GigsController = function (attendanceService) {
     var button;
 
-    var fail = function () {
-        alert("Something wrong!");
+    var fail = function (error) {
+        alertDialog(error.responseJSON);
     }
 
     var done = function () {
-        var text = (button.text() === "Going") ? "Going?" : "Going";
+        var text = (button.text().trim() === "Going") ? "Going ?" : "Going";
         button.text(text);
         button.toggleClass("btn-info").toggleClass("btn-default");
     }

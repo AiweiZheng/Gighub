@@ -26,7 +26,7 @@ namespace GigHub.Controllers
         }
 
         [Authorize]
-        public ActionResult Attending()
+        public ViewResult Attending()
         {
             var userId = User.Identity.GetUserId();
 

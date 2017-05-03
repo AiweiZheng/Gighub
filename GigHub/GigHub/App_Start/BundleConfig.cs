@@ -17,6 +17,8 @@ namespace GigHub
                         "~/scripts/app/controllers/notificationController.js",
                         "~/scripts/app/services/gigActionsService.js",
                         "~/scripts/app/controllers/gigActionsController.js",
+                        "~/scripts/app/services/accountStatusService.js",
+                        "~/scripts/app/controllers/accountStatusController.js",
                         "~/scripts/app/app.js"
             ));
 
@@ -26,6 +28,8 @@ namespace GigHub
                          "~/Scripts/bootbox.min.js",
                          "~/Scripts/jquery-{version}.js",
                          "~/Scripts/underscore-min.js",
+                         "~/Scripts/dataTables/jquery.datatables.js",
+                         "~/Scripts/dataTables/datatables.bootstrap.js",
                          "~/Scripts/moment.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -39,6 +43,7 @@ namespace GigHub
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
+                      "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));
         }
     }

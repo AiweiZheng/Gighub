@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -12,6 +14,11 @@ namespace GigHub.Core.Models
     {
         public string Name { get; set; }
 
+        [NotMapped]
+        public string Role { get; set; }
+
+        public bool Activated { get; private set; }
+
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }
         public ICollection<UserNotification> UserNotifications { get; set; }
@@ -21,6 +28,11 @@ namespace GigHub.Core.Models
             Followees = new Collection<Following>();
             Followers = new Collection<Following>();
             UserNotifications = new Collection<UserNotification>();
+        }
+
+        public void ChangeUserStatus(bool status)
+        {
+            Activated = status;
         }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -34,6 +46,15 @@ namespace GigHub.Core.Models
         public void Notify(Notification notification)
         {
             UserNotifications.Add(new UserNotification(this, notification));
+        }
+
+        public void MapRoleToUser(ApplicationUser user, ILookup<string, IdentityRole> roles)
+        {
+            if (user.Roles.Count == 0)
+                return;
+
+            var id = user.Roles.First().RoleId;
+            user.Role = roles[id].First().Name;
         }
     }
 }

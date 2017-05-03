@@ -1,7 +1,8 @@
 using System.Data.Entity;
 using GigHub.Core.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace GigHub.Persistence
+namespace GigHub.Core.Repositories
 {
     public interface IApplicationDbContext
     {
@@ -12,6 +13,7 @@ namespace GigHub.Persistence
         DbSet<Notification> Notifications { get; set; }
         DbSet<UserNotification> UserNotifications { get; set; }
         IDbSet<ApplicationUser> Users { get; set; }
+        IDbSet<IdentityRole> Roles { get; set; }
         void Dispose();
     }
 }

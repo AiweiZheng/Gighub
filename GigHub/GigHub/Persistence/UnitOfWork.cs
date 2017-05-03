@@ -13,7 +13,8 @@ namespace GigHub.Persistence
         public IFollowingRepository Followings { get; private set; }
         public IGenreRepository Genres { get; private set; }
         public IUserNotificationRepository UserNotifications { get; private set; }
-
+        public IUserRepository Users { get; private set; }
+        public IRoleRepository Roles { get; private set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -23,6 +24,8 @@ namespace GigHub.Persistence
             Followings = new FollowingRepository(_context);
             Genres = new GenreRepository(_context);
             UserNotifications = new UserNotificationRepository(_context);
+            Users = new UserRepository(_context);
+            Roles = new RoleRepository(_context);
         }
 
         public void Complete()
@@ -35,8 +38,10 @@ namespace GigHub.Persistence
             Gigs.Dispose();
             Attendances.Dispose();
             Followings.Dispose();
-            Genres.Dispose(); 
+            Genres.Dispose();
             UserNotifications.Dispose();
+            Users.Dispose();
+            Roles.Dispose();
         }
     }
 }

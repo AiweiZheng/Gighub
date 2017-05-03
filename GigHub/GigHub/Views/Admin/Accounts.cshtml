@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Accounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Accounts</h2>
+@Html.ActionLink("NEW Account", "New", "Admin", new { @class = "btn btn-primary" })
+<table id="Account" class="table table-bordered table-hover col-lg-12">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+
+            $("#Account").DataTable({
+                ajax: {
+                    url: "/api/accounts",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "email"
+                    },
+                    {
+                        data: "name"
+                    },
+                    {
+                        data:"role"
+                    }
+                    ,
+                    {
+                        data: "activated",
+                        render: function (data, type, user) {
+                           return "<a data-user-id = " + user.id + " class='js-toggle-activateAccount' href='#'>" + user.accountStatus + "</a>";
+                        }
+                    }
+                ]
+            });
+
+            AccountStatusController.init("#Account");
+        })
+
+    </script>
+}

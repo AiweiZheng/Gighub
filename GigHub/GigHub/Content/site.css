@@ -2,6 +2,10 @@
     padding-top: 90px;
     padding-bottom: 20px;
     font-size: 17px;
+    background: #ECE9E6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(90deg, #FFFFFF 10%, #ECE9E6 90%);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(90deg, #FFFFFF 10%, #ECE9E6 90%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -209,6 +213,10 @@ h6,
 
 .popover-notifications ul.notifications .highlight {
     font-weight: bold;
+}
+
+ul.dropdown-menu > li.new {
+    border-top: 1px solid #ffe6e6;
 }
 
 #searchGigs {

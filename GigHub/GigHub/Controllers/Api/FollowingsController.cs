@@ -7,7 +7,7 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [System.Web.Http.Authorize]
+    [Authorize]
     public class FollowingsController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -17,8 +17,8 @@ namespace GigHub.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
-        [System.Web.Http.Authorize]
-        [System.Web.Http.HttpPost]
+        [Authorize]
+        [HttpPost]
         public IHttpActionResult Follow(FollowingDto followerDto)
         {
             var userId = User.Identity.GetUserId();
@@ -38,8 +38,8 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
-        [System.Web.Http.Authorize]
-        [System.Web.Http.HttpDelete]
+        [Authorize]
+        [HttpDelete]
         public IHttpActionResult UnFollow(string id)
         {
             var userId = User.Identity.GetUserId();

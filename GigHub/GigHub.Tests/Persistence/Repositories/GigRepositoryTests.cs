@@ -2,7 +2,7 @@ using System;
 using System.Data.Entity;
 using FluentAssertions;
 using GigHub.Core.Models;
-using GigHub.Persistence;
+using GigHub.Core.Repositories;
 using GigHub.Persistence.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

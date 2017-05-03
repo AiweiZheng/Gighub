@@ -1,5 +1,6 @@
 using System.Data.Entity;
 using GigHub.Core.Models;
+using GigHub.Core.Repositories;
 using GigHub.Persistence.EntityConfigurations;
 using Microsoft.AspNet.Identity.EntityFramework;
 

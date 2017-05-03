@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using FluentAssertions;
 using GigHub.Core.Models;
-using GigHub.Persistence;
 using GigHub.Persistence.Repositories;
 using GigHub.Tests.Extensions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System.Data.Entity;
+using GigHub.Core.Repositories;
 
 namespace GigHub.Tests.Persistence.Repositories
 {

@@ -11,6 +11,9 @@ namespace GigHub.Persistence.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(100);
 
+            Property(u => u.Activated)
+                .IsRequired();
+
             HasMany(u => u.Followers)
                  .WithRequired(f => f.Followee)
                  .WillCascadeOnDelete(false);

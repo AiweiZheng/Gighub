@@ -242,10 +242,12 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\Api\AccountRoleController.cs" />
     <Compile Include="Controllers\Api\AccountsController.cs" />
     <Compile Include="Controllers\Api\AccountStatusController.cs" />
     <Compile Include="Controllers\Api\AttendancesController.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
+    <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Core\Dtos\GenreDto.cs" />
     <Compile Include="Core\Dtos\GigDto.cs" />
     <Compile Include="Controllers\Api\GigsController.cs" />
@@ -253,6 +255,7 @@
     <Compile Include="Core\Dtos\NotificationDto.cs" />
     <Compile Include="Controllers\Api\NotificationsController.cs" />
     <Compile Include="Core\Dtos\NotificationsDto.cs" />
+    <Compile Include="Core\Dtos\RoleDto.cs" />
     <Compile Include="Core\Dtos\UserDto.cs" />
     <Compile Include="Controllers\GigsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -489,13 +492,18 @@
     <Compile Include="Persistence\Repositories\UserRepository.cs" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\bootbox\dialogs.js" />
+    <Content Include="Scripts\app\controllers\accountRolesController.js" />
+    <Content Include="Scripts\app\controllers\accountsTableController.js" />
     <Content Include="Scripts\app\controllers\accountStatusController.js" />
+    <Content Include="Scripts\app\controllers\changeAccountRoleController.js" />
     <Content Include="Scripts\app\controllers\followingsController.js" />
     <Content Include="Scripts\app\controllers\gigActionsController.js" />
     <Content Include="Scripts\app\controllers\gigsController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
+    <Content Include="Scripts\app\services\accountRolesService.js" />
     <Content Include="Scripts\app\services\accountStatusService.js" />
     <Content Include="Scripts\app\services\attendanceService.js" />
+    <Content Include="Scripts\app\services\changeAccountRoleService.js" />
     <Content Include="Scripts\app\services\followingService.js" />
     <Content Include="Scripts\app\services\gigActionsService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
@@ -626,6 +634,7 @@
     <Content Include="Views\Gigs\Details.cshtml" />
     <Content Include="Views\Shared\_NotificationTemplate.cshtml" />
     <Content Include="Views\Admin\Accounts.cshtml" />
+    <Content Include="Views\Shared\_RolesTemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

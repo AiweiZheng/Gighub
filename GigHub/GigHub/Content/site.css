@@ -193,13 +193,19 @@ h6,
     display: block;
 }
 
-.popover-notifications .popover-content {
-    padding: 0;
+.form-inline .radio {
+    display: block;
+ 
 }
 
 .popover-notifications ul.notifications {
     list-style: none;
     padding-left: 0;
+}
+
+ul.roles {
+    list-style: none;
+    padding: 10px;
 }
 
 .popover-notifications ul.notifications > li {

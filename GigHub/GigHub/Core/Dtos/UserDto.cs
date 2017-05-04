@@ -8,15 +8,6 @@
         public string Role { get; set; }
         public bool Activated { get; set; }
 
-        public string AccountStatus
-        {
-            get
-            {
-                if (Activated)
-                    return "Deactivate";
-
-                return "Activate";
-            }
-        }
+        public string AccountStatus => Activated ? "Deactivate" : "Activate";
     }
 }

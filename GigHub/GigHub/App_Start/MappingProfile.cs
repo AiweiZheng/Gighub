@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using GigHub.Core.Dtos;
 using GigHub.Core.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GigHub.App_Start
 {
@@ -11,6 +12,7 @@ namespace GigHub.App_Start
             Mapper.CreateMap<ApplicationUser, UserDto>();
             Mapper.CreateMap<Gig, GigDto>();
             Mapper.CreateMap<Notification, NotificationDto>();
+            Mapper.CreateMap<IdentityRole, RoleDto>();
         }
     }
 }

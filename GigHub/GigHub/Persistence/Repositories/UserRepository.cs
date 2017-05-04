@@ -22,7 +22,7 @@ namespace GigHub.Persistence.Repositories
 
         public ApplicationUser GetUser(string id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return _context.Users.Include(u => u.Roles).FirstOrDefault(u => u.Id == id);
         }
 
         public void Dispose()

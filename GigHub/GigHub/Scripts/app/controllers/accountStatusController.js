@@ -20,7 +20,8 @@
     }
 
     var init = function (container) {
-        $(container).on("click", ".js-toggle-activateAccount", toggleActivateAccount);
+        $(container).on("click", ".js-toggle-changeStatus", toggleActivateAccount);
+
     }
 
     return {

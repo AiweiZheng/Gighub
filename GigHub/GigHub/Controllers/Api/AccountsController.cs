@@ -21,6 +21,7 @@ namespace GigHub.Controllers.Api
         public IHttpActionResult GetAccounts()
         {
             var roles = _unitOfWork.Roles.GetRoles().ToLookup(k => k.Id);
+
             var users = _unitOfWork.Users.GetUsers().ToList();
 
             users.ForEach(u => u.MapRoleToUser(u, roles));

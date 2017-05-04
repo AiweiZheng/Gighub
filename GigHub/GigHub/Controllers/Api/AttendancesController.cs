@@ -2,11 +2,13 @@
 using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
     [Authorize]
     public class AttendancesController : ApiController
     {

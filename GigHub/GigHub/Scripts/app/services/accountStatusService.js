@@ -1,6 +1,7 @@
 ﻿var AccountStatusService = function () {
 
-    var changeAccountStatus = function (userId,data, done, fail) {
+    var changeAccountStatus = function (userId, data, done, fail) {
+        
         $.ajax({
             url: "/api/accountStatus/" + userId,
             method: "PUT",

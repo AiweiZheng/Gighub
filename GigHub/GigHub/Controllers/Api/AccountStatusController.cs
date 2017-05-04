@@ -1,13 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
+﻿using System.Net;
 using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
+using GigHub.Core.Filters;
+using GigHub.Core.Models;
+using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
+    [Authorize(Roles = RoleName.AccountManager)]
     public class AccountStatusController : ApiController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,6 +28,9 @@ namespace GigHub.Controllers.Api
                 return Content(HttpStatusCode.BadRequest, "No User found.");
 
             user.ChangeUserStatus(userDto.Activated);
+
+            if (!userDto.Activated)
+                _unitOfWork.Gigs.GetUpcomingGigsByArtist(id).ForEach(g => g.Cancel());
 
             _unitOfWork.Complete();
 

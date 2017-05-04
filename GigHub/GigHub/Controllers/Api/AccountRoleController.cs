@@ -2,11 +2,13 @@
 using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AccountRoleController : ApiController
     {

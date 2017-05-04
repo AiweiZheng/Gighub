@@ -2,11 +2,13 @@
 using System.Web.Http;
 using GigHub.Core;
 using GigHub.Core.Dtos;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
     [Authorize]
     public class FollowingsController : ApiController
     {
@@ -17,7 +19,6 @@ namespace GigHub.Controllers.Api
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         [HttpPost]
         public IHttpActionResult Follow(FollowingDto followerDto)
         {
@@ -38,7 +39,6 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
-        [Authorize]
         [HttpDelete]
         public IHttpActionResult UnFollow(string id)
         {

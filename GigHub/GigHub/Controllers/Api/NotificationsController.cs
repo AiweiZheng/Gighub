@@ -5,10 +5,12 @@ using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
+using GigHub.Core.Filters;
 using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
     [Authorize]
     public class NotificationsController : ApiController
     {

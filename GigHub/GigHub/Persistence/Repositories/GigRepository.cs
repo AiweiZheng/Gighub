@@ -20,6 +20,7 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Gigs
                 .Where(g => g.ArtistId == userId
+                            && g.Artist.Activated
                             && g.DateTime > DateTime.Now
                             && !g.IsCancelled)
                 .Include(g => g.Genre)
@@ -38,7 +39,9 @@ namespace GigHub.Persistence.Repositories
             return _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now && !g.IsCancelled);
+                .Where(g => g.DateTime > DateTime.Now
+                       && g.Artist.Activated
+                       && !g.IsCancelled);
         }
 
         private IEnumerable<Gig> GetUpcomingGigsByFilter(string query)

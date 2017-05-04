@@ -15,7 +15,8 @@
 
     var toggleActivateAccount = function (e) {
         link = $(e.target);
-        var status = link.text().trim() === activate ? false : true; 
+
+        var status = link.text().trim() === activate ? true : false; 
         accountStatusService.changeAccountStatus(link.attr("data-user-id"), {Activated:status}, done, fail);
     }
 

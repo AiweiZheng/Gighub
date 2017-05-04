@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using GigHub.Core.Models
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -21,9 +22,13 @@
             @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
-            </ul>
+            @if(User.IsInRole(RoleName.Artist))
+            { 
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
+                </ul>
+            }
+          
             @Html.Partial("_LoginPartial")
         </div>
     </div>

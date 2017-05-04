@@ -14,15 +14,9 @@
                     data: "name"
                 },
                 {
-                    data: "role",
-                    render: function (data, type, user) {
-                        return "<a rel='popover' data-user-id = " +
-                            user.id +
-                            " class='role' href='#'>" +
-                            data +
-                            "</a>";
-                    }
+                    data: "activated"
                 },
+
                 {
                     data: "activated",
                     render: function (data, type, user) {
@@ -30,6 +24,16 @@
                             user.id +
                             " class='js-toggle-changeStatus' href='#'>" +
                             user.accountStatus +
+                            "</a>";
+                    }
+                },
+                {
+                    data: "role",
+                    render: function (data, type, user) {
+                        return "<a rel='popover' data-user-id = " +
+                            user.id +
+                            " class='role' href='#'>" +
+                            data +
                             "</a>";
                     }
                 }

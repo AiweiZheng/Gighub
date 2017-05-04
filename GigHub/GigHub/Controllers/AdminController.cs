@@ -1,8 +1,10 @@
 ﻿using System.Web.Mvc;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 
 namespace GigHub.Controllers
 {
+    [ActivatedAccountFilter]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AdminController : Controller
     {

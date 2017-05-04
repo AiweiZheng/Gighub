@@ -1,10 +1,12 @@
 ﻿using System.Net;
 using System.Web.Http;
 using GigHub.Core;
+using GigHub.Core.Filters;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
+    [ActivatedAccountFilter]
     [Authorize]
     public class GigsController : ApiController
     {

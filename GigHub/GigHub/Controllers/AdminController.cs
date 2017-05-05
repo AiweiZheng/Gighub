@@ -4,7 +4,8 @@ using GigHub.Core.Models;
 
 namespace GigHub.Controllers
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AdminController : Controller
     {

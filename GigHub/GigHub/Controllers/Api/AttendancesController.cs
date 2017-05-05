@@ -8,7 +8,8 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize]
     public class AttendancesController : ApiController
     {

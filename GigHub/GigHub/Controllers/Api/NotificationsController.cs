@@ -10,7 +10,8 @@ using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize]
     public class NotificationsController : ApiController
     {

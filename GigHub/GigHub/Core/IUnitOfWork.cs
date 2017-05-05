@@ -11,6 +11,7 @@ namespace GigHub.Core
         IUserNotificationRepository UserNotifications { get; }
         IUserRepository Users { get; }
         IRoleRepository Roles { get; }
+        ILoginRepository Logins { get; }
         void Complete();
         void Dispose();
     }

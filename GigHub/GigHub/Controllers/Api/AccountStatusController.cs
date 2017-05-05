@@ -8,7 +8,8 @@ using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AccountStatusController : ApiController
     {

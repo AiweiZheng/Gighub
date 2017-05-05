@@ -8,7 +8,9 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
+    [Authorize]
     public class GigsController : Controller
     {
 
@@ -19,7 +21,6 @@ namespace GigHub.Controllers
             _unitOfWork = unitOfWork;
         }
 
-        [Authorize]
         public ViewResult Mine()
         {
             var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(User.Identity.GetUserId());
@@ -27,7 +28,6 @@ namespace GigHub.Controllers
             return View(gigs);
         }
 
-        [Authorize]
         public ViewResult Attending()
         {
             var userId = User.Identity.GetUserId();
@@ -44,7 +44,6 @@ namespace GigHub.Controllers
             return View("Gigs", viewMode);
         }
 
-        [Authorize]
         public ActionResult Following()
         {
             var artists = _unitOfWork.Followings.GetUserFollowees(User.Identity.GetUserId());
@@ -52,7 +51,6 @@ namespace GigHub.Controllers
             return View(artists);
         }
 
-        [Authorize]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
@@ -64,8 +62,6 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
-
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
@@ -90,7 +86,6 @@ namespace GigHub.Controllers
             return RedirectToAction("Mine", "Gigs");
         }
 
-        [Authorize]
         public ActionResult Edit(int id)
         {
             var userId = User.Identity.GetUserId();
@@ -117,7 +112,6 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
-        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(GigFormViewModel viewModel)
@@ -143,12 +137,14 @@ namespace GigHub.Controllers
             return RedirectToAction("Mine", "Gigs");
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public ActionResult Search(GigsViewModel viewModel)
         {
             return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
         }
 
+        [AllowAnonymous]
         public ActionResult Details(int id)
         {
             var gig = _unitOfWork.Gigs.GetGig(id);

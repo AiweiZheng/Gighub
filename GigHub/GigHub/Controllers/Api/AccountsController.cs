@@ -8,7 +8,8 @@ using GigHub.Core.Models;
 
 namespace GigHub.Controllers.Api
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AccountsController : ApiController
     {

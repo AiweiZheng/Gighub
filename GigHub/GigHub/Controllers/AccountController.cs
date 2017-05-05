@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -18,7 +19,6 @@ namespace GigHub.Controllers
         private ApplicationUserManager _userManager;
 
         private IUnitOfWork _unitOfWork;
-
         public AccountController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -82,7 +82,30 @@ namespace GigHub.Controllers
             {
 
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = UserManager.FindByName(model.Email);
+                    if (user.Activated)
+                    {
+                        var login = new Login
+                        {
+                            Username = model.Email,
+                            SessionId = HttpContext.Session.SessionID,
+                            Date = DateTime.Now
+                        };
+
+                        Session["sessionid"] = HttpContext.Session.SessionID;
+                        _unitOfWork.Logins.PutOrPostLogin(login);
+
+                        _unitOfWork.Complete();
+
+                        return RedirectToLocal(returnUrl);
+                    }
+
+                    else
+                    {
+                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                        ModelState.AddModelError("", "Account is not activated");
+                        return View(model);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:

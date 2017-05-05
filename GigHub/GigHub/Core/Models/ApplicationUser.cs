@@ -13,11 +13,10 @@ namespace GigHub.Core.Models
     public class ApplicationUser : IdentityUser
     {
         public string Name { get; set; }
+        public bool Activated { get; private set; }
 
         [NotMapped]
         public string Role { get; set; }
-
-        public bool Activated { get; private set; }
 
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }

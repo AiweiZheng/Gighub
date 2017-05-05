@@ -8,7 +8,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace GigHub.Controllers.Api
 {
-    [ActivatedAccountFilter]
+    [AuthorizeActivatedAccount]
+    [AuthorizeSingleLogin]
     [Authorize(Roles = RoleName.AccountManager)]
     public class AccountRoleController : ApiController
     {

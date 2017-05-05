@@ -1,12 +1,17 @@
 ﻿var AccountStatusController = function (accountStatusService) {
     var link;
+    var status;
     var activate = "Activate";
     var deactivate = "Deactivate";
 
 
     var done = function() {
-        var text = link.text().trim() === activate ? deactivate : activate;
+        var text = status ? deactivate : activate;
         link.text(text);
+      
+        text = status ? true : false;
+        var statusLabel = $("#" + link.attr("data-user-id") + "_status");
+        statusLabel.text(text);
     };
 
     var fail = function(error) {
@@ -16,7 +21,7 @@
     var toggleActivateAccount = function (e) {
         link = $(e.target);
 
-        var status = link.text().trim() === activate ? true : false; 
+        status = link.text().trim() === activate ? true : false; 
         accountStatusService.changeAccountStatus(link.attr("data-user-id"), {Activated:status}, done, fail);
     }
 

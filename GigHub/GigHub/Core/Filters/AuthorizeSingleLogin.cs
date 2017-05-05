@@ -6,20 +6,35 @@ namespace GigHub.Core.Filters
 {
     public class AuthorizeSingleLogin : AuthorizeAttribute
     {
+        private bool _isAuthorized;
+
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var isAuthorized = base.AuthorizeCore(httpContext);
+            _isAuthorized = base.AuthorizeCore(httpContext);
 
             var user = httpContext.User.Identity.Name;
             var access = httpContext.Session.SessionID;
 
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(access))
             {
-                return isAuthorized;
+                return _isAuthorized;
             }
 
             var unitOfWork = new UnitOfWork(new ApplicationDbContext());
-            return unitOfWork.Logins.IsLoggedIn(user, access);
+            _isAuthorized = unitOfWork.Logins.IsLoggedIn(user, access);
+
+            return _isAuthorized;
         }
+
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            base.OnAuthorization(filterContext);
+
+            if (!_isAuthorized)
+            {
+                filterContext.Controller.TempData.Add("RedirectReason", "Account has logged in different hosts.");
+            }
+        }
+
     }
 }

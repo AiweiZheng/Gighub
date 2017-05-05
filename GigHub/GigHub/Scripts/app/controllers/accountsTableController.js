@@ -14,7 +14,14 @@
                     data: "name"
                 },
                 {
-                    data: "activated"
+                    data: "activated",
+                    render: function (data, type, user) {
+                        return "<label id = " +
+                            user.id +
+                            "_status>" +
+                            data +
+                            "</label>";
+                    }
                 },
 
                 {

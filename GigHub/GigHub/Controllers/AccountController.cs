@@ -60,6 +60,10 @@ namespace GigHub.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+
+            if (TempData["RedirectReason"] != null)
+                ModelState.AddModelError("", (string)TempData["RedirectReason"]);
+
             return View();
         }
 
@@ -82,30 +86,10 @@ namespace GigHub.Controllers
             {
 
                 case SignInStatus.Success:
-                    var user = UserManager.FindByName(model.Email);
-                    if (user.Activated)
-                    {
-                        var login = new Login
-                        {
-                            Username = model.Email,
-                            SessionId = HttpContext.Session.SessionID,
-                            Date = DateTime.Now
-                        };
 
-                        Session["sessionid"] = HttpContext.Session.SessionID;
-                        _unitOfWork.Logins.PutOrPostLogin(login);
+                    _saveLogin(model.Email);
 
-                        _unitOfWork.Complete();
-
-                        return RedirectToLocal(returnUrl);
-                    }
-
-                    else
-                    {
-                        AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                        ModelState.AddModelError("", "Account is not activated");
-                        return View(model);
-                    }
+                    return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -114,6 +98,22 @@ namespace GigHub.Controllers
                     ModelState.AddModelError("", "Invalid login attempt.");
                     return View(model);
             }
+        }
+
+        private void _saveLogin(string userName)
+        {
+            var login = new Login
+            {
+                Username = userName,
+                SessionId = HttpContext.Session.SessionID,
+                Date = DateTime.Now
+            };
+
+            Session["sessionid"] = HttpContext.Session.SessionID;
+            _unitOfWork.Logins.PutOrPostLogin(login);
+
+            _unitOfWork.Complete();
+
         }
 
         //

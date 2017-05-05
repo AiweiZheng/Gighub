@@ -8,23 +8,53 @@ namespace GigHub.Core.Filters
 {
     public class AuthorizeActivatedAccount : AuthorizeAttribute
     {
+        private bool _isAuthorized;
+
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            var unitOfWork = new UnitOfWork(new ApplicationDbContext());
+
 
             var userId = httpContext.User.Identity.GetUserId();
-            var user = unitOfWork.Users.GetUser(userId);
 
-            if (user == null || !user.Activated)
+
+            if (!_isLogged(userId))
+                _isAuthorized = true;
+
+            else if (!_isActivated(userId))
             {
+                _isAuthorized = false;
                 httpContext
                     .GetOwinContext()
                     .Authentication
                     .SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-                return false;
-            }
 
-            return base.AuthorizeCore(httpContext);
+            }
+            else
+                _isAuthorized = base.AuthorizeCore(httpContext);
+
+            return _isAuthorized;
+        }
+
+        public override void OnAuthorization(AuthorizationContext filterContext)
+        {
+            base.OnAuthorization(filterContext);
+
+            if (!_isAuthorized)
+            {
+                filterContext.Controller.TempData.Add("RedirectReason", "Account is Inactivated.");
+            }
+        }
+
+        private bool _isLogged(string userId)
+        {
+            return userId != null;
+        }
+
+        private bool _isActivated(string userId)
+        {
+            var unitOfWork = new UnitOfWork(new ApplicationDbContext());
+            var user = unitOfWork.Users.GetUser(userId);
+            return user.Activated;
         }
     }
 }

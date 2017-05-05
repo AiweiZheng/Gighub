@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using GigHub.Core;
+using GigHub.Core.Filters;
 using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
 
@@ -14,6 +15,9 @@ namespace GigHub.Controllers
         {
             _unitOfWork = unitOfWork;
         }
+
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ActionResult Index(string query = null)
         {
             var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query);

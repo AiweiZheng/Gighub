@@ -13,6 +13,7 @@ namespace GigHub.Core.Repositories
         DbSet<Notification> Notifications { get; set; }
         DbSet<UserNotification> UserNotifications { get; set; }
         DbSet<Login> Logins { get; set; }
+      //  DbSet<Description> UserDescriptions { get; set; }
         IDbSet<ApplicationUser> Users { get; set; }
         IDbSet<IdentityRole> Roles { get; set; }
         void Dispose();

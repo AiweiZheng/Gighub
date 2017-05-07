@@ -26,7 +26,7 @@ namespace GigHub.Controllers.Api
             var user = _unitOfWork.Users.GetUser(id);
 
             if (user == null)
-                return Content(HttpStatusCode.BadRequest, "No User found.");
+                return Content(HttpStatusCode.BadRequest, ErrorMsg.NoUserFound);
 
             user.ChangeUserStatus(userDto.Activated);
 

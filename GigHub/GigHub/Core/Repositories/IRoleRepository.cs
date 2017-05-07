@@ -6,6 +6,7 @@ namespace GigHub.Core.Repositories
     public interface IRoleRepository
     {
         IEnumerable<IdentityRole> GetRoles();
+        string GetRoleIdBy(string roleName);
         void Dispose();
     }
 }

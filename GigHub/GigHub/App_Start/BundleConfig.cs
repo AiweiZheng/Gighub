@@ -25,15 +25,18 @@ namespace GigHub
                         "~/scripts/app/controllers/changeAccountRoleController.js",
                         "~/scripts/app/services/accountRolesService.js",
                         "~/scripts/app/controllers/accountRolesController.js",
+                        "~/scripts/app/services/accountDescriptionsService.js",
+                        "~/scripts/app/controllers/accountDescriptionsController.js",
 
                         "~/scripts/app/app.js"
             ));
 
             bundles.Add(new ScriptBundle("~/bundles/lib").Include(
-                         "~/Scripts/bootstrap.js",
+
                          "~/Scripts/respond.js",
                          "~/Scripts/bootbox.min.js",
                          "~/Scripts/jquery-{version}.js",
+                         "~/Scripts/bootstrap.js",
                          "~/Scripts/underscore-min.js",
                          "~/Scripts/dataTables/jquery.datatables.js",
                          "~/Scripts/dataTables/datatables.bootstrap.js",

@@ -88,6 +88,7 @@ span.field-validation-error {
     box-shadow: none;
 }
 
+
 .navbar-inverse .navbar-nav > .dropdown > a .caret {
      border-top-color: #fff; 
      border-bottom-color: #fff; 
@@ -223,6 +224,37 @@ ul.roles {
 
 ul.dropdown-menu > li.new {
     border-top: 1px solid #ffe6e6;
+}
+
+body.modal-open{
+    margin-right:0px!important;
+}
+
+.modal-open .navbar-fixed-top{
+    margin-right:0px!important;
+}
+
+.modal {
+    text-align: center;
+    padding: 0!important;
+}
+
+.modal:before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -4px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+input, select, textarea {
+    max-width: 100%;
 }
 
 #searchGigs {

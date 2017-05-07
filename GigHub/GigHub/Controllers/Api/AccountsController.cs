@@ -35,5 +35,34 @@ namespace GigHub.Controllers.Api
 
             return Ok(accountDtos);
         }
+
+        [HttpGet]
+        public IHttpActionResult GetAccount(string id)
+        {
+            if (id == "1")
+                return Ok("<script>alert('save')</script>");
+            var user = _unitOfWork.Users.GetUser(id);
+
+            return Ok(Mapper.Map<ApplicationUser, UserDto>(user));
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateAccount(string id, [FromBody]UserDto userDto)
+        {
+            var user = _unitOfWork.Users.GetUser(userDto.Id);
+
+            Mapper.Map(userDto, user);
+
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        //        [HttpGet]
+        //        [Route("api/accounts/{id}/role")]
+        //        public IHttpActionResult Role(int id)
+        //        {
+        //            return Ok("role");
+        //        }
     }
 }

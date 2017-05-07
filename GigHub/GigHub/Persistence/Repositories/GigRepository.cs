@@ -41,7 +41,8 @@ namespace GigHub.Persistence.Repositories
                 .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now
                        && g.Artist.Activated
-                       && !g.IsCancelled);
+                       && !g.IsCancelled)
+                .OrderBy(g => g.DateTime);
         }
 
         private IEnumerable<Gig> GetUpcomingGigsByFilter(string query)

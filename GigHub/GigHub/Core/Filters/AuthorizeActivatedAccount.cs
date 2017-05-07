@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using GigHub.Controllers;
 using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
 
@@ -12,10 +13,7 @@ namespace GigHub.Core.Filters
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-
-
             var userId = httpContext.User.Identity.GetUserId();
-
 
             if (!_isLogged(userId))
                 _isAuthorized = true;
@@ -41,7 +39,7 @@ namespace GigHub.Core.Filters
 
             if (!_isAuthorized)
             {
-                filterContext.Controller.TempData.Add("RedirectReason", "Account is Inactivated.");
+                filterContext.Controller.TempData.Add("RedirectReason", ErrorMsg.AccountIsInactivated);
             }
         }
 

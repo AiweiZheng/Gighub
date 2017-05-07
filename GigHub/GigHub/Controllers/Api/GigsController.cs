@@ -25,7 +25,7 @@ namespace GigHub.Controllers.Api
             var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
 
             if (gig == null || gig.IsCancelled)
-                return Content(HttpStatusCode.NotFound, "The gig does not exist.");
+                return Content(HttpStatusCode.NotFound, ErrorMsg.GigDoesNotExist);
 
             if (gig.ArtistId != userId)
                 return Unauthorized();

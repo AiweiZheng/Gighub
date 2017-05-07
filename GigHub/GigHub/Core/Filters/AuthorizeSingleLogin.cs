@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using GigHub.Controllers;
 using GigHub.Persistence;
 
 namespace GigHub.Core.Filters
@@ -10,14 +11,13 @@ namespace GigHub.Core.Filters
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            _isAuthorized = base.AuthorizeCore(httpContext);
 
             var user = httpContext.User.Identity.Name;
             var access = httpContext.Session.SessionID;
 
             if (string.IsNullOrEmpty(user) || string.IsNullOrEmpty(access))
             {
-                return _isAuthorized;
+                _isAuthorized = true;
             }
 
             var unitOfWork = new UnitOfWork(new ApplicationDbContext());
@@ -32,7 +32,7 @@ namespace GigHub.Core.Filters
 
             if (!_isAuthorized)
             {
-                filterContext.Controller.TempData.Add("RedirectReason", "Account has logged in different hosts.");
+                filterContext.Controller.TempData.Add("RedirectReason", ErrorMsg.AccountHasLoggedIn);
             }
         }
 

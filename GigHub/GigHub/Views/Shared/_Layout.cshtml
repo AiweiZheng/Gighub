@@ -22,13 +22,16 @@
             @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
-            @if(User.IsInRole(RoleName.Artist))
-            { 
-                <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Artists", "Artists", "Home")</li>
+
+                @if (User.IsInRole(RoleName.Artist))
+                {
                     <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
-                </ul>
-            }
-          
+                }
+            </ul>
+            
+
             @Html.Partial("_LoginPartial")
         </div>
     </div>

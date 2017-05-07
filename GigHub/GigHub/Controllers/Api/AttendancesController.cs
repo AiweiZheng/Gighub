@@ -31,7 +31,7 @@ namespace GigHub.Controllers.Api
             var userId = User.Identity.GetUserId();
 
             if (_unitOfWork.Attendances.GetAttendance(dto.GigId, userId) != null)
-                return Content(HttpStatusCode.BadRequest, "The attendance already exists.");
+                return Content(HttpStatusCode.BadRequest, ErrorMsg.AttendanceAlreadyExsits);
 
             var attendance = new Attendance
             {
@@ -54,7 +54,7 @@ namespace GigHub.Controllers.Api
             var attendance = _unitOfWork.Attendances.GetAttendance(id, userId);
 
             if (attendance == null)
-                return Content(HttpStatusCode.NotFound, "The attendance does not exist.");
+                return Content(HttpStatusCode.NotFound, ErrorMsg.AttendanceDoesNotExist);
 
             _unitOfWork.Attendances.Remove(attendance);
             _unitOfWork.Complete();

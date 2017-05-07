@@ -18,7 +18,7 @@ namespace GigHub.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
-        private IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         public AccountController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -95,7 +95,7 @@ namespace GigHub.Controllers
                 case SignInStatus.RequiresVerification:
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, model.RememberMe });
                 default:
-                    ModelState.AddModelError("", "Invalid login attempt.");
+                    ModelState.AddModelError("", ErrorMsg.InvalidLoginAttempt);
                     return View(model);
             }
         }
@@ -153,7 +153,7 @@ namespace GigHub.Controllers
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", ErrorMsg.InvalidCode);
                     return View(model);
             }
         }

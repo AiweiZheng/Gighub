@@ -16,6 +16,7 @@ namespace GigHub.Persistence
         public IUserRepository Users { get; private set; }
         public IRoleRepository Roles { get; private set; }
         public ILoginRepository Logins { get; private set; }
+        // public IUserDescriptionRepository UserDescriptions { get; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -28,6 +29,7 @@ namespace GigHub.Persistence
             Users = new UserRepository(_context);
             Roles = new RoleRepository(_context);
             Logins = new LoginRepository(_context);
+            //  UserDescriptions = new UserDescriptionRepository(_context);
         }
 
         public void Complete()
@@ -44,6 +46,7 @@ namespace GigHub.Persistence
             UserNotifications.Dispose();
             Users.Dispose();
             Roles.Dispose();
+            //  UserDescriptions.Dispose();
         }
     }
 }

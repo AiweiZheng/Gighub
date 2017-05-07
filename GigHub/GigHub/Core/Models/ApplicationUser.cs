@@ -14,6 +14,7 @@ namespace GigHub.Core.Models
     {
         public string Name { get; set; }
         public bool Activated { get; private set; }
+        public string Description { get; set; }
 
         [NotMapped]
         public string Role { get; set; }
@@ -21,6 +22,7 @@ namespace GigHub.Core.Models
         public ICollection<Following> Followers { get; set; }
         public ICollection<Following> Followees { get; set; }
         public ICollection<UserNotification> UserNotifications { get; set; }
+
 
         public ApplicationUser()
         {

@@ -7,7 +7,7 @@
         public string Email { get; set; }
         public string Role { get; set; }
         public bool Activated { get; set; }
-
+        public string Description { get; set; }
         public string AccountStatus => Activated ? "Deactivate" : "Activate";
     }
 }

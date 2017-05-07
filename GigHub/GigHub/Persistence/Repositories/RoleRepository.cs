@@ -19,6 +19,11 @@ namespace GigHub.Persistence.Repositories
             return _context.Roles.ToList();
         }
 
+        public string GetRoleIdBy(string roleName)
+        {
+            return _context.Roles.Single(r => r.Name == roleName).Id;
+        }
+
         public void Dispose()
         {
             _context.Dispose();

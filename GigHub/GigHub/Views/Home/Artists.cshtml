@@ -1,0 +1,20 @@
+﻿@using WebGrease.Css.Extensions
+@model System.Collections.Generic.IEnumerable<GigHub.Core.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Artists";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewBag.Title</h2>
+
+@foreach (var artist in Model)
+{
+    <div class="panel panel-default">
+        <div class="panel-heading">@artist.Name</div>
+        <div class="panel-body">
+            @artist.Description
+        </div>
+    </div>
+}
+

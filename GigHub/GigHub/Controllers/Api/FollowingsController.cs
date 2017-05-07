@@ -26,7 +26,7 @@ namespace GigHub.Controllers.Api
             var userId = User.Identity.GetUserId();
 
             if (_unitOfWork.Followings.GetFollowing(followerDto.FolloweeId, userId) != null)
-                return Content(HttpStatusCode.BadRequest, "Following already exists.");
+                return Content(HttpStatusCode.BadRequest, ErrorMsg.FollowingAlreadyExists);
 
             var follower = new Following
             {
@@ -47,7 +47,7 @@ namespace GigHub.Controllers.Api
             var following = _unitOfWork.Followings.GetFollowing(id, userId);
 
             if (following == null)
-                return Content(HttpStatusCode.NotFound, "The following does not exist.");
+                return Content(HttpStatusCode.NotFound, ErrorMsg.FollowingDoesNotExist);
 
             _unitOfWork.Followings.Remove(following);
             _unitOfWork.Complete();

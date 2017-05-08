@@ -110,6 +110,7 @@ h6,
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+
 .form-group {
     margin-bottom: 20px;
 }
@@ -196,7 +197,6 @@ h6,
 
 .form-inline .radio {
     display: block;
- 
 }
 
 .popover-notifications ul.notifications {
@@ -253,8 +253,16 @@ body.modal-open{
     vertical-align: middle;
 }
 
-input, select, textarea {
+ .modal-body textarea {
     max-width: 100%;
+}
+
+.radio {
+    font-size: 12px;
+}
+input[type=radio] {
+    border: 0;
+    height: 1em;
 }
 
 #searchGigs {

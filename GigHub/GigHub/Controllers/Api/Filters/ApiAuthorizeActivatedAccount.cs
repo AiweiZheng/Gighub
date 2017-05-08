@@ -1,19 +1,18 @@
 ﻿using System.Web;
-using System.Web.Mvc;
-using GigHub.Controllers;
+using System.Web.Http.Controllers;
 using GigHub.Persistence;
 using Microsoft.AspNet.Identity;
+using AuthorizeAttribute = System.Web.Http.AuthorizeAttribute;
 
-
-namespace GigHub.Core.Filters
+namespace GigHub.Controllers.Api.Filters
 {
-    public sealed class AuthorizeActivatedAccount : AuthorizeAttribute
+    public sealed class ApiAuthorizeActivatedAccount : AuthorizeAttribute
     {
         private bool _isAuthorized;
 
-        protected override bool AuthorizeCore(HttpContextBase httpContext)
+        protected override bool IsAuthorized(HttpActionContext actionContext)
         {
-            var userId = httpContext.User.Identity.GetUserId();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
 
             if (!_isLogged(userId))
                 _isAuthorized = true;
@@ -21,27 +20,18 @@ namespace GigHub.Core.Filters
             else if (!_isActivated(userId))
             {
                 _isAuthorized = false;
-                httpContext
+                HttpContext.Current
                     .GetOwinContext()
                     .Authentication
                     .SignOut(DefaultAuthenticationTypes.ApplicationCookie);
 
             }
             else
-                _isAuthorized = base.AuthorizeCore(httpContext);
+                _isAuthorized = base.IsAuthorized(actionContext);
 
             return _isAuthorized;
         }
 
-        public override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            base.OnAuthorization(filterContext);
-
-            if (!_isAuthorized)
-            {
-                filterContext.Controller.TempData.Add("RedirectReason", ErrorMsg.AccountIsInactivated);
-            }
-        }
 
         private bool _isLogged(string userId)
         {

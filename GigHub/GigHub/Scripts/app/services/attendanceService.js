@@ -1,7 +1,12 @@
 ﻿var AttendanceService = function () {
 
     var createAttendance = function (gigId, done, fail) {
-        $.post("/api/attendances", { GigId: gigId })
+        $.ajax({
+                url: "/api/attendances",
+                method: "POST",
+                data: { GigId: gigId },
+                beforeSend: App.addVerificaitonTokenToHeader
+            })
             .done(done)
             .fail(fail);
     }
@@ -9,7 +14,8 @@
     var deleteAttendance = function (gigId, done, fail) {
         $.ajax({
                 url: "/api/attendances/" + gigId,
-                method: "DELETE"
+                method: "DELETE",
+                beforeSend: App.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);

@@ -1,6 +1,7 @@
 ﻿@model GigHub.Core.ViewModels.GigsViewModel
 
 <h1>@Model.Heading</h1>
+@Html.AntiForgeryToken()
 
 @using (Html.BeginForm("Search", "Gigs"))
 {
@@ -54,6 +55,7 @@
         </li>
     }
 </ul>
+
 
 @section scripts
 {

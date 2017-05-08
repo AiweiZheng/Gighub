@@ -1,5 +1,5 @@
 ﻿
-var ChangeAccountRoleController = function (changeAccountRoleService) {
+var ChangeAccountRoleController = function (accountService) {
 
     var selectRoleId = null;
     var selectRoleName = null;
@@ -20,8 +20,8 @@ var ChangeAccountRoleController = function (changeAccountRoleService) {
         var userId = link.attr("data-user-id");
         var data = { Id: selectRoleId };
 
-        if (selectRoleId != null) 
-            changeAccountRoleService.changeAccountRole(userId,data, done, fail);
+        if (selectRoleId !== null) 
+            accountService.changeAccountRole(userId,data, done, fail);
         
         selectRoleId = null;//should reset 
     }
@@ -44,4 +44,4 @@ var ChangeAccountRoleController = function (changeAccountRoleService) {
         sendChangeRoleRequest: sendChangeRoleRequest
     }
 
-}(ChangeAccountRoleService)
+}(AccountService)

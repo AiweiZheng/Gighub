@@ -10,15 +10,15 @@
     <tr>
         <th>Email</th>
         <th>Name</th>
+        <th>Role</th>
         <th>Activated</th>
         <th>Description</th>
         <th>(De)activate</th>
-        <th>Role</th>
     </tr>
     </thead>
     <tbody></tbody>
 </table>
-
+@Html.AntiForgeryToken()
 
 <!-- Popup for user description-->
 <div class="modal fade" id="descriptionModel">
@@ -49,9 +49,7 @@
 {
     @Html.Partial("_RolesTemplate")
     <script>
-       
         $(document).ready(function () {
-
             AccountTableController.init("#Account");
             AccountStatusController.init("#Account");
             AccountRoleController.init("table", "#roles-template");

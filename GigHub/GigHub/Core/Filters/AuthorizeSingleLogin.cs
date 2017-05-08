@@ -5,13 +5,12 @@ using GigHub.Persistence;
 
 namespace GigHub.Core.Filters
 {
-    public class AuthorizeSingleLogin : AuthorizeAttribute
+    public sealed class AuthorizeSingleLogin : AuthorizeAttribute
     {
         private bool _isAuthorized;
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-
             var user = httpContext.User.Identity.Name;
             var access = httpContext.Session.SessionID;
 
@@ -28,6 +27,7 @@ namespace GigHub.Core.Filters
 
         public override void OnAuthorization(AuthorizationContext filterContext)
         {
+
             base.OnAuthorization(filterContext);
 
             if (!_isAuthorized)

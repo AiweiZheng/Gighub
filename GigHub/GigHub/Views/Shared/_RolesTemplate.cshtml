@@ -5,13 +5,11 @@
 
         { %>
         <div class="radio">
-            <label>
-                <input type="radio"  name="optradio"
-                       class="js-change-role"
-                       js-data-role-id="<%= role.id %>"
-                       js-data-role-name="<%= role.name %>">
-                <%= role.name %>
-            </label>
+            <input type="radio" name="optradio"
+                   class="js-change-role"
+                   js-data-role-id="<%= role.id %>"
+                   js-data-role-name="<%= role.name %>">
+            <span><%= role.name %></span>
         </div>
         <% }) %>
     </form>

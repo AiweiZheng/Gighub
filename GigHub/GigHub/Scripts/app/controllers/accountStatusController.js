@@ -1,4 +1,4 @@
-﻿var AccountStatusController = function (accountStatusService) {
+﻿var AccountStatusController = function (accountService) {
     var link;
     var status;
     var activate = "Activate";
@@ -22,7 +22,7 @@
         link = $(e.target);
 
         status = link.text().trim() === activate ? true : false; 
-        accountStatusService.changeAccountStatus(link.attr("data-user-id"), {Activated:status}, done, fail);
+        accountService.changeAccountStatus(link.attr("data-user-id"), {Activated:status}, done, fail);
     }
 
     var init = function (container) {
@@ -33,4 +33,4 @@
     return {
         init: init
     };
-}(AccountStatusService)
+}(AccountService)

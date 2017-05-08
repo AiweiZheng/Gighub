@@ -5,6 +5,7 @@
     Layout = "~/views/Shared/_Layout.cshtml";
 }
 
+@Html.AntiForgeryToken()
 <h2>
     @Model.Gig.Artist.Name
     @if (User.Identity.IsAuthenticated)

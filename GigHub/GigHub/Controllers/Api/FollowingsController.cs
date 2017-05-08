@@ -1,15 +1,15 @@
 ﻿using System.Net;
 using System.Web.Http;
+using GigHub.Controllers.Api.Filters;
 using GigHub.Core;
 using GigHub.Core.Dtos;
-using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [AuthorizeActivatedAccount]
-    [AuthorizeSingleLogin]
+    [ApiValidateHeaderAntiForgeryToken]
+    [ApiAuthorizeActivatedAccount]
     [Authorize]
     public class FollowingsController : ApiController
     {

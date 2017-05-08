@@ -1,15 +1,15 @@
 ﻿using System.Net;
 using System.Web.Http;
+using GigHub.Controllers.Api.Filters;
 using GigHub.Core;
 using GigHub.Core.Dtos;
-using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
 {
-    [AuthorizeActivatedAccount]
-    [AuthorizeSingleLogin]
+    [ApiAuthorizeActivatedAccount]
+    [ApiValidateHeaderAntiForgeryToken]
     [Authorize]
     public class AttendancesController : ApiController
     {
@@ -24,7 +24,7 @@ namespace GigHub.Controllers.Api
         {
             _unitOfWork.Dispose();
         }
-        [Authorize]
+
         [HttpPost]
         public IHttpActionResult Attend(AttendanceDto dto)
         {
@@ -45,7 +45,6 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
-        [Authorize]
         [HttpDelete]
         public IHttpActionResult DeleteAttendance(int id)
         {

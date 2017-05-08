@@ -3,7 +3,8 @@
     var cancel = function (id, done, fail) {
         $.ajax({
                 url: "/api/gigs/" + id,
-                method: "DELETE"
+                method: "DELETE",
+                beforeSend: App.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);

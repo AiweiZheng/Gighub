@@ -17,15 +17,13 @@ namespace GigHub
                         "~/scripts/app/controllers/notificationController.js",
                         "~/scripts/app/services/gigActionsService.js",
                         "~/scripts/app/controllers/gigActionsController.js",
-                        "~/scripts/app/services/accountStatusService.js",
+
+                        "~/scripts/app/services/accountsService.js",
                         "~/scripts/app/controllers/accountStatusController.js",
                         "~/scripts/app/controllers/accountsTableController.js",
-
-                        "~/scripts/app/services/changeAccountRoleService.js",
                         "~/scripts/app/controllers/changeAccountRoleController.js",
                         "~/scripts/app/services/accountRolesService.js",
                         "~/scripts/app/controllers/accountRolesController.js",
-                        "~/scripts/app/services/accountDescriptionsService.js",
                         "~/scripts/app/controllers/accountDescriptionsController.js",
 
                         "~/scripts/app/app.js"

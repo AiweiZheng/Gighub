@@ -5,13 +5,13 @@ using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Http;
-using GigHub.Core.Filters;
+using GigHub.Controllers.Api.Filters;
 using WebGrease.Css.Extensions;
 
 namespace GigHub.Controllers.Api
 {
-    [AuthorizeActivatedAccount]
-    [AuthorizeSingleLogin]
+
+    [ApiAuthorizeActivatedAccount]
     [Authorize]
     public class NotificationsController : ApiController
     {
@@ -37,6 +37,7 @@ namespace GigHub.Controllers.Api
         }
 
         [HttpPost]
+        [ApiValidateHeaderAntiForgeryToken]
         public IHttpActionResult MarkAsRead()
         {
             var userId = User.Identity.GetUserId();

@@ -11,6 +11,7 @@
             .addClass("animated bounceInDown");
     }
 
+   
     var markAsReadDone = function() {
         $(".js-new-notifications-count")
             .text("")
@@ -19,6 +20,10 @@
 
     var markAsReadFail = function (error) {
         alertDialog(error.responseJSON);
+    }
+
+    var sendMarkAsReadRequest = function () {
+        notificationService.markAsRead(markAsReadDone, markAsReadFail);
     }
 
     var renderNotifications = function() {
@@ -42,7 +47,7 @@
             template:
                 '<div class="popover popover-notifications" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div></div>'
 
-        }).on("show.bs.popover", notificationService.markAsRead(markAsReadDone,markAsReadFail));
+        }).on("show.bs.popover", sendMarkAsReadRequest);
     }
 
     var init = function () {

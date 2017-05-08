@@ -1,4 +1,4 @@
-﻿var AccountDescriptionConctroller = function(accountDescriptionService) {
+﻿var AccountDescriptionConctroller = function (accountService) {
 
     var modal;
     var descriptionTextArea;
@@ -28,12 +28,12 @@
    
         $("#descriptionFor").text("Description for : "+userEmail);
 
-        AccountDescriptionService.getDescription(userId, receivedDescription, fail);
+        accountService.getDescription(userId, receivedDescription, fail);
     }
 
     var addListenerToSubmitBtn = function() {
         user.description = descriptionTextArea.val();
-        accountDescriptionService.updateDescription(userId, user, updatedDone, fail);
+        accountService.updateDescription(userId, user, updatedDone, fail);
     };
 
     var init = function (container) {
@@ -49,4 +49,4 @@
     return {
         init: init
     };
-}(AccountDescriptionService)
+}(AccountService)

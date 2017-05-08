@@ -25,7 +25,7 @@ var AccountRoleController = function (accountRoleService, changeAccountRoleServi
         $(container).popover(popOverSettings).on("hidden.bs.popover",
                                                  changeAccountRoleService.sendChangeRoleRequest);
     }
-
+     
     var done = function (roles) {
 
         changeAccountRoleService.init();

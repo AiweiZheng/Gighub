@@ -4,6 +4,7 @@
     {
         GigCancelled = 1,
         GigUpdated = 2,
-        GigCreated = 3
+        GigCreated = 3,
+        GigResumed = 4
     }
 }

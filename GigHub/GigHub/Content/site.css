@@ -40,6 +40,7 @@ span.field-validation-error {
 .voffset4 { margin-top: 40px;}
 .voffset5 { margin-top: 80px;}
 
+
 /* Bootstrap Overrides */
 @font-face {
     font-family: 'Glyphicons Halflings';
@@ -191,6 +192,10 @@ h6,
     display: none;
 }
 
+.actions .show {
+    display: inline-block !important;
+}
+
 .gigs > li:hover .actions {
     display: block;
 }
@@ -227,11 +232,11 @@ ul.dropdown-menu > li.new {
 }
 
 body.modal-open{
-    margin-right:0px!important;
+    margin-right:0!important;
 }
 
 .modal-open .navbar-fixed-top{
-    margin-right:0px!important;
+    margin-right:0!important;
 }
 
 .modal {
@@ -267,4 +272,27 @@ input[type=radio] {
 
 #searchGigs {
     width: 300px;
+}
+
+.ui_ribbon {
+    padding: 14px 2px;
+    font-size: 14px;
+    line-height: 14px;
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: auto;
+    bottom: auto;
+    left: -3px;
+    max-width: 100%;
+    border-radius: 0 3px 3px 0;
+    box-sizing: border-box;
+    box-shadow: 2px 2px 0 #000000;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
+    font-weight: bold;
+    background-color: #ff6500;
+    background-color: rgba(255, 101, 0,0.6);
+    border-color: #b51000;
+    color: #ffff1a;
+    -webkit-font-smoothing: antialiased;
 }

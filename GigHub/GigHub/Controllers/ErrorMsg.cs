@@ -21,6 +21,8 @@
         public const string GigDoesNotExist = "The gig does not exist.";
         public const string NotUserDescriptionFound = "No user description found";
 
+        public const string AuthorizedDenied = "Authorized Denied";
+
         public const string AccountHasLoggedIn = "Account has logged in different hosts.";
         public const string AccountIsInactivated = "Account is Inactivated.";
 

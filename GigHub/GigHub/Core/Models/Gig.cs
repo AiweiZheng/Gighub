@@ -40,6 +40,16 @@ namespace GigHub.Core.Models
                 attendee.Notify(notification);
         }
 
+        public void Resume()
+        {
+            IsCancelled = false;
+
+            var notification = Notification.GigResume(this);
+
+            foreach (var attendee in Attendances.Select(a => a.Attendee))
+                attendee.Notify(notification);
+        }
+
         public void Modify(string venue, DateTime dateTime, byte genreId)
         {
             var notificaition = Notification.GigUpdated(this, DateTime, Venue);

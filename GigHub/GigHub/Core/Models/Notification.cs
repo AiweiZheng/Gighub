@@ -45,5 +45,10 @@ namespace GigHub.Core.Models
         {
             return new Notification(NotificationType.GigCancelled, gig);
         }
+
+        public static Notification GigResume(Gig gig)
+        {
+            return new Notification(NotificationType.GigResumed, gig);
+        }
     }
 }

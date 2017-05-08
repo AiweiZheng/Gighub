@@ -653,6 +653,7 @@
     <Content Include="Views\Admin\Accounts.cshtml" />
     <Content Include="Views\Shared\_RolesTemplate.cshtml" />
     <Content Include="Views\Home\Artists.cshtml" />
+    <Content Include="Views\Shared\_Gig.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

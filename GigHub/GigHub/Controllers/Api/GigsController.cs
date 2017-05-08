@@ -28,9 +28,28 @@ namespace GigHub.Controllers.Api
                 return Content(HttpStatusCode.NotFound, ErrorMsg.GigDoesNotExist);
 
             if (gig.ArtistId != userId)
-                return Unauthorized();
+                return Content(HttpStatusCode.Unauthorized, ErrorMsg.AuthorizedDenied);
 
             gig.Cancel();
+
+            _unitOfWork.Complete();
+
+            return Ok();
+        }
+
+        [HttpPut]
+        public IHttpActionResult Resume(int id)
+        {
+            var userId = User.Identity.GetUserId();
+            var gig = _unitOfWork.Gigs.GetGigWithAttendees(id);
+
+            if (gig == null || !gig.IsCancelled)
+                return Content(HttpStatusCode.NotFound, ErrorMsg.GigDoesNotExist);
+
+            if (gig.ArtistId != userId)
+                return Content(HttpStatusCode.Unauthorized, ErrorMsg.AuthorizedDenied);
+
+            gig.Resume();
 
             _unitOfWork.Complete();
 

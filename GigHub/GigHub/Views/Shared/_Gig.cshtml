@@ -1,0 +1,38 @@
+﻿@model GigHub.Core.Models.Gig
+<li>
+    <div class="date">
+        <div class="js-cancel-ribbon ui_ribbon @(@Model.IsCancelled ? "show": "hidden")">Cancelled</div>
+
+        <div class="month">
+            @Model.DateTime.ToString("MMM")
+        </div>
+        <div class="day">
+            @Model.DateTime.ToString("d ")
+        </div>
+    </div>
+    <div class="details">
+        <span class="artist">
+            @Model.Venue
+        </span>
+        <span class="genre">
+            @Model.Genre.Name
+        </span>
+        <div class="actions">
+            <a href="#" 
+               class="js-resume-gig @(@Model.IsCancelled ? "show": "hidden")"
+               data-gig-id="@Model.Id">
+                Add to Upcoming
+            </a>
+                
+            <a class="js-edit-gig @(@Model.IsCancelled ? "hidden": "show")"
+               href="@Url.Action("Edit", "Gigs", new {id = Model.Id})">
+                Edit
+            </a>
+            <a href="#" class="js-cancel-gig @(@Model.IsCancelled ? "hidden": "show")" data-gig-id="@Model.Id">
+                Cancel
+            </a>
+
+        </div>
+      
+    </div>
+</li>

@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNet.Identity
+@model GigHub.Core.ViewModels.GigViewModel  
+
+<div>
+    <div class="date">
+        <div class="month">
+            @Model.Gig.DateTime.ToString("MMM")
+        </div>
+        <div class="day">
+            @Model.Gig.DateTime.ToString("d ")
+          </div>
+      </div>
+      <div class="details">
+          <span class="artist">
+              <a href="@Url.Action("Details", "Gigs", new {id = Model.Gig.Id})">@Model.Gig.Artist.Name</a>
+
+              @if (Model.Gig.IsCancelled)
+              {
+                  <span class="label label-warning">Cancelled</span>
+              }
+
+          </span>
+          <span class="genre">
+              @Model.Gig.Genre.Name
+          </span>
+                    
+          @if (Model.ShowActions && !Model.Gig.IsCancelled)
+          {
+              if (Model.Gig.ArtistId == User.Identity.GetUserId())
+              {
+                  <span class="attend alert alert-success">Attend</span>
+              }
+              else
+              {
+                  <button data-gig-id="@Model.Gig.Id"
+                          class="btn @(Model.Attending ? "btn-info" : "btn-default") 
+                            btn-sm  js-toggle-attendance">
+                      @(Model.Attending ? "Going" : "Going ?")
+                  </button>
+              }
+          }
+      </div>
+  </div>

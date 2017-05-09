@@ -42,7 +42,26 @@ namespace GigHub.Controllers
             var artistRoleId = _unitOfWork.Roles.GetRoleIdBy(RoleName.Artist);
             var artists = _unitOfWork.Users.GetUsersByRoleId(artistRoleId);
 
-            return View(artists);
+            var gigsPerFormByArtists = _unitOfWork.Gigs
+                .GetUpcomingGigsPerformedBy(artists.Select(a => a.Id))
+                .ToLookup(g => g.ArtistId);
+
+            var userId = User.Identity.GetUserId();
+            var attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
+                .ToLookup(a => a.GigId);
+            var followings = _unitOfWork.Followings.GetFolloweesFor(userId)
+                .ToLookup(f => f.Followee.Id);
+
+            var artistsViewModel = new ArtistsViewModel
+            {
+                Artists = artists,
+                Gigs = gigsPerFormByArtists,
+                Attendances = attendances,
+                Followings = followings,
+                ShowActions = User.Identity.IsAuthenticated,
+            };
+
+            return View(artistsViewModel);
         }
 
         public ActionResult About()

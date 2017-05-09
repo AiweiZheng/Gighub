@@ -12,6 +12,8 @@
     }
 
     var toggleAttendance = function (e) {
+        e.preventDefault();
+
         button = $(e.target);
 
         var gigId = button.attr("data-gig-id");

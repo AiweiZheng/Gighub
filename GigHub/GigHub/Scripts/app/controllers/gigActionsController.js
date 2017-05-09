@@ -1,5 +1,4 @@
-﻿//used for popup a dialog when user want to cancel a gig
-var GigActionsController = function (gigActionsService) {
+﻿var GigActionsController = function (gigActionsService) {
 
     var link;
     var gigId;
@@ -14,7 +13,8 @@ var GigActionsController = function (gigActionsService) {
     }
 
     var deleteDone = function() {
-        link.parents("li").fadeOut(function () {
+        link.parents("li").fadeOut(function (e) {
+            e.preventDefault();
 
             $("#cancelledGigs").append($(this));
             toggleElements($(this));
@@ -23,7 +23,8 @@ var GigActionsController = function (gigActionsService) {
 
     var resumeDone = function () {
   
-        link.parents("li").fadeOut(function () {
+        link.parents("li").fadeOut(function (e) {
+            e.preventDefault();
 
             $("#upCommingGigs").append($(this));
             toggleElements($(this));
@@ -42,7 +43,9 @@ var GigActionsController = function (gigActionsService) {
 
     var cancelGig = function(e) {
         link = $(e.target);
-        deleteDialog(cancelComfirmedCallBack);
+
+        confirmDialog(cancelComfirmedCallBack,
+            "Are you sure you want to cancel this gig?");
     };
 
     var resumeComfirmedCallBack = function () {
@@ -52,8 +55,11 @@ var GigActionsController = function (gigActionsService) {
     };
 
     var resumeGig = function (e) {
+        e.preventDefault();
+
         link = $(e.target);
-        deleteDialog(resumeComfirmedCallBack);
+        confirmDialog(resumeComfirmedCallBack,
+        "Are you sure you want to resume this gig?");
     }
 
     var init = function (container) {

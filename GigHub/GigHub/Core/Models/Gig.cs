@@ -30,6 +30,15 @@ namespace GigHub.Core.Models
             Attendances = new Collection<Attendance>();
         }
 
+        public void Create()
+        {
+            var notification = Notification.GigCreated(this);
+
+            foreach (var follower in Artist.Followers)
+            {
+                follower.Follower.Notify(notification);
+            }
+        }
         public void Cancel()
         {
             IsCancelled = true;
@@ -40,11 +49,11 @@ namespace GigHub.Core.Models
                 attendee.Notify(notification);
         }
 
-        public void Resume()
+        public void Reopen()
         {
             IsCancelled = false;
 
-            var notification = Notification.GigResume(this);
+            var notification = Notification.GigReopen(this);
 
             foreach (var attendee in Attendances.Select(a => a.Attendee))
                 attendee.Notify(notification);

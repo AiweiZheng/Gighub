@@ -13,7 +13,7 @@ namespace GigHub.Persistence.Repositories
         {
             _context = context;
         }
-        public IEnumerable<Following> GetUserFollowees(string userId)
+        public IEnumerable<Following> GetFolloweesFor(string userId)
         {
             return _context.Followings
                 .Where(f => f.FollowerId == userId)

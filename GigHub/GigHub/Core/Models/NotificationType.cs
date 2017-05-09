@@ -5,6 +5,6 @@
         GigCancelled = 1,
         GigUpdated = 2,
         GigCreated = 3,
-        GigResumed = 4
+        GigReopened = 4
     }
 }

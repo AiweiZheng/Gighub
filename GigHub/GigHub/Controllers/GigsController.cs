@@ -8,8 +8,6 @@ using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers
 {
-    [AuthorizeActivatedAccount]
-    [AuthorizeSingleLogin]
     [Authorize]
     public class GigsController : Controller
     {
@@ -21,6 +19,8 @@ namespace GigHub.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ViewResult Mine()
         {
             var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(User.Identity.GetUserId());
@@ -28,6 +28,8 @@ namespace GigHub.Controllers
             return View(gigs);
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ViewResult Attending()
         {
             var userId = User.Identity.GetUserId();
@@ -44,13 +46,17 @@ namespace GigHub.Controllers
             return View("Gigs", viewMode);
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ActionResult Following()
         {
-            var artists = _unitOfWork.Followings.GetUserFollowees(User.Identity.GetUserId());
+            var artists = _unitOfWork.Followings.GetFolloweesFor(User.Identity.GetUserId());
 
             return View(artists);
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
@@ -62,6 +68,8 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(GigFormViewModel viewModel)
@@ -86,6 +94,8 @@ namespace GigHub.Controllers
             return RedirectToAction("Mine", "Gigs");
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         public ActionResult Edit(int id)
         {
             var userId = User.Identity.GetUserId();
@@ -112,6 +122,8 @@ namespace GigHub.Controllers
             return View("GigForm", viewModel);
         }
 
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Update(GigFormViewModel viewModel)

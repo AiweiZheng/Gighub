@@ -19,6 +19,8 @@
     };
 
     var toggleActivateAccount = function (e) {
+
+        e.preventDefault();
         link = $(e.target);
 
         status = link.text().trim() === activate ? true : false; 

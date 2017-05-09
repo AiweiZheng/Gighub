@@ -31,7 +31,8 @@
         accountService.getDescription(userId, receivedDescription, fail);
     }
 
-    var addListenerToSubmitBtn = function() {
+    var addListenerToSubmitBtn = function (event) {
+        event.preventDefault();
         user.description = descriptionTextArea.val();
         accountService.updateDescription(userId, user, updatedDone, fail);
     };

@@ -12,13 +12,17 @@
             }
 
             _.each(notifications, function(notification){
-                if(notification.type == 1){ %>
+               if(notification.type == 1){ %> @* cancelled*@
 
-                  <li><span class="highlight"><%= notification.gig.artist.name %></span> has cancelled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.</li>  
+                  <li>
+                    <span class="highlight">
+                        <%= notification.gig.artist.name %>
+                    </span> 
+                        has cancelled the gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.
+                  </li>  
                
-                  <% } else if (notification.type == 2) { 
+                  <% } else if (notification.type == 2) { @* updated*@
                        
-                     
                         if(notification.originalVenue != notification.gig.venue){
                             pushGigChanges('venue', notification.originalVenue, notification.gig.venue);
                         }
@@ -28,9 +32,31 @@
                         }
                     %>
                         
-                  <li><span class="highlight"><%= notification.gig.artist.name %></span> has changed the <%= changes.join(' and ')%> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %>.</li>  
+                      <li>
+                        <span class="highlight">
+                          <%= notification.gig.artist.name %>
+                        </span> 
+                          has changed the <%= changes.join(' and ')%> of the gig from <%= originalValues.join('/') %> to <%= newValues.join('/') %>.
+                      </li>  
                   
-                <%}
+                <%} else if (notification.type == 3) { %> @* created*@
+                    
+                    <li>
+                        <span class="highlight">
+                            <%= notification.gig.artist.name %>
+                        </span>
+                        has a newly gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.
+                    </li>  
+
+                  <% } else if(notification.type == 4 ){ %> @* reopen*@
+                  
+                    <li>
+                        <span class="highlight">
+                            <%= notification.gig.artist.name %>
+                        </span>
+                        has reopen gig at <%= notification.gig.venue %> at <%= moment(notification.gig.dateTime).format("D MMM HH:mm") %>.
+                    </li>  
+                <% }
             })
         %>
     </ul>

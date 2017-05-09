@@ -1,4 +1,5 @@
-﻿@model GigHub.Core.ViewModels.GigDetailsViewModel
+﻿@using GigHub.Core
+@model GigHub.Core.ViewModels.GigDetailsViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -14,7 +15,7 @@
             <button
                 class="btn btn-sm @(Model.IsFollowing ? "btn-info" : "btn-default")  js-toggle-follow"
                 data-user-id="@Model.Gig.ArtistId">
-                @(Model.IsFollowing ? "Following" : "Follow")
+                @(Model.IsFollowing ? AppConst.FollowingText : AppConst.UnfollowText)
             </button>
         </span>
     }
@@ -30,6 +31,9 @@
 @section scripts
 {
     <script>
-        FollowingController.init("#followings");
+        $(document).ready(function() {
+               FollowingController.init("#followings", "Following", "Follow");
+        })
+     
     </script>
 }

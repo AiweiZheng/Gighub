@@ -1,6 +1,6 @@
-﻿var deleteDialog = function(yesCallBack) {
+﻿var confirmDialog = function(yesCallBack,message) {
     return bootbox.dialog({
-        message: "Are you sure you want to cancel this gig?",
+        message: message,
         title: "Confirm",
         buttons: {
             no: {
@@ -19,6 +19,7 @@
     });
 };
 
-var alertDialog = function(message) {
+var alertDialog = function (message) {
+   
     bootbox.alert(message);
 }

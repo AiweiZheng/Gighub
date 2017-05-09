@@ -20,7 +20,7 @@ namespace GigHub.Core.Models
         {
 
             if (gig == null)
-                throw new ArgumentNullException("gig");
+                throw new ArgumentNullException(AppConst.GigCannotBeNull);
 
             Type = type;
             DateTime = DateTime.Now;
@@ -46,9 +46,9 @@ namespace GigHub.Core.Models
             return new Notification(NotificationType.GigCancelled, gig);
         }
 
-        public static Notification GigResume(Gig gig)
+        public static Notification GigReopen(Gig gig)
         {
-            return new Notification(NotificationType.GigResumed, gig);
+            return new Notification(NotificationType.GigReopened, gig);
         }
     }
 }

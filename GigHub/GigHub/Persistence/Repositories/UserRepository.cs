@@ -27,7 +27,11 @@ namespace GigHub.Persistence.Repositories
 
         public IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId)
         {
-            return _context.Users.Where(u => u.Roles.Any(r => r.RoleId == roleId));
+            return _context.Users
+                .Where(
+                    u => u.Activated
+                    && u.Roles.Any(r => r.RoleId == roleId)
+                ).ToList();
         }
 
         public string GetUserDescriptionBy(string id)

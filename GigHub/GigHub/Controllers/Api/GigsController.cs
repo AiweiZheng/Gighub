@@ -49,7 +49,7 @@ namespace GigHub.Controllers.Api
             if (gig.ArtistId != userId)
                 return Content(HttpStatusCode.Unauthorized, ErrorMsg.AuthorizedDenied);
 
-            gig.Resume();
+            gig.Reopen();
 
             _unitOfWork.Complete();
 

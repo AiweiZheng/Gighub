@@ -2,6 +2,7 @@
 {
     public static class ErrorMsg
     {
+        //web api controller
         public const string GeneralErrorMsg = "An error has occurred.";
         public const string InvalidLoginAttempt = "Invalid login attempt.";
         public const string InvalidCode = "Invalid code.";

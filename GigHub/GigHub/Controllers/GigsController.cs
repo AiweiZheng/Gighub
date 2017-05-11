@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using GigHub.Core;
 using GigHub.Core.Filters;
@@ -181,6 +182,27 @@ namespace GigHub.Controllers
             }
 
             return View("Details", viewModel);
+        }
+
+        [AllowAnonymous]
+        [Route("Artists/{artistId}/Gigs/More/{startIndex}")]
+        public ActionResult GetMoreGigs(string artistId, int startIndex)
+        {
+            var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(artistId, startIndex, AppConst.CountOfGigPerLoad);
+
+            if (!gigs.Any())
+                return Content(HttpStatusCode.NoContent.ToString());
+
+            var attendances = _unitOfWork.Attendances.GetFutureAttendances(
+                User.Identity.GetUserId()).ToLookup(k => k.GigId);
+
+            var viewModel = new ArtistWithGigsViewMode
+            {
+                Gigs = gigs,
+                MyAttendances = attendances
+            };
+
+            return PartialView("_MoreGigs", viewModel);
         }
     }
 }

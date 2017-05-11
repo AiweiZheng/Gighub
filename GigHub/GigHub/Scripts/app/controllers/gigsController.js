@@ -1,12 +1,14 @@
 ﻿var GigsController = function (attendanceService) {
     var button;
+    var going;
+    var notGoingYet;
 
     var fail = function (error) {
         alertDialog(error.responseJSON);
     }
 
     var done = function () {
-        var text = (button.text().trim() === "Going") ? "Going ?" : "Going";
+        var text = (button.text().trim() === going) ? notGoingYet : going;
         button.text(text);
         button.toggleClass("btn-info").toggleClass("btn-default");
     }
@@ -24,7 +26,10 @@
             attendanceService.deleteAttendance(gigId, done, fail);
     };
 
-    var init = function (container) {
+    var init = function (container, goingText, notGoingYetText) {
+        going = goingText;
+        notGoingYet = notGoingYetText;
+
         $(container).on("click", ".js-toggle-attendance", toggleAttendance);
     };
 

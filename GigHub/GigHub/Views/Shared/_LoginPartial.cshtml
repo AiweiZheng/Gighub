@@ -21,7 +21,7 @@
 
                     @if (User.IsInRole(RoleName.Artist))
                     {
-                        <li class="new"><a href="@Url.Action("Mine", "Gigs")">My Upcoming Gigs</a></li>
+                        <li class="new"><a href="@Url.Action("Mine", "Gigs")">My Gigs</a></li>
                     }
 
                     @if (User.IsInRole(RoleName.AccountManager))

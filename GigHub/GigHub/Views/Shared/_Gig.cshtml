@@ -1,7 +1,7 @@
 ﻿@model GigHub.Core.Models.Gig
 <li>
     <div class="date">
-        <div class="js-cancel-ribbon ui_ribbon @(@Model.IsCancelled ? "show": "hidden")">Cancelled</div>
+        <div class="js-cancel-ribbon ui_ribbon @(@Model.IsCancelled ? "": "hide")">Cancelled</div>
 
         <div class="month">
             @Model.DateTime.ToString("MMM")
@@ -19,16 +19,16 @@
         </span>
         <div class="actions">
             <a href="#" 
-               class="js-resume-gig @(@Model.IsCancelled ? "show": "hidden")"
+               class="js-resume-gig @(@Model.IsCancelled ? "": "hide")"
                data-gig-id="@Model.Id">
                 Reopen
             </a>
                 
-            <a class="js-edit-gig @(@Model.IsCancelled ? "hidden": "show")"
+            <a class="js-edit-gig @(@Model.IsCancelled ? "hide": "")"
                href="@Url.Action("Edit", "Gigs", new {id = Model.Id})">
                 Edit
             </a>
-            <a href="#" class="js-cancel-gig @(@Model.IsCancelled ? "hidden": "show")" data-gig-id="@Model.Id">
+            <a href="#" class="js-cancel-gig @(@Model.IsCancelled ? "hide": "")" data-gig-id="@Model.Id">
                 Cancel
             </a>
 

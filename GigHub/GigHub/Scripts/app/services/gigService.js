@@ -1,4 +1,4 @@
-﻿var GigActionsService = function () {
+﻿var GigService = function () {
 
     var cancel = function (id, done, fail) {
         $.ajax({
@@ -20,8 +20,19 @@
             .fail(fail);
     }
 
+    var getMoreGigs = function(artistId, startIndex,done,fail) {
+        $.ajax({
+                url: "/artists/" + artistId+"/gigs/more/"+startIndex,
+                method: "GET"
+            })
+            .done(done)
+            .fail(fail);
+    }
+
+
     return {
         cancel: cancel,
-        resume:resume
+        resume: resume,
+        getMoreGigs: getMoreGigs
     }
 }();

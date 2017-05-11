@@ -6,15 +6,14 @@
     var toggleElements = function (gigDom) {
         gigDom.removeAttr("style");
 
-        gigDom.find(".js-cancel-ribbon").toggleClass("hidden").toggleClass("show");
-        gigDom.find(".js-cancel-gig").toggleClass("hidden").toggleClass("show");
-        gigDom.find(".js-edit-gig").toggleClass("hidden").toggleClass("show");
-        gigDom.find(".js-resume-gig").toggleClass("hidden").toggleClass("show");
+        gigDom.find(".js-cancel-ribbon").toggleClass("hide");
+        gigDom.find(".js-cancel-gig").toggleClass("hide");
+        gigDom.find(".js-edit-gig").toggleClass("hide");
+        gigDom.find(".js-resume-gig").toggleClass("hide");
     }
 
     var deleteDone = function() {
-        link.parents("li").fadeOut(function (e) {
-            e.preventDefault();
+        link.parents("li").fadeOut(function () {
 
             $("#cancelledGigs").append($(this));
             toggleElements($(this));
@@ -23,8 +22,7 @@
 
     var resumeDone = function () {
   
-        link.parents("li").fadeOut(function (e) {
-            e.preventDefault();
+        link.parents("li").fadeOut(function () {
 
             $("#upCommingGigs").append($(this));
             toggleElements($(this));
@@ -71,5 +69,5 @@
         init: init
     }
 
-}(GigActionsService);
+}(GigService);
 

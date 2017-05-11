@@ -24,8 +24,6 @@ var AccountRoleController = function (accountRoleService, changeAccountRoleServi
         //send request when pop up window is hidden
         $(container).popover(popOverSettings)
             .on("show.bs.popover", function (e) {
-
-              //  e.preventDefault();
                 // hide all other popovers
                 $("[rel=popover]").not(e.target).popover("destroy");
                 $(".popover").remove();

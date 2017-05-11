@@ -28,9 +28,7 @@ var ChangeAccountRoleController = function (accountService) {
         selectRoleId = null;//should reset 
     }
 
-    var roleChangeListener = function (e) {
-
-        e.preventDefault();
+    var roleChangeListener = function () {
 
         selectRoleId = $(this).attr("js-data-role-id");
         selectRoleName = $(this).attr("js-data-role-name");

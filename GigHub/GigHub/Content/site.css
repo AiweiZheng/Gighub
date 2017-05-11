@@ -111,6 +111,10 @@ h6,
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.panel-default {
+    margin-bottom: 50px;
+} 
+
 .panel-default > .panel-heading {
     color: #3a87ad;
     background-color: #d9edf7;
@@ -155,6 +159,7 @@ h6,
 
 
 .gigs {
+    list-style: none;
     margin-bottom: 40px;
 }
 .gigs > li {
@@ -325,7 +330,6 @@ input[type=radio] {
 
 .read-more-link, .show-less-link {
     text-decoration: none;
-    font-weight: bolder;
 }
 
 hr:before {
@@ -337,4 +341,12 @@ hr:before {
     border-color: #e6e6e6;
     border-width: 0 0 1px 0;
     border-radius: 20px;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.loadMore {
+    font-style: italic;
 }

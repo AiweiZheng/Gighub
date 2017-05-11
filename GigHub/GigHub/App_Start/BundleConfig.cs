@@ -15,7 +15,7 @@ namespace GigHub
                         "~/scripts/app/controllers/followingsController.js",
                         "~/scripts/app/services/notificationService.js",
                         "~/scripts/app/controllers/notificationController.js",
-                        "~/scripts/app/services/gigActionsService.js",
+                        "~/scripts/app/services/gigService.js",
                         "~/scripts/app/controllers/gigActionsController.js",
 
                         "~/scripts/app/services/accountsService.js",
@@ -26,6 +26,10 @@ namespace GigHub
                         "~/scripts/app/controllers/accountRolesController.js",
                         "~/scripts/app/controllers/accountDescriptionsController.js",
                         "~/scripts/app/controllers/readMoreOrLessController.js",
+                        "~/scripts/app/services/artistsService.js",
+                        "~/scripts/app/controllers/moreArtistsController.js",
+                        "~/scripts/app/controllers/moreGigsController.js",
+
                         "~/scripts/app/app.js"
             ));
 
@@ -50,6 +54,7 @@ namespace GigHub
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/font-awesome.min.css",
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));

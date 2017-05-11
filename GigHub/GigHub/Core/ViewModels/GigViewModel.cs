@@ -6,6 +6,5 @@ namespace GigHub.Core.ViewModels
     {
         public Gig Gig { get; set; }
         public bool Attending { get; set; }
-        public bool ShowActions { get; set; }
     }
 }

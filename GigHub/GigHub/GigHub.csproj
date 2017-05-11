@@ -249,6 +249,7 @@
     <Compile Include="Controllers\Api\Filters\ApiValidateHeaderAntiForgeryToken.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
+    <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\ErrorMsg.cs" />
     <Compile Include="Core\AppConst.cs" />
     <Compile Include="Core\Dtos\GenreDto.cs" />
@@ -276,6 +277,7 @@
     <Compile Include="Core\Repositories\IRoleRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Core\ViewModels\ArtistsViewModel.cs" />
+    <Compile Include="Core\ViewModels\ArtistWithGigsViewModel.cs" />
     <Compile Include="Core\ViewModels\GigViewModel.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
@@ -504,8 +506,11 @@
     <Content Include="Content\DataTables\images\sort_desc.png" />
     <Content Include="Content\DataTables\images\sort_desc_disabled.png" />
     <Content Include="Content\DataTables\swf\flashExport.swf" />
+    <Content Include="Content\font-awesome.css" />
+    <Content Include="Content\font-awesome.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\site.css" />
     <Compile Include="Persistence\Repositories\UserRepository.cs" />
@@ -515,17 +520,20 @@
     <Content Include="Scripts\app\controllers\accountRolesController.js" />
     <Content Include="Scripts\app\controllers\accountsTableController.js" />
     <Content Include="Scripts\app\controllers\accountStatusController.js" />
+    <Content Include="Scripts\app\controllers\moreArtistsController.js" />
     <Content Include="Scripts\app\controllers\changeAccountRoleController.js" />
     <Content Include="Scripts\app\controllers\followingsController.js" />
     <Content Include="Scripts\app\controllers\gigActionsController.js" />
     <Content Include="Scripts\app\controllers\gigsController.js" />
+    <Content Include="Scripts\app\controllers\moreGigsController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
     <Content Include="Scripts\app\controllers\readMoreOrLessController.js" />
     <Content Include="Scripts\app\services\accountsService.js" />
     <Content Include="Scripts\app\services\accountRolesService.js" />
+    <Content Include="Scripts\app\services\artistsService.js" />
     <Content Include="Scripts\app\services\attendanceService.js" />
     <Content Include="Scripts\app\services\followingService.js" />
-    <Content Include="Scripts\app\services\gigActionsService.js" />
+    <Content Include="Scripts\app\services\gigService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -535,6 +543,11 @@
     </Content>
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -656,9 +669,12 @@
     <Content Include="Views\Shared\_NotificationTemplate.cshtml" />
     <Content Include="Views\Admin\Accounts.cshtml" />
     <Content Include="Views\Shared\_RolesTemplate.cshtml" />
-    <Content Include="Views\Home\Artists.cshtml" />
     <Content Include="Views\Shared\_Gig.cshtml" />
     <Content Include="Views\Shared\_upcomingGig.cshtml" />
+    <Content Include="Views\Shared\_MoreArtists.cshtml" />
+    <Content Include="Views\Shared\_Spinner.cshtml" />
+    <Content Include="Views\Shared\_MoreGigs.cshtml" />
+    <Content Include="Views\Artists\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

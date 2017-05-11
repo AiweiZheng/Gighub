@@ -25,13 +25,28 @@ namespace GigHub.Persistence.Repositories
             return _context.Users.Include(u => u.Roles).FirstOrDefault(u => u.Id == id);
         }
 
-        public IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId)
+        public IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId, int startIndex, int count)
         {
-            return _context.Users
+            IEnumerable<ApplicationUser> query = _context.Users
                 .Where(
                     u => u.Activated
-                    && u.Roles.Any(r => r.RoleId == roleId)
-                ).ToList();
+                         && u.Roles.Any(r => r.RoleId == roleId)
+                )
+                .OrderByDescending(u => u.Followers.Count);
+
+            return
+                query.Skip(startIndex)
+                .Take(count)
+                .ToList();
+        }
+
+        public int GetTotalNumberOfByRoleId(string roleId)
+        {
+            return _context.Users
+                .Count(
+                    u => u.Activated
+                         && u.Roles.Any(r => r.RoleId == roleId)
+                );
         }
 
         public string GetUserDescriptionBy(string id)

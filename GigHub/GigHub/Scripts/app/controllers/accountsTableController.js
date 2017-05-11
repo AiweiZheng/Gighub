@@ -18,9 +18,9 @@
                 {
                     data: "role",
                     render: function (data, type, user) {
-                        return "<a rel='popover' data-user-id = " +
+                        return "<a class='clickable' rel='popover' data-user-id = " +
                             user.id +
-                            " class='role' href='#'>" +
+                            " class='role'>" +
                             data +
                             "</a>";
                     }

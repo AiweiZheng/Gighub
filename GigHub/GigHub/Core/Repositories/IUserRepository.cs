@@ -7,7 +7,8 @@ namespace GigHub.Core.Repositories
     {
         IEnumerable<ApplicationUser> GetUsers();
         ApplicationUser GetUser(string id);
-        IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId);
+        int GetTotalNumberOfByRoleId(string roleId);
+        IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId, int startIndex, int count);
         string GetUserDescriptionBy(string id);
         void Dispose();
     }

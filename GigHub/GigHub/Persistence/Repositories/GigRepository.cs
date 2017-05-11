@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
+using GigHub.Core.ViewModels;
 
 namespace GigHub.Persistence.Repositories
 {
@@ -16,14 +17,30 @@ namespace GigHub.Persistence.Repositories
             _context = context;
         }
 
-        public IEnumerable<Gig> GetUpcomingGigsByArtist(string userId)
+        public IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId)
         {
             return _context.Gigs
-                .Where(g => g.ArtistId == userId
+                .Where(g => g.ArtistId == artistId
                             && g.Artist.Activated
                             && g.DateTime > DateTime.Now)
                 .Include(g => g.Genre)
                 .ToList();
+        }
+
+        public IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId, int startIndex, int count)
+        {
+            IQueryable<Gig> query = _context.Gigs.Include(g => g.Artist)
+                .Where(g => g.ArtistId == artistId
+                            && g.Artist.Activated
+                            && !g.IsCancelled
+                            && g.DateTime > DateTime.Now)
+                .Include(g => g.Genre);
+
+            return query.OrderByDescending(g => g.DateTime)
+                        .Skip(startIndex)
+                        .Take(count)
+                        .ToList();
+
         }
 
         public Gig GetGigWithAttendees(int gigId)
@@ -96,15 +113,22 @@ namespace GigHub.Persistence.Repositories
             gig.Create();
         }
 
-        public IEnumerable<Gig> GetUpcomingGigsPerformedBy(IEnumerable<string> artistsId)
+        public List<ArtistWithGigsViewMode> GetCountOfUpcomingGigsPerformedBy(IEnumerable<string> artistsId, int gigCount)
         {
-            return _context.Gigs.Include(g => g.Genre)
+            IEnumerable<Gig> query = _context.Gigs
+                .Include(g => g.Genre)
                 .Where(
                     g => !g.IsCancelled
                          && g.DateTime > DateTime.Now
                          && artistsId.Any(id => id == g.ArtistId)
-                )
-                .ToList();
+                );
+
+            return query.GroupBy(g => g.ArtistId)
+                 .Select(v => new ArtistWithGigsViewMode
+                 {
+                     Gigs = v.OrderByDescending(g => g.DateTime).Take(gigCount),
+                     ArtistId = v.Key
+                 }).ToList();
         }
 
         public void Dispose()

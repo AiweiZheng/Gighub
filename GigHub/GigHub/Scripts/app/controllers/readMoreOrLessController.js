@@ -1,11 +1,13 @@
 ﻿var ReadMoreOrLessController = function () {
 
     var readMoreOrLess = function (container, panel, dirty) {
+        var readLessLength = 200;
 
         var readMoreHtml = $(panel).html();
-        var lessText = readMoreHtml.replace(/^([\s\S]{150}\S*)[\s\S]*/, "$1");
 
-        if (readMoreHtml.length > 100) {
+        var lessText = readMoreHtml.replace(/^([\s\S]{200}\S*)[\s\S]*/, "$1");
+
+        if (readMoreHtml.length > readLessLength) {
             $(panel).html(lessText)
                 .append("<a href='' class='loadMore read-more-link'> >>more</a>");
         } else {

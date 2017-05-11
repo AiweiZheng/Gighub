@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using GigHub.Core;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -27,6 +29,34 @@ namespace GigHub.Controllers
         {
             var artistRoleId = _unitOfWork.Roles.GetRoleIdBy(RoleName.Artist);
             var artists = _unitOfWork.Users.GetUsersByRoleId(artistRoleId, startIndex, AppConst.PageSizeXs);
+            return PartialArtistsView(artists);
+        }
+
+        [Authorize]
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
+        public ActionResult Following()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [AuthorizeActivatedAccount]
+        [AuthorizeSingleLogin]
+        [Route("Followings/More/{startIndex}")]
+        public ActionResult GetMoreFollowing(int startIndex)
+        {
+            var followings = _unitOfWork.Followings.GetFolloweesFor(User.Identity.GetUserId());
+
+            var artists = followings.Skip(startIndex)
+                .Take(AppConst.PageSizeXs)
+                .Select(f => f.Followee);
+
+            return PartialArtistsView(artists);
+        }
+
+        private ActionResult PartialArtistsView(IEnumerable<ApplicationUser> artists)
+        {
 
             if (!artists.Any())
                 return Content(HttpStatusCode.NoContent.ToString());

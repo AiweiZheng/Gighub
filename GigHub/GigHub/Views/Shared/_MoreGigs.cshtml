@@ -3,12 +3,14 @@
 
 @foreach (var gig in Model.Gigs)
 {                      
-<div class="col-sm-4 voffset4">
-    @Html.Partial("_upcomingGig",
-        new GigViewModel
-        {
-            Attending = Model.MyAttendances.Contains(gig.Id),
-            Gig = gig
-        })
-</div>
+    <ul class="col-sm-4 gigs">
+     
+        @Html.Partial("_upcomingGig",
+            new GigViewModel
+            {
+                Attending = Model.MyAttendances.Contains(gig.Id),
+                Gig = gig
+            })
+       
+    </ul>
 } 

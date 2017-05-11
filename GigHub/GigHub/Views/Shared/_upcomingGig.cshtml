@@ -2,7 +2,7 @@
 @using Microsoft.AspNet.Identity
 @model GigHub.Core.ViewModels.GigViewModel  
 
-<div>
+<li>
     <div class="date">
         <div class="month">
             @Model.Gig.DateTime.ToString("MMM")
@@ -25,20 +25,30 @@
               @Model.Gig.Genre.Name
           </span>
                     
-          @if (User.Identity.IsAuthenticated && !Model.Gig.IsCancelled)
+          @if (User.Identity.IsAuthenticated && Model.Gig.IsCancelled)
           {
-              if (Model.Gig.ArtistId == User.Identity.GetUserId())
-              {
-                  <span class="attend alert alert-success">Attend</span>
-              }
-              else
-              {
-                  <button data-gig-id="@Model.Gig.Id"
-                          class="btn @(Model.Attending ? "btn-info" : "btn-default") 
-                            btn-sm  js-toggle-attendance">
-                      @(Model.Attending ? AppConst.GoingText : AppConst.NotGoingYetText)
-                  </button>
-              }
+              <div class="actions">
+                  <a href="#" class="js-remove-attendance" data-gig-id="@Model.Gig.Id">
+                      Remove
+                  </a>
+              </div>
+                 
           }
-      </div>
-  </div>
+
+            @if (User.Identity.IsAuthenticated && !Model.Gig.IsCancelled)
+            {
+                if (Model.Gig.ArtistId == User.Identity.GetUserId())
+                {
+                    <span class="attend alert alert-success">My Gig</span>
+                }
+                else
+                {
+                    <button data-gig-id="@Model.Gig.Id"
+                            class="btn @(Model.Attending ? "btn-info" : "btn-default") 
+                    btn-sm  js-toggle-attendance">
+                        @(Model.Attending ? AppConst.GoingText : AppConst.NotGoingYetText)
+                    </button>
+                }
+            }
+           </div>
+</li>

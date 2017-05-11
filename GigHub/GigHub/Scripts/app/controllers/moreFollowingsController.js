@@ -1,4 +1,4 @@
-﻿var MoreArtistsController = function (artistService) {
+﻿var MoreFollowingsController = function (followingService) {
 
     var startIndex = 0;
     var sizePerLoad;
@@ -8,13 +8,13 @@
     var container;
     var cssHide;
 
-    var done = function(result) {
+    var done = function (result) {
 
         loadingSpinner.addClass(cssHide);
         loadMoreBtn.removeClass(cssHide);
 
         if (result === noMoreContent) {
-            loadMoreBtn.text("No More Artists").fadeOut("slow");
+            loadMoreBtn.text("No More Artist").fadeOut("slow");
             return;
         }
 
@@ -31,21 +31,20 @@
 
 
     var getArtists = function () {
-    
+
         loadingSpinner.removeClass(cssHide);
         loadMoreBtn.addClass(cssHide);
 
-        artistService.getMoreArtists(startIndex, done, fail);
+        followingService.getMoreFollowings(startIndex, done, fail);
     };
 
-    var loadMoreEvent = function(e) {
+    var loadMoreEvent = function (e) {
         e.preventDefault();
 
         getArtists();
     }
 
-    var init = function (paras)
-    {
+    var init = function (paras) {
         container = $(paras.containerId);
         loadMoreBtn = $(paras.loadMoreId);
         loadingSpinner = $(paras.loadingSpinner);
@@ -58,9 +57,9 @@
     }
 
     return {
-        init:init
+        init: init
     }
 
-}(ArtistService);
+}(FollowingService);
 
 

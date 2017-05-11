@@ -49,15 +49,6 @@ namespace GigHub.Controllers
 
         [AuthorizeActivatedAccount]
         [AuthorizeSingleLogin]
-        public ActionResult Following()
-        {
-            var artists = _unitOfWork.Followings.GetFolloweesFor(User.Identity.GetUserId());
-
-            return View(artists);
-        }
-
-        [AuthorizeActivatedAccount]
-        [AuthorizeSingleLogin]
         public ActionResult Create()
         {
             var viewModel = new GigFormViewModel
@@ -188,7 +179,8 @@ namespace GigHub.Controllers
         [Route("Artists/{artistId}/Gigs/More/{startIndex}")]
         public ActionResult GetMoreGigs(string artistId, int startIndex)
         {
-            var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(artistId, startIndex, AppConst.CountOfGigPerLoad);
+            var numPerLoad = AppConst.CountOfGigPerLoad;
+            var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(artistId, startIndex, numPerLoad);
 
             if (!gigs.Any())
                 return Content(HttpStatusCode.NoContent.ToString());

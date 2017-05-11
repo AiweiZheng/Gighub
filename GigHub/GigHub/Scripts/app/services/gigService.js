@@ -29,7 +29,6 @@
             .fail(fail);
     }
 
-
     return {
         cancel: cancel,
         resume: resume,

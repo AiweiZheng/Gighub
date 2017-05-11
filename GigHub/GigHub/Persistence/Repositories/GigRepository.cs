@@ -21,7 +21,6 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Gigs
                 .Where(g => g.ArtistId == artistId
-                            && g.Artist.Activated
                             && g.DateTime > DateTime.Now)
                 .Include(g => g.Genre)
                 .ToList();
@@ -31,7 +30,6 @@ namespace GigHub.Persistence.Repositories
         {
             IQueryable<Gig> query = _context.Gigs.Include(g => g.Artist)
                 .Where(g => g.ArtistId == artistId
-                            && g.Artist.Activated
                             && !g.IsCancelled
                             && g.DateTime > DateTime.Now)
                 .Include(g => g.Genre);
@@ -40,9 +38,16 @@ namespace GigHub.Persistence.Repositories
                         .Skip(startIndex)
                         .Take(count)
                         .ToList();
-
         }
 
+        public int GetTotolNumOfUpcomingGigsForArtist(string artistId)
+        {
+            return _context.Gigs
+                .Count(g => g.ArtistId == artistId
+                            && !g.IsCancelled
+                            && g.DateTime > DateTime.Now);
+
+        }
         public Gig GetGigWithAttendees(int gigId)
         {
             return _context.Gigs
@@ -93,6 +98,7 @@ namespace GigHub.Persistence.Repositories
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
+                .OrderBy(g => g.IsCancelled)
                 .ToList();
         }
 

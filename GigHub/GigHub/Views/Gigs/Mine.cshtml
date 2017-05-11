@@ -8,8 +8,8 @@
 
 <div class="container" id="gigActions">
     <div class="col-lg-6">
-        <h2>My Upcoming Gigs</h2>
-        <ul class="gigs voffset4" id="upCommingGigs">
+        <h2 class="voffset4">My Upcoming Gigs</h2>
+        <ul class="gigs" id="upCommingGigs">
             @foreach (var gig in Model)
             {
                 if (!gig.IsCancelled)
@@ -22,7 +22,7 @@
     
     <div class="col-lg-6">
  
-        <h2>My Cancelled Gigs</h2>
+        <h2 class="voffset4">My Cancelled Gigs</h2>
 
         <ul class="gigs voffset4" id="cancelledGigs">
             @foreach (var gig in Model)

@@ -2,7 +2,7 @@
 @using GigHub.Core.ViewModels
 @model GigsViewModel
 
-<h1>@Model.Heading</h1>
+<h2 class="voffset4">@Model.Heading</h2>
 @Html.AntiForgeryToken()
 
 @using (Html.BeginForm("Search", "Gigs"))
@@ -19,13 +19,13 @@
 
 @foreach (var gig in Model.UpcomingGigs)
 {
-    <div class="col-lg-12 gigs">
+    <ul class="gigs">
         @Html.Partial("_upcomingGig", new GigViewModel
         {
             Attending = Model.Attendances.Contains(gig.Id),
             Gig = gig
         })
-    </div>
+    </ul>
 }
 
 

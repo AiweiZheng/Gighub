@@ -20,7 +20,8 @@
         this.loadMoreBtn.removeClass(this.cssHide);
 
         if (result === this.noMoreContent) {
-            this.loadMoreBtn.addClass(this.cssHide);
+           
+            this.loadMoreBtn.text("No More Gigs").fadeOut("slow");
             return;
         }
 

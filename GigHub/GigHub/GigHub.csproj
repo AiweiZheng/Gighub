@@ -525,6 +525,7 @@
     <Content Include="Scripts\app\controllers\followingsController.js" />
     <Content Include="Scripts\app\controllers\gigActionsController.js" />
     <Content Include="Scripts\app\controllers\gigsController.js" />
+    <Content Include="Scripts\app\controllers\moreFollowingsController.js" />
     <Content Include="Scripts\app\controllers\moreGigsController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
     <Content Include="Scripts\app\controllers\readMoreOrLessController.js" />
@@ -663,7 +664,6 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Gigs\GigForm.cshtml" />
-    <Content Include="Views\Gigs\Following.cshtml" />
     <Content Include="Views\Gigs\Mine.cshtml" />
     <Content Include="Views\Gigs\Details.cshtml" />
     <Content Include="Views\Shared\_NotificationTemplate.cshtml" />
@@ -675,6 +675,7 @@
     <Content Include="Views\Shared\_Spinner.cshtml" />
     <Content Include="Views\Shared\_MoreGigs.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
+    <Content Include="Views\Artists\Following.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

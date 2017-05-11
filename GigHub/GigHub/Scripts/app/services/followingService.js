@@ -19,8 +19,17 @@
             .fail(fail);
     }
 
+    var getMoreFollowings = function (startIndex, done, fail) {
+        $.ajax({
+            url: "/followings/more/" + startIndex,
+                method: "GET"
+            }).done(done)
+            .fail(fail);
+    };
+
     return {
         follow: follow,
-        unfollow:unfollow
+        unfollow: unfollow,
+        getMoreFollowings: getMoreFollowings
     }
 }();

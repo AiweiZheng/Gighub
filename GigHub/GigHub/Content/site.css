@@ -160,14 +160,14 @@ h6,
 
 .gigs {
     list-style: none;
-    margin-bottom: 40px;
-}
-.gigs > li {
-    position: relative;
-    margin-bottom: 40px;
 }
 
-.gigs .date {
+.gigs > li {
+position: relative;
+margin-bottom: 40px;
+}
+
+.gigs > li .date {
     background: red;
     color: white;
     text-align: center;
@@ -175,56 +175,48 @@ h6,
     border-radius: 8px;
 }
 
-.gigs .date .month {
+.gigs > li .date .month {
     text-transform: uppercase;
     font-size: 14px;
     font-weight: bold;
     padding: 2px 6px;
 }
 
-.gigs .date .day {
+.gigs > li .date .day {
     background: #f7f7f7;
     color: #333;
     font-size: 20px;
     padding: 6px 12px;
-        
 }
 
-.gigs .details {
+.gigs > li .details {
     position: absolute;
     top: 0;
-    left: 85px;
+    left: 70px;
 }
 
-.gigs .container .details {
-    margin-bottom: 40px;   
-} 
-    
-.gigs .details .artist {
+
+.gigs > li .details .artist {
     font-weight: bold;
     display: block;
 }
 
-.gigs .details .genre {
+.gigs > li .details .genre {
     font-size: 14px;
     display: block;
     margin-bottom: 4px;
 }
 
-.gigs .details .attend {
+.gigs > li .details .attend {
     font-size: 14px;
     display: block;
     padding: 2px;
     margin-bottom: 4px;
 }
 
-.gigs .actions {
+.gigs > li .actions {
     font-size: 15px;
     display: none;
-}
-
-.actions .show {
-    display: inline-block !important;
 }
 
 .gigs > li:hover .actions {

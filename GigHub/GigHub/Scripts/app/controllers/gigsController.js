@@ -1,5 +1,6 @@
 ﻿var GigsController = function (attendanceService) {
     var button;
+    var removeLink;
     var going;
     var notGoingYet;
 
@@ -26,11 +27,26 @@
             attendanceService.deleteAttendance(gigId, done, fail);
     };
 
+    var removeDone = function() {
+        removeLink.parents("li").fadeOut(function () {
+            this.remove();
+        });
+    }
+    var removeAttendance = function(e) {
+        e.preventDefault();
+
+        removeLink = $(e.target);
+
+        var gigId = removeLink.attr("data-gig-id");
+        attendanceService.deleteAttendance(gigId, removeDone, fail);
+    };
+
     var init = function (container, goingText, notGoingYetText) {
         going = goingText;
         notGoingYet = notGoingYetText;
 
         $(container).on("click", ".js-toggle-attendance", toggleAttendance);
+        $(container).on("click", ".js-remove-attendance", removeAttendance);
     };
 
     return {

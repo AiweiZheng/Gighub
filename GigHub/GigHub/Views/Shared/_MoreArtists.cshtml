@@ -1,5 +1,6 @@
 ﻿@using GigHub.Core
 @using GigHub.Core.ViewModels
+@using Microsoft.AspNet.Identity
 @model ArtistsViewModel
 
 @foreach (var artist in Model.Artists)
@@ -9,10 +10,10 @@
     <div class="row">
         <div class="col-lg-7 col-md-8 col-sm-10 ">
             <div class="panel panel-default" data-artist-id="@artist.Id">
-                <div class="clickable alert alert-info panel-heading">
-                    @artist.Name
+                <div class="alert alert-info panel-heading">
+                    <span class="clickable js-artist-name">@artist.Name</span>
 
-                    @if (Request.IsAuthenticated)
+                    @if (Request.IsAuthenticated && artist.Id!=User.Identity.GetUserId())
                     {
                         <span>
                             <button
@@ -29,7 +30,7 @@
                 </div>
                 <div class="panel-body">
                     <div class="js-panel-Description">
-                        @artist.Description
+                        <span class="highlight">@artist.Name</span> @artist.Description
                     </div>
 
                     <hr/>
@@ -44,18 +45,18 @@
                             <p class="highlight voffset3">
                                 Upcoming Gigs
                             </p>
-
-                            <div class="gigs">
+                            <div class="js-gigs-container">
                                 @Html.Partial("_MoreGigs", new ArtistWithGigsViewMode
                                 {
                                     Gigs = artistWithGigs.Gigs,
                                     MyAttendances = Model.Attendances
                                 })
                             </div>
-                            <div class="loadMore">
-                                <a class="clickable js-more-gigs">>>More Gigs</a>
-                            </div>
-                        }
+                               
+                             <div class="loadMore">
+                                  <a class="clickable js-more-gigs">>>More Gigs</a>
+                              </div>
+                         }
                     </div>
                 </div>
                
@@ -69,24 +70,25 @@
     
     $(document).ready(function () { 
 
-        var togglePanelBody = function() {
-            var panelBody = $(this).find(".panel-body");
-            $(panelBody).toggleClass("@AppConst.BsHide");
-        }
+        var togglePanelBody = function (e) {
 
+            $(this).toggleClass("@AppConst.BsHide");
+        }
+    
         $(".panel").each(function () {
 
             var dirty = "dirty";
 
             if ($(this).attr(dirty) === undefined) {
 
-                $(this).on("click", ".panel-heading", togglePanelBody.bind(this));
+                var body = $(this).find(".panel-body");
+                $(this).on("click", ".js-artist-name", togglePanelBody.bind(body));
 
                 ReadMoreOrLessController.readMoreOrLess(this, $(this).find(".js-panel-Description"), dirty);
 
                 ReadMoreOrLessController.readMoreGigs({
 
-                    containerId: $(this).find(".gigs"),
+                    containerId: $(this).find(".js-gigs-container"),
                     loadMoreId: $(this).find(".js-more-gigs"),
                     artistId: $(this).attr("data-artist-id"),
                     startIndex:@AppConst.CountOfGigPerLoad,

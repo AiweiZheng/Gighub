@@ -15,7 +15,8 @@
     }
 
     var toggoleFollowing = function (e) {
-        e.preventDefault();
+
+        e.stopPropagation();
 
         button = $(e.target);
         var id = button.attr("data-user-id");
@@ -27,7 +28,7 @@
             followService.unfollow(id, done, fail);
         }
     }
-    var init = function (container, toFollowText, toUnfollowText) {
+    var init = function(container, toFollowText, toUnfollowText) {
 
         toFollow = toFollowText;
         toUnfollow = toUnfollowText;

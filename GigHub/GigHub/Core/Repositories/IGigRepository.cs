@@ -9,6 +9,7 @@ namespace GigHub.Core.Repositories
         Gig GetGigWithAttendees(int gigId);
         IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId);
         IEnumerable<Gig> GetUpcomingGigsByArtist(string artistId, int startIndex, int count);
+        int GetTotolNumOfUpcomingGigsForArtist(string artistId);
         IEnumerable<Gig> GetUpcomingGigs(string filter = null);
         Gig GetGig(int gigId);
         IEnumerable<Gig> GetGigsUserAttending(string userId);

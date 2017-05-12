@@ -111,6 +111,16 @@ h6,
     font-family: Lato, "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
+.gigs .popover {
+    background: #ffffe5;
+    background: rgba(255, 255, 229, 0.7);
+}
+
+.gigs .popover-content {
+    font-size: 13px;
+    font-weight: bold;
+}
+
 .panel-default {
     margin-bottom: 50px;
 } 
@@ -188,6 +198,7 @@ margin-bottom: 40px;
     font-size: 20px;
     padding: 6px 12px;
 }
+
 
 .gigs > li .details {
     position: absolute;

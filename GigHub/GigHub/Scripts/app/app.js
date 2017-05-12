@@ -6,9 +6,19 @@
         request.setRequestHeader("__RequestVerificationToken", antiForgeryToken);
     }
 
+    var hideNotificationWhenClickOnSpace = function(popover, notification) {
+        $("body").on("click",
+            function(e) {
+
+                if (!$(e.target).is($(notification))) {
+                    $(popover).popover("hide");
+                };
+            });
+    };
 
     return {
-        addVerificaitonTokenToHeader: addVerificaitonTokenToHeader
+        addVerificaitonTokenToHeader: addVerificaitonTokenToHeader,
+        hideNotificationWhenClickOnSpace: hideNotificationWhenClickOnSpace
     }
 }()
 

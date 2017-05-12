@@ -33,7 +33,13 @@
 {
     <script>
         $(document).ready(function() {
-            GigsController.init(".gigs","@AppConst.GoingText","@AppConst.NotGoingYetText");
+            GigsController.init(".gigs", "@AppConst.GoingText", "@AppConst.NotGoingYetText");
+
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                placement: "right",
+                trigger: "hover"
+            });  
         })
     </script>
 }

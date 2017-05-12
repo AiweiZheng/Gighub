@@ -1,6 +1,5 @@
 ﻿@using GigHub.Core
-@using GigHub.Core.ViewModels
-@model GigsViewModel
+@model GigHub.Core.ViewModels.GigsViewModel
 
 <h2 class="voffset4">@Model.Heading</h2>
 @Html.AntiForgeryToken()
@@ -17,17 +16,9 @@
     </div>    
 }
 
-@foreach (var gig in Model.UpcomingGigs)
-{
-    <ul class="gigs">
-        @Html.Partial("_upcomingGig", new GigViewModel
-        {
-            Attending = Model.Attendances.Contains(gig.Id),
-            Gig = gig
-        })
-    </ul>
-}
-
+<div class="container" id="content"></div>
+<div id="loading">@Html.Partial("_Spinner")</div>
+<span id="loadMore" class="btn btn-info btn-lg">Load More </span>
 
 @section scripts
 {
@@ -39,7 +30,23 @@
                 html: true,
                 placement: "right",
                 trigger: "hover"
-            });  
+            });
+
+
+            var moreGigsController = new MoreGigsController();
+            moreGigsController.init({
+                containerId: "#content",
+                loadMoreId: "#loadMore",
+                loadingSpinner: "#loading",
+                startIndex: 0,
+                sizePerLoad: @AppConst.PageSizeSm,
+                query: $("#SearchTerm").val(),
+                noContent: "@HttpStatusCode.NoContent",
+                getMoreGigs: "@Model.Heading" === "@AppConst.TitleForHomeGigs"?
+                             GigService.getMoreGigs:GigService.getMoreMyAttendingGigs,
+                cssHideClass: "@AppConst.BsHide"
+            });
+            moreGigsController.loadMore();
         })
     </script>
 }

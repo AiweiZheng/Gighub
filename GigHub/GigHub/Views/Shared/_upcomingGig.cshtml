@@ -38,14 +38,13 @@
                       Remove
                   </a>
               </div>
-                 
           }
 
             @if (User.Identity.IsAuthenticated && !Model.Gig.IsCancelled)
             {
                 if (Model.Gig.ArtistId == User.Identity.GetUserId())
                 {
-                    <span class="attend alert alert-success">My Gig</span>
+                    <span class="attend">My Gig</span>
                 }
                 else
                 {

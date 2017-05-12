@@ -14,6 +14,7 @@ namespace GigHub.Persistence
         public DbSet<Following> Followings { get; set; }
         public DbSet<Notification> Notifications { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<SystemNotification> SystemNotifications { get; set; }
         public DbSet<Login> Logins { get; set; }
 
         public ApplicationDbContext()

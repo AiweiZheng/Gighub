@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 using GigHub.Core;
 using GigHub.Core.ViewModels;
@@ -18,7 +19,22 @@ namespace GigHub.Controllers
 
         public ActionResult Index(string query = null)
         {
-            var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query);
+            var viewModel = new GigsViewModel
+            {
+                Heading = AppConst.TitleForHomeGigs,
+                SearchTerm = query
+            };
+
+            return View("Gigs", viewModel);
+        }
+
+        [Route("Gigs/More/{startIndex}")]
+        public ActionResult GetMoreGigs(int startIndex, string query = null)
+        {
+            var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(startIndex, AppConst.PageSizeSm, query);
+
+            if (!upcomingGigs.Any())
+                return Content(HttpStatusCode.NoContent.ToString());
 
             var userId = User.Identity.GetUserId();
 
@@ -29,12 +45,10 @@ namespace GigHub.Controllers
             {
                 UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
-                Heading = "Upcoming Gigs",
-                SearchTerm = query,
                 Attendances = attendances
             };
 
-            return View("Gigs", viewModel);
+            return PartialView("_MoreGigs", viewModel);
         }
 
         public ActionResult About()

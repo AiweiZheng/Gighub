@@ -11,8 +11,7 @@
         <div class="col-lg-7 col-md-8 col-sm-10 ">
             <div class="panel panel-default" data-artist-id="@artist.Id">
                 <div class="alert alert-info panel-heading">
-                    <span class="clickable js-artist-name">@artist.Name</span>
-
+                    @artist.Name
                     @if (Request.IsAuthenticated && artist.Id!=User.Identity.GetUserId())
                     {
                         <span>
@@ -27,6 +26,9 @@
                             </button>
                         </span> 
                     }
+                    <span class="clickable">
+                        <i class="js-toggle-details fa fa-caret-down pull-right"></i>
+                    </span>
                 </div>
                 <div class="panel-body">
                     <div class="js-panel-Description">
@@ -46,16 +48,17 @@
                                 Upcoming Gigs
                             </p>
                             <div class="js-gigs-container">
-                                @Html.Partial("_MoreGigs", new ArtistWithGigsViewMode
-                                {
-                                    Gigs = artistWithGigs.Gigs,
-                                    MyAttendances = Model.Attendances
-                                })
+                                @Html.Partial("_MoreGigs", new GigsViewModel
+                           {
+                               UpcomingGigs = artistWithGigs.Gigs,
+                               Attendances = Model.Attendances
+                           })
                             </div>
                                
-                             <div class="loadMore">
-                                  <a class="clickable js-more-gigs">>>More Gigs</a>
-                              </div>
+                            <div class="loadMore">
+                                <div id="gigsLoading" class="hide">@Html.Partial("_Spinner")</div>
+                                <a class="clickable js-more-gigs">>>More Gigs</a>
+                            </div>
                          }
                     </div>
                 </div>
@@ -67,14 +70,15 @@
 }
 
 <script type="text/javascript">
-    
-    $(document).ready(function () { 
+
+    $(document).ready(function () {
 
         var togglePanelBody = function (e) {
 
+            $(e.target).toggleClass("fa-caret-up").toggleClass("fa-caret-down");
             $(this).toggleClass("@AppConst.BsHide");
         }
-    
+
         $(".panel").each(function () {
 
             var dirty = "dirty";
@@ -82,7 +86,7 @@
             if ($(this).attr(dirty) === undefined) {
 
                 var body = $(this).find(".panel-body");
-                $(this).on("click", ".js-artist-name", togglePanelBody.bind(body));
+                $(this).on("click", ".js-toggle-details", togglePanelBody.bind(body));
 
                 ReadMoreOrLessController.readMoreOrLess(this, $(this).find(".js-panel-Description"), dirty);
 
@@ -90,10 +94,12 @@
 
                     containerId: $(this).find(".js-gigs-container"),
                     loadMoreId: $(this).find(".js-more-gigs"),
+                    loadingSpinner: $(this).find("#gigsLoading"),
                     artistId: $(this).attr("data-artist-id"),
                     startIndex:@AppConst.CountOfGigPerLoad,
                     sizePerLoad:@AppConst.CountOfGigPerLoad,
-                    noContent:"@HttpStatusCode.NoContent",
+                    noContent: "@HttpStatusCode.NoContent",
+                    getMoreGigs: GigService.getMoreGigsByArtist,
                     cssHideClass: "@AppConst.BsHide"
 
                 });

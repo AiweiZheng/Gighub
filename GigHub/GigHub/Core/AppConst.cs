@@ -20,6 +20,9 @@ namespace GigHub.Core
         //web mvc controller
         public const string GigCannotBeNull = "Gig cannot be null";
 
+        public const string TitleForMyAttendGigs = "Gigs I'm Attending";
+        public const string TitleForHomeGigs = "Upcoming Gigs";
+
         //bootstrap class wrapper
         public const string BsHide = "hide";
         public const string BsShow = "show";

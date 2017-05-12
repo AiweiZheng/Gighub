@@ -1,14 +1,14 @@
 ﻿@using GigHub.Core.ViewModels
-@model ArtistWithGigsViewMode
+@model GigsViewModel
 
-@foreach (var gig in Model.Gigs)
+@foreach (var gig in Model.UpcomingGigs)
 {                      
     <ul class="col-sm-4 gigs">
      
         @Html.Partial("_upcomingGig",
             new GigViewModel
             {
-                Attending = Model.MyAttendances.Contains(gig.Id),
+                Attending = Model.Attendances.Contains(gig.Id),
                 Gig = gig
             })
        

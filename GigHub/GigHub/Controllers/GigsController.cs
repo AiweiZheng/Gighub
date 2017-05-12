@@ -33,18 +33,33 @@ namespace GigHub.Controllers
         [AuthorizeSingleLogin]
         public ViewResult Attending()
         {
-            var userId = User.Identity.GetUserId();
-
-            var viewMode = new GigsViewModel
+            var viewModel = new GigsViewModel
             {
-                UpcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId),
+                Heading = AppConst.TitleForMyAttendGigs
+            };
+
+            return View("Gigs", viewModel);
+        }
+
+        [Route("Gigs/Attending/More/{startIndex}")]
+        public ActionResult GetMoreGigs(int startIndex)
+        {
+            var userId = User.Identity.GetUserId();
+            var upcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId, startIndex, AppConst.PageSizeSm);
+
+            if (!upcomingGigs.Any())
+                return Content(HttpStatusCode.NoContent.ToString());
+
+            var viewModel = new GigsViewModel
+            {
+                UpcomingGigs = upcomingGigs,
                 ShowActions = User.Identity.IsAuthenticated,
                 Heading = "Gigs I'm Attending",
                 Attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
-                .ToLookup(a => a.GigId)
+                    .ToLookup(a => a.GigId)
             };
 
-            return View("Gigs", viewMode);
+            return PartialView("_MoreGigs", viewModel);
         }
 
         [AuthorizeActivatedAccount]
@@ -188,10 +203,10 @@ namespace GigHub.Controllers
             var attendances = _unitOfWork.Attendances.GetFutureAttendances(
                 User.Identity.GetUserId()).ToLookup(k => k.GigId);
 
-            var viewModel = new ArtistWithGigsViewMode
+            var viewModel = new GigsViewModel
             {
-                Gigs = gigs,
-                MyAttendances = attendances
+                UpcomingGigs = gigs,
+                Attendances = attendances
             };
 
             return PartialView("_MoreGigs", viewModel);

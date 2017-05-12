@@ -55,33 +55,42 @@ namespace GigHub.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigId);
         }
 
-        private IEnumerable<Gig> GetUpcomingGigs()
+        private IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count)
         {
-            return _context.Gigs
+            IQueryable<Gig> query = _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
                 .Where(g => g.DateTime > DateTime.Now
                        && g.Artist.Activated
                        && !g.IsCancelled)
-                .OrderBy(g => g.DateTime).ToList();
+                .OrderBy(g => g.DateTime);
+
+            return query.Skip(startIndex).Take(count).ToList();
         }
 
-        private IEnumerable<Gig> GetUpcomingGigsByFilter(string query)
+        private IEnumerable<Gig> GetUpcomingGigsByFilter(int startIndex, int count, string filter)
         {
-            var upcomingGigs = GetUpcomingGigs();
+            IQueryable<Gig> query = _context.Gigs
+                .Include(g => g.Artist)
+                .Include(g => g.Genre)
+                .Where(g => g.DateTime > DateTime.Now
+                            && g.Artist.Activated
+                            && !g.IsCancelled
+                            && (
+                                g.Artist.Name.Contains(filter) ||
+                                g.Genre.Name.Contains(filter) ||
+                                g.Venue.Contains(filter)))
+                .OrderBy(g => g.DateTime);
 
-            return upcomingGigs.Where(g =>
-                    g.Artist.Name.Contains(query) ||
-                    g.Genre.Name.Contains(query) ||
-                    g.Venue.Contains(query)).ToList();
+            return query.Skip(startIndex).Take(count).ToList();
         }
 
-        public IEnumerable<Gig> GetUpcomingGigs(string filter = null)
+        public IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count, string filter = null)
         {
             if (filter == null)
-                return GetUpcomingGigs();
+                return GetUpcomingGigs(startIndex, count);
 
-            return GetUpcomingGigsByFilter(filter);
+            return GetUpcomingGigsByFilter(startIndex, count, filter);
         }
 
         public Gig GetGig(int gigId)
@@ -91,15 +100,16 @@ namespace GigHub.Persistence.Repositories
                 .Include(g => g.Genre)
                 .SingleOrDefault(g => g.Id == gigId);
         }
-        public IEnumerable<Gig> GetGigsUserAttending(string userId)
+        public IEnumerable<Gig> GetGigsUserAttending(string userId, int startIndex, int count)
         {
-            return _context.Attendances
+            IQueryable<Gig> query = _context.Attendances
                 .Where(a => a.AttendeeId == userId)
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .OrderBy(g => g.IsCancelled)
-                .ToList();
+                .OrderBy(g => g.DateTime);
+
+            return query.Skip(startIndex).Take(count).ToList();
         }
 
         public void Add(Gig gig)

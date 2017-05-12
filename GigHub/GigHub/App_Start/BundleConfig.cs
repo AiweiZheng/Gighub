@@ -56,8 +56,8 @@ namespace GigHub
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
+                      "~/Content/bootstrap-theme.css",
                       "~/Content/site.css",
-                      "~/Content/bootstrap - theme.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));
         }

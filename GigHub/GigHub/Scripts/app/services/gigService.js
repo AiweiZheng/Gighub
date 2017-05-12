@@ -20,7 +20,7 @@
             .fail(fail);
     }
 
-    var getMoreGigs = function(artistId, startIndex,done,fail) {
+    var getMoreGigsByArtist = function(artistId, startIndex,done,fail) {
         $.ajax({
                 url: "/artists/" + artistId+"/gigs/more/"+startIndex,
                 method: "GET"
@@ -29,9 +29,30 @@
             .fail(fail);
     }
 
+    var getMoreGigs = function (startIndex,query, done, fail) {
+        $.ajax({
+            url:  "/gigs/more/" + startIndex +"?query="+query,
+                method: "GET"
+            })
+            .done(done)
+            .fail(fail);
+    }
+
+    var getMoreMyAttendingGigs = function(startIndex,query, done, fail) {
+        $.ajax({
+            url: "/gigs/attending/more/" + startIndex + "?query=" + query,
+                method: "GET"
+            })
+            .done(done)
+            .fail(fail);
+    }
+
+
     return {
         cancel: cancel,
         resume: resume,
-        getMoreGigs: getMoreGigs
+        getMoreGigs: getMoreGigs,
+        getMoreGigsByArtist: getMoreGigsByArtist,
+        getMoreMyAttendingGigs: getMoreMyAttendingGigs
     }
 }();

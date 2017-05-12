@@ -272,10 +272,9 @@
     <Compile Include="Core\Dtos\FollowingDto.cs" />
     <Compile Include="Core\Filters\AuthorizeActivatedAccount.cs" />
     <Compile Include="Core\Filters\AuthorizeSingleLogin.cs" />
-    <Compile Include="Core\Models\Description.cs" />
     <Compile Include="Core\Models\Login.cs" />
     <Compile Include="Core\Models\RoleName.cs" />
-    <Compile Include="Core\Models\UserDescription.cs" />
+    <Compile Include="Core\Models\SystemNotification.cs" />
     <Compile Include="Core\Repositories\ILoginRepository.cs" />
     <Compile Include="Core\Repositories\IRoleRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
@@ -287,7 +286,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Persistence\EntityConfigurations\AttendanceConfiguration.cs" />
-    <Compile Include="Persistence\EntityConfigurations\DescriptionConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\FollowingConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\GenreConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\GigConfiguration.cs" />
@@ -355,6 +353,22 @@
     <Compile Include="Persistence\Migrations\201705050234595_AddLoginModel.cs" />
     <Compile Include="Persistence\Migrations\201705050234595_AddLoginModel.Designer.cs">
       <DependentUpon>201705050234595_AddLoginModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201705120135042_Changes.cs" />
+    <Compile Include="Persistence\Migrations\201705120135042_Changes.Designer.cs">
+      <DependentUpon>201705120135042_Changes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201705121727577_AddDescription.cs" />
+    <Compile Include="Persistence\Migrations\201705121727577_AddDescription.Designer.cs">
+      <DependentUpon>201705121727577_AddDescription.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201705121738012_changes3.cs" />
+    <Compile Include="Persistence\Migrations\201705121738012_changes3.Designer.cs">
+      <DependentUpon>201705121738012_changes3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.cs" />
+    <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.Designer.cs">
+      <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -555,6 +569,9 @@
     <Content Include="fonts\fontawesome-webfont.woff" />
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\GighubAiwei - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\GighubAiwei - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -748,6 +765,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201705050234595_AddLoginModel.resx">
       <DependentUpon>201705050234595_AddLoginModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201705120135042_Changes.resx">
+      <DependentUpon>201705120135042_Changes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201705121727577_AddDescription.resx">
+      <DependentUpon>201705121727577_AddDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201705121738012_changes3.resx">
+      <DependentUpon>201705121738012_changes3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201705121937142_AddSystemnotifications.resx">
+      <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

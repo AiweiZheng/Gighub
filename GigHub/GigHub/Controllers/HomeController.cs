@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using GigHub.Core;
 using GigHub.Core.ViewModels;
@@ -19,7 +20,7 @@ namespace GigHub.Controllers
         {
             var upcomingGigs = _unitOfWork.Gigs.GetUpcomingGigs(query);
 
-            string userId = User.Identity.GetUserId();
+            var userId = User.Identity.GetUserId();
 
             var attendances = _unitOfWork.Attendances.GetFutureAttendances(userId)
                 .ToLookup(a => a.GigId);

@@ -57,6 +57,7 @@ namespace GigHub
                       "~/Content/bootstrap.css",
                       "~/Content/font-awesome.min.css",
                       "~/Content/site.css",
+                      "~/Content/bootstrap - theme.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));
         }

@@ -1,4 +1,6 @@
-﻿@using GigHub.Core.Models
+﻿@using GigHub.Core
+@using GigHub.Core.Models
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +21,15 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            @Html.ActiveLink("GigHub", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Artists", "Index", "Artists")</li>
+                <li>@Html.ActiveLink("Artists", "Index", "Artists")</li>
 
                 @if (User.IsInRole(RoleName.Artist))
                 {
-                    <li>@Html.ActionLink("Add a Gig", "Create", "Gigs")</li>
+                    <li>@Html.ActiveLink("Add a Gig", "Create", "Gigs")</li>
                 }
             </ul>
            

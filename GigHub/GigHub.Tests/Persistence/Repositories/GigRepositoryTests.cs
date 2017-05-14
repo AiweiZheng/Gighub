@@ -88,7 +88,7 @@ namespace GigHub.Tests.Persistence.Repositories
             var attendance = new Attendance { AttendeeId = attendeeId };
             _mockAttendance.SetSource(new[] { attendance });
 
-            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId + "-");
+            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId + "-", 0, 0);
 
             gigs.Should().BeEmpty();
         }
@@ -101,7 +101,7 @@ namespace GigHub.Tests.Persistence.Repositories
             var attendance = new Attendance { AttendeeId = attendeeId };
             _mockAttendance.SetSource(new[] { attendance });
 
-            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId);
+            var gigs = _repository.GetGigsUserAttending(attendance.AttendeeId, 0, 0);
 
             gigs.Should().HaveCount(1);
         }

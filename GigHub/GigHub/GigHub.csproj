@@ -255,6 +255,7 @@
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\ErrorMsg.cs" />
     <Compile Include="Core\AppConst.cs" />
+    <Compile Include="Core\HtmlLinkHelper.cs" />
     <Compile Include="Core\Dtos\GenreDto.cs" />
     <Compile Include="Core\Dtos\GigDto.cs" />
     <Compile Include="Controllers\Api\GigsController.cs" />

@@ -40,7 +40,12 @@ span.field-validation-error {
 .voffset4 { margin-bottom: 40px;}
 .voffset5 { margin-bottom: 80px;}
 
+.hoffset {
+    margin-left: 8px;
+}
+
 /*Page-level styles*/
+
 
 
 .gigs {
@@ -93,14 +98,14 @@ margin-bottom: 40px;
     margin-bottom: 4px;
 }
 
-    .gigs > li .details .attend {
-        font-size: 14px;
-        background: rgb(223, 240, 216);
-        display: block;
-        border-radius: 5px;
-        padding: 5px;
-        margin-bottom: 4px;
-    }
+.gigs > li .details .attend {
+    font-size: 14px;
+    background: rgb(223, 240, 216);
+    display: block;
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 4px;
+}
 
 .gigs > li .actions {
     font-size: 15px;
@@ -136,6 +141,21 @@ ul.roles {
 
 .highlight {
     font-weight: bold;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.about {
+    color: #f90;
+    font-size: 18px;
+}
+
+.description {
+    font-size: 14px;
+    padding-left: 0;
+    font-style: italic;
 }
 
 ul.dropdown-menu > li.new {

@@ -19,8 +19,20 @@
     color: #fff;
 }
 
+.navbar-inverse .navbar-nav > .active > a, .navbar-inverse .navbar-nav > .active > a:hover {
+        background-color: red;
+}
+
+.navbar > .container .navbar-brand.active, .navbar-inverse .navbar-nav > li > a.active {
+        background: red;
+}
+
+.dropdown-menu > li > a.active {
+    background: #c3daee;
+}
+
 .navbar-inverse .navbar-brand {
-    color: #fff;
+        color: #fff;
 }
 
 .navbar-inverse .notifications {
@@ -39,7 +51,7 @@
 }
 
 .navbar-inverse .navbar-nav .open .dropdown-menu > li > a {
-    color: #fff;
+    color:  #4d4d4d;
 }
 
 .navbar-brand {

@@ -5,11 +5,12 @@ namespace GigHub.Core
 {
     public static class AppConst
     {
-        //veb view 
+        // view 
         public const string UnfollowText = "Follow";
         public const string FollowingText = "Following";
         public const string NotGoingYetText = "Going ?";
         public const string GoingText = "Going";
+        public const string AppBrand = "GigHub";
 
         public const int PageSizeLg = 20;
         public const int PageSizeMd = 15;

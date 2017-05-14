@@ -56,7 +56,7 @@ namespace GigHub.Core
                 anchor.Attributes.Add("id", "loginLink");
             }
 
-            else if ("GigHub".Equals(name, StringComparison.CurrentCultureIgnoreCase))
+            else if (AppConst.AppBrand.Equals(name, StringComparison.CurrentCultureIgnoreCase))
             {
                 anchor.AddCssClass("navbar-brand");
             }

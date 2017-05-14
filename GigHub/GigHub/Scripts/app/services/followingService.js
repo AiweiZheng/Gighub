@@ -5,7 +5,7 @@
             url: "/api/followings",
             method: "POST",
             data: { followeeId: id },
-                beforeSend: App.addVerificaitonTokenToHeader
+            beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             }).done(done)
             .fail(fail);
     }
@@ -14,7 +14,7 @@
         $.ajax({
             url: "/api/followings/" + id,
             method: "DELETE",
-            beforeSend: App.addVerificaitonTokenToHeader
+            beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             }).done(done)
             .fail(fail);
     }

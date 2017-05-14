@@ -12,7 +12,7 @@
                 url: "/api/accounts/" + id,
                 method: "PUT",
                 data: data,
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             }).done(done)
             .fail(fail);
     };
@@ -22,7 +22,7 @@
                 url: "/api/accounts/" + userId + "/status",
                 method: "PUT",
                 data: data,
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
 
             }).done(done)
             .fail(fail);
@@ -33,7 +33,7 @@
                 url: "/api/accounts/" + userId + "/role",
                 method: "PUT",
                 data: data,
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             }).done(done)
             .fail(fail);
     };

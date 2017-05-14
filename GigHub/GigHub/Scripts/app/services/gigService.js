@@ -4,7 +4,7 @@
         $.ajax({
                 url: "/api/gigs/" + id,
                 method: "DELETE",
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);
@@ -14,7 +14,7 @@
         $.ajax({
                 url: "/api/gigs/" + id,
                 method: "PUT",
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);

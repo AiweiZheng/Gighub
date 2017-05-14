@@ -4,7 +4,7 @@
         $.ajax({
                 url: "/api/Notifications",
                 method: "GET",
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done);
     }
@@ -13,7 +13,7 @@
         $.ajax({
                 url: "/api/notifications/markAsRead",
                 method: "POST",
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);

@@ -5,7 +5,7 @@
                 url: "/api/attendances",
                 method: "POST",
                 data: { GigId: gigId },
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);
@@ -15,7 +15,7 @@
         $.ajax({
                 url: "/api/attendances/" + gigId,
                 method: "DELETE",
-                beforeSend: App.addVerificaitonTokenToHeader
+                beforeSend: window.antiForgery.addVerificaitonTokenToHeader
             })
             .done(done)
             .fail(fail);

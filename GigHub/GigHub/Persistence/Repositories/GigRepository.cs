@@ -142,7 +142,7 @@ namespace GigHub.Persistence.Repositories
             return query.GroupBy(g => g.ArtistId)
                  .Select(v => new ArtistWithGigsViewMode
                  {
-                     Gigs = v.OrderByDescending(g => g.DateTime).Take(gigCount),
+                     Gigs = v.OrderBy(g => g.DateTime).Take(gigCount),
                      ArtistId = v.Key
                  }).ToList();
         }

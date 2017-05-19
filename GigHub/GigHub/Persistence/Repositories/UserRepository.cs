@@ -32,7 +32,7 @@ namespace GigHub.Persistence.Repositories
                     u => u.Activated
                          && u.Roles.Any(r => r.RoleId == roleId)
                 )
-                .OrderByDescending(u => u.Followers.Count);
+                .OrderBy(u => u.Name);
 
             return
                 query.Skip(startIndex)

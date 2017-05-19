@@ -60,6 +60,17 @@ namespace GigHub
                       "~/Content/site.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/landing/lib").Include(
+                "~/Scripts/landing/jquery.js",
+                "~/Scripts/landing/bootstrap.js"
+            ));
+
+            bundles.Add(new StyleBundle("~/Content/landing/css").Include(
+                "~/Content/bootstrap.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/landing/style.css"));
+
         }
     }
 }

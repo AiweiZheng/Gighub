@@ -18,6 +18,7 @@ namespace GigHub.Persistence.Repositories
             return _context.Followings
                 .Where(f => f.FollowerId == userId)
                 .Include(f => f.Followee)
+                .OrderBy(f => f.Followee.Name)
                 .ToList();
         }
 

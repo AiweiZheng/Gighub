@@ -6,7 +6,7 @@
     <div class="date" data-toggle="popover"
          data-trigger="hover"
          data-content="Performing at @Model.Gig.Venue 
-                       on @Model.Gig.DateTime.ToString("d MMM") 
+                       on @Model.Gig.DateTime.ToString("d MMM yyyy") 
                        at @Model.Gig.DateTime.ToString("HH:mm")"
          >
         
@@ -40,20 +40,20 @@
               </div>
           }
 
-            @if (User.Identity.IsAuthenticated && !Model.Gig.IsCancelled)
-            {
-                if (Model.Gig.ArtistId == User.Identity.GetUserId())
-                {
-                    <span class="attend">My Gig</span>
-                }
-                else
-                {
-                    <button data-gig-id="@Model.Gig.Id"
-                            class="btn @(Model.Attending ? "btn-info" : "btn-default") 
-                    btn-sm  js-toggle-attendance">
-                        @(Model.Attending ? AppConst.GoingText : AppConst.NotGoingYetText)
-                    </button>
-                }
-            }
-           </div>
+          @if (User.Identity.IsAuthenticated && !Model.Gig.IsCancelled)
+          {
+              if (Model.Gig.ArtistId == User.Identity.GetUserId())
+              {
+                  <span class="myGig">My Gig</span>
+              }
+              else
+              {
+                   <button data-gig-id="@Model.Gig.Id"
+                           class="btn @(Model.Attending ? "btn-info" : "btn-default") 
+                   btn-sm  js-toggle-attendance">
+                       @(Model.Attending ? AppConst.GoingText : AppConst.NotGoingYetText)
+                   </button>
+              }
+          }
+          </div>
 </li>

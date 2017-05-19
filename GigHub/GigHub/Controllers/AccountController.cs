@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GigHub.Core;
+using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -72,6 +73,7 @@ namespace GigHub.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
+
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (!ModelState.IsValid)
@@ -82,10 +84,18 @@ namespace GigHub.Controllers
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+
             switch (result)
             {
 
                 case SignInStatus.Success:
+
+                    var user = UserManager.FindByName(model.Email);
+                    if (!user.Activated)
+                    {
+                        ModelState.AddModelError("", ErrorMsg.AccountIsInactivated);
+                        return View(model);
+                    }
 
                     _saveLogin(model.Email);
 
@@ -99,6 +109,7 @@ namespace GigHub.Controllers
                     return View(model);
             }
         }
+
 
         private void _saveLogin(string userName)
         {

@@ -54,9 +54,9 @@ namespace GigHub
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "1414340881937603",
+               appSecret: "d8d1be5e9f68c0a9485e4a2e154cb5de");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{

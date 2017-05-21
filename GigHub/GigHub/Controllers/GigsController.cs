@@ -90,7 +90,7 @@ namespace GigHub.Controllers
             var gig = new Gig
             {
                 ArtistId = User.Identity.GetUserId(),
-                DateTime = viewModel.GetDateTime(),
+                DateTime = viewModel.DateTime,
                 GenreId = viewModel.Genre,
                 Venue = viewModel.Venue
             };
@@ -120,8 +120,7 @@ namespace GigHub.Controllers
                 Heading = "Edit a Gig",
                 Id = gig.Id,
                 Genres = _unitOfWork.Genres.GetGenres(),
-                Date = gig.DateTime.ToString("d MMM yyyy"),
-                Time = gig.DateTime.ToString("HH:mm"),
+                DateTime = gig.DateTime,
                 Genre = gig.GenreId,
                 Venue = gig.Venue
             };
@@ -149,7 +148,7 @@ namespace GigHub.Controllers
             if (gig.ArtistId != User.Identity.GetUserId())
                 return new HttpUnauthorizedResult();
 
-            gig.Modify(viewModel.Venue, viewModel.GetDateTime(), viewModel.Genre);
+            gig.Modify(viewModel.Venue, viewModel.DateTime, viewModel.Genre);
 
             _unitOfWork.Complete();
 
@@ -194,7 +193,7 @@ namespace GigHub.Controllers
         [Route("Artists/{artistId}/Gigs/More/{startIndex}")]
         public ActionResult GetMoreGigs(string artistId, int startIndex)
         {
-            var numPerLoad = AppConst.CountOfGigPerLoad;
+            const int numPerLoad = AppConst.CountOfGigPerLoad;
             var gigs = _unitOfWork.Gigs.GetUpcomingGigsByArtist(artistId, startIndex, numPerLoad);
 
             if (!gigs.Any())

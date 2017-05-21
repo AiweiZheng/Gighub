@@ -43,7 +43,9 @@ namespace GigHub
                          "~/Scripts/underscore-min.js",
                          "~/Scripts/dataTables/jquery.datatables.js",
                          "~/Scripts/dataTables/datatables.bootstrap.js",
-                         "~/Scripts/moment.js"));
+                         "~/Scripts/moment.js",
+                         "~/Scripts/bootstrap-datetimepicker.js"
+                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -58,6 +60,7 @@ namespace GigHub
                       "~/Content/font-awesome.min.css",
                       "~/Content/bootstrap-theme.css",
                       "~/Content/site.css",
+                      "~/Content/bootstrap-datetimepicker.css",
                       "~/Content/datatables/css/datatables.bootstrap.css",
                 "~/Content/Animate.css"));
 

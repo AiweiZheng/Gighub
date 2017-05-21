@@ -16,12 +16,7 @@ namespace GigHub.Core.ViewModels
         public string Venue { get; set; }
 
         [Required]
-        [FutureDate]
-        public string Date { get; set; }
-
-        [Required]
-        [ValidTime]
-        public string Time { get; set; }
+        public DateTime DateTime { get; set; }
 
         [Required]
         public byte Genre { get; set; }
@@ -46,9 +41,5 @@ namespace GigHub.Core.ViewModels
             }
         }
 
-        public DateTime GetDateTime()
-        {
-            return DateTime.Parse(string.Format("{0} {1}", Date, Time));
-        }
     }
 }

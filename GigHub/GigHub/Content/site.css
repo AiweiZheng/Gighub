@@ -202,7 +202,7 @@ input[type=radio] {
     height: 1em;
 }
 
-#searchGigs {
+#searchGigs, #gigDateTime {
     width: 300px;
 }
 

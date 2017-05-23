@@ -254,6 +254,7 @@
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\ErrorMsg.cs" />
+    <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Core\AppConst.cs" />
     <Compile Include="Core\Filters\AccountAuthorization.cs" />
     <Compile Include="Core\HtmlLinkHelper.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="Core\ViewModels\ArtistsViewModel.cs" />
     <Compile Include="Core\ViewModels\ArtistWithGigsViewModel.cs" />
     <Compile Include="Core\ViewModels\GigViewModel.cs" />
+    <Compile Include="Core\ViewModels\Landing\CarouselImageViewModel.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -420,8 +422,14 @@
     <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-datetimepicker.css" />
     <Content Include="Content\bootstrap-datetimepicker.min.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap-theme-custom.css" />
+    <Content Include="Content\img\screenshots\accounts.png" />
+    <Content Include="Content\img\screenshots\artists.png" />
+    <Content Include="Content\img\screenshots\createAgig.png" />
+    <Content Include="Content\img\screenshots\main.png" />
+    <Content Include="Content\img\screenshots\mygigs.png" />
+    <Content Include="Content\img\screenshots\notification.png" />
+    <Content Include="Content\_bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\DataTables\css\autoFill.bootstrap.css" />
@@ -533,6 +541,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\img\arrow.svg" />
     <Content Include="Content\img\landing.jpg" />
     <Content Include="Content\img\landing2.jpg" />
     <Content Include="Content\landing\style.css" />
@@ -776,6 +785,8 @@
     <Content Include="Scripts\jquery-ui-1.12.1.js" />
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery-ui.min.js" />
+    <Content Include="Scripts\landing\jQuery-easing.js" />
+    <Content Include="Scripts\landing\landing.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.min.js" />
@@ -843,7 +854,10 @@
     <Content Include="Views\Shared\_MoreGigs.cshtml" />
     <Content Include="Views\Artists\Index.cshtml" />
     <Content Include="Views\Artists\Following.cshtml" />
-    <Content Include="Views\Home\Landing.cshtml" />
+    <Content Include="Views\Landing\Index.cshtml" />
+    <Content Include="Views\Landing\_CarouselImage.cshtml" />
+    <Content Include="Views\Landing\_FeatureItem.cshtml" />
+    <Content Include="Views\Shared\_RegisterForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

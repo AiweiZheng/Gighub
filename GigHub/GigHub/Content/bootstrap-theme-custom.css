@@ -46,7 +46,9 @@
     background: #a80a0a;
 }
 
-.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+.navbar-inverse .navbar-nav > .open > a, 
+.navbar-inverse .navbar-nav > .open > a:hover,
+.navbar-inverse .navbar-nav > .open > a:focus {
     background-color: #cd2827;
 }
 
@@ -137,3 +139,5 @@ h6,
     -ms-border-radius: 9px;
     border-radius: 9px;
 }
+
+

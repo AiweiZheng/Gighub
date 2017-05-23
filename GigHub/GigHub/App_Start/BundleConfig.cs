@@ -56,24 +56,29 @@ namespace GigHub
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/font-awesome.min.css",
-                      "~/Content/bootstrap-theme.css",
+                "~/Content/bootstrap.css",
+                "~/Content/font-awesome.min.css",
+                "~/Content/Animate.css"));
+
+            bundles.Add(new StyleBundle("~/Content/web/css").Include(
+                      "~/Content/bootstrap-theme-custom.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-datetimepicker.css",
-                      "~/Content/datatables/css/datatables.bootstrap.css",
-                "~/Content/Animate.css"));
+                      "~/Content/datatables/css/datatables.bootstrap.css"
+                      ));
 
             bundles.Add(new ScriptBundle("~/bundles/landing/lib").Include(
                 "~/Scripts/landing/jquery.js",
-                "~/Scripts/landing/bootstrap.js"
+                "~/Scripts/landing/bootstrap.js",
+                "~/Scripts/landing/jQuery-easing.js",
+                "~/Scripts/landing/landing.js"
             ));
 
-            bundles.Add(new StyleBundle("~/Content/landing/css").Include(
-                "~/Content/bootstrap.css",
-                "~/Content/font-awesome.min.css",
-                "~/Content/landing/style.css"));
 
+
+            bundles.Add(new StyleBundle("~/Content/landing/css").Include(
+
+                "~/Content/landing/style.css"));
         }
     }
 }

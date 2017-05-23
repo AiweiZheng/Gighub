@@ -73,5 +73,6 @@ namespace GigHub.Core
 
             return new MvcHtmlString(anchor.ToString());
         }
+
     }
 }

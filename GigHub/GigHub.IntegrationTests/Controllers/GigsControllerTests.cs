@@ -100,8 +100,8 @@ namespace GigHub.IntegrationTests.Controllers
             _controller.Update(new GigFormViewModel
             {
                 Id = gig.Id,
-                Date = DateTime.Today.AddMonths(1).ToString("d MMM yyyy"),
-                Time = "20:00",
+                DateTime = DateTime.Today.AddMonths(1),
+
                 Venue = "Venue",
                 Genre = 2
             });

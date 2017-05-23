@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using GigHub.Core;
@@ -17,6 +16,10 @@ namespace GigHub.Controllers
             _unitOfWork = unitOfWork;
         }
 
+        public ActionResult Landing()
+        {
+            return View();
+        }
         public ActionResult Index(string query = null)
         {
             var viewModel = new GigsViewModel

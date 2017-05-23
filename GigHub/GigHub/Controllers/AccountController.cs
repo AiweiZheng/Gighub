@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using GigHub.Core;
-using GigHub.Core.Filters;
 using GigHub.Core.Models;
 using GigHub.Core.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -435,7 +434,7 @@ namespace GigHub.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Landing");
         }
 
         //

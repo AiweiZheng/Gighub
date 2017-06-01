@@ -77,7 +77,7 @@ namespace GigHub
 
 
             bundles.Add(new StyleBundle("~/Content/landing/css").Include(
-
+                "~/Content/bootstrap-theme-custom.css",
                 "~/Content/landing/style.css"));
         }
     }

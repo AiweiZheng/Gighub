@@ -117,6 +117,10 @@ margin-bottom: 40px;
     display: block;
 }
 
+ul[id="upCommingGigs"], ul[id="cancelledGigs"] {
+    padding-left: 0;
+}
+
 .form-inline .radio {
     display: block;
 }
@@ -202,8 +206,8 @@ input[type=radio] {
     height: 1em;
 }
 
-#searchGigs, #gigDateTime {
-    width: 300px;
+#searchGigs {
+    width: 230px;
 }
 
 .ui_ribbon {

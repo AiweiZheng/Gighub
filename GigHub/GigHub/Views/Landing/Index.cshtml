@@ -59,11 +59,11 @@
 <section id="intro" class="intro">
 
     <div class="intro-body overlay">
-        <div class="container">
+        <div class="container" style="margin-top:100px">
             <div class="row">
                 <div class="col-md-6">
                     <h4 class="brand-heading">Welcome to Gighub</h4>
-                    <p class="intro-text">Enjoy All the Gigs we've picked for you</p>
+                    <p class="intro-text">Enjoy all the gigs we've picked for you</p>
                     <div id="signupBlock">
                         <a href="@Url.Action("Register","Account")" class="btn btn-success">Register</a>
                         <div class="actions">
@@ -76,8 +76,7 @@
                    
                 </div>
                 
-                <div class="col-md-5 col-md-offset-1 well" id="registerForm">
-                   
+                <div class="col-md-5 col-md-offset-1 well container" id="registerForm">
                     @Html.Partial("_RegisterForm")
                     <div id="signin">
                         Alread have an account ? <a href="@Url.Action("Login","Account")">Sign in</a>
@@ -93,9 +92,9 @@
     <h2 class="text-center">Howdy! You're looking at <strong>Gighub.</strong></h2>
     <div class="text-center">
         <span class="byline">GigHub is a  musical network that gives you easy access to live band performance.</span>
-        <span class="byline">Follow your favoriate artists, attend any gig with a simple click.</span>
-        <span class="byline">Create your own favoriate artists list, manage your attending gigs.</span>
-        <span class="byline">It supports all kind of devices, from phones to tablets to desktops.</span>
+        <span class="byline">Follow your favorite artists, attend any gig with a simple click.</span>
+        <span class="byline">Create your own favorite artists' list, manage your upcoming gigs.</span>
+        <span class="byline">It supports all kinds of devices, from phones to tablets to desktops.</span>
     </div>
     <br />
 </section>
@@ -121,7 +120,6 @@
                    Active = true,
                    Title = "Home Page"
                });
-            
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/artists.png",
@@ -167,7 +165,7 @@
     <div class="container">
         <h2>Features</h2>
         @{
-            Html.RenderPartial("_FeatureItem", "Follow / Unfollow artists, attend / unattend a gig.");
+            Html.RenderPartial("_FeatureItem", "Follow / Unfollow artists, attend / skip a gig.");
             Html.RenderPartial("_FeatureItem", "Narrow upcoming gigs result by searching artist, gig genre, gig venue.");
             Html.RenderPartial("_FeatureItem", "Send Notifications to followers when newly gigs created.");
             Html.RenderPartial("_FeatureItem", "Send Notifications to attendees when gigs are updated or cancelled.");
@@ -189,10 +187,10 @@
     <p >Please Contact me if you have any feedback or suggestions, source code is also available on Github.</p>
     <ul class="list-inline icons">
         <li>
-            <a href="mailto:aiweizheng@gmail.com"><i class="fa fa-envelope-o fa-2x"></i></a>
+            <a href="mailto:aiweizheng@gmail.com" target="_blank"><i class="fa fa-envelope-o fa-2x"></i></a>
         </li>
         <li>
-            <a href="https://github.com/AiweiZheng/Gighub"><i class="fa fa-github fa-2x"></i></a>
+            <a href="https://github.com/AiweiZheng/Gighub" target="_blank"><i class="fa fa-github fa-2x"></i></a>
         </li>
     </ul>
     <p class="copyright">Gighub &copy; Aiwei Zheng 2017, All Rights Reserved</p>

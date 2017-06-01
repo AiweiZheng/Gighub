@@ -43,8 +43,6 @@ a:hover, a:focus {
 }
 
 
-
-
 /*Navigation*/
 .navbar {
     margin-bottom: 0;
@@ -146,7 +144,12 @@ a:hover, a:focus {
 
 #registerForm {
     color: #5b5b5b;
+    text-align: left;
     display: none;
+}
+
+label{
+    font-weight:300;
 }
 
 #signin {
@@ -170,7 +173,7 @@ a:hover, a:focus {
     width: 100%;
     height: auto;
     padding: 100px 0;
-    text-align: center;
+    text-align:center;
     color: #f4f4f4;
     background: url("../img/landing.jpg") no-repeat bottom center scroll;
     background-color: #333333;
@@ -190,6 +193,9 @@ a:hover, a:focus {
     width: 100%;
 }
 
+.container.well{
+    padding:20px 30px 30px 30px;
+}
 .intro-body {
     display: table-cell;
     vertical-align: middle;
@@ -211,7 +217,8 @@ a:hover, a:focus {
     }
 
     .brand-heading {
-        font-size: 100px;
+        margin-top:70px;
+        font-size: 80px;
     }
 
     .intro-text {

@@ -202,6 +202,10 @@ label{
     position: relative;
 }
 
+.intro-body>.container {
+    margin-top: 100px;
+}
+    
 .brand-heading {
     font-size: 40px;
 }

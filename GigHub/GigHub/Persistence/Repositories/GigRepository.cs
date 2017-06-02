@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
+using System.Web.Mvc;
+using GigHub.Core;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
 using GigHub.Core.ViewModels;
+using Utilities;
 
 namespace GigHub.Persistence.Repositories
 {
@@ -55,42 +59,90 @@ namespace GigHub.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigId);
         }
 
-        private IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count)
+        public IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count, GigFilterParams filter)
         {
+            var gigFilterExpression = _getGigFilterExpression(filter);
+
             IQueryable<Gig> query = _context.Gigs
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now
-                       && g.Artist.Activated
-                       && !g.IsCancelled)
-                .OrderBy(g => g.DateTime);
+               .Include(g => g.Artist)
+               .Include(g => g.Genre)
+               .Where(gigFilterExpression)
+               .OrderBy(g => g.DateTime);
 
             return query.Skip(startIndex).Take(count).ToList();
         }
 
-        private IEnumerable<Gig> GetUpcomingGigsByFilter(int startIndex, int count, string filter)
+        private Expression<Func<Gig, bool>> _getGigFilterExpression(GigFilterParams filter)
         {
-            IQueryable<Gig> query = _context.Gigs
+            Expression<Func<Gig, bool>> filterExpression = g =>
+               g.DateTime > DateTime.Now
+               && g.Artist.Activated
+               && !g.IsCancelled;
+
+            return string.IsNullOrWhiteSpace(filter.SearchTerm) ? filterExpression :
+                ExpressionCombiner.And(filterExpression, getSeachFilter(filter));
+        }
+
+        private Expression<Func<Gig, bool>> _getMyAttendingGigFilterExpression(GigFilterParams filter)
+        {
+            Expression<Func<Gig, bool>> filterExpression = g =>
+               g.DateTime > DateTime.Now;
+
+            return string.IsNullOrWhiteSpace(filter.SearchTerm) ? filterExpression :
+                ExpressionCombiner.And(filterExpression, getSeachFilter(filter));
+        }
+
+        private Expression<Func<Gig, bool>> getSeachFilter(GigFilterParams filter)
+        {
+            var searchTerm = filter.SearchTerm;
+            switch (filter.SearchBy)
+            {
+                case AppConst.SearchAll:
+                    Expression<Func<Gig, bool>> allExpression = g =>
+                     g.Artist.Name.Contains(searchTerm) ||
+                          g.Genre.Name.Contains(searchTerm) ||
+                          g.Venue.Contains(searchTerm);
+
+                    return allExpression;
+
+                case AppConst.SearchByArtist:
+                    Expression<Func<Gig, bool>> artistExpression = g =>
+                        g.Artist.Name.Contains(searchTerm);
+
+                    return artistExpression;
+
+                case AppConst.SearchByGener:
+                    Expression<Func<Gig, bool>> genreExpression = g =>
+                        g.Genre.Name.Contains(searchTerm);
+
+                    return genreExpression;
+
+                case AppConst.SearchByVenue:
+
+                    Expression<Func<Gig, bool>> venueExpression = g =>
+                       g.Genre.Name.Contains(searchTerm);
+
+                    return venueExpression;
+
+                default:
+                    return null;
+            }
+        }
+
+
+        public IEnumerable<Gig> GetGigsUserAttending(string userId, int startIndex, int count, GigFilterParams filter)
+        {
+            var gigFilterExpression = _getMyAttendingGigFilterExpression(filter);
+
+            IQueryable<Gig> query = _context.Attendances
+                .Where(a => a.AttendeeId == userId)
+                .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
-                .Where(g => g.DateTime > DateTime.Now
-                            && g.Artist.Activated
-                            && !g.IsCancelled
-                            && (
-                                g.Artist.Name.Contains(filter) ||
-                                g.Genre.Name.Contains(filter) ||
-                                g.Venue.Contains(filter)))
+                .Where(gigFilterExpression)
                 .OrderBy(g => g.DateTime);
 
             return query.Skip(startIndex).Take(count).ToList();
-        }
-
-        public IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count, string filter = null)
-        {
-            if (filter == null)
-                return GetUpcomingGigs(startIndex, count);
-
-            return GetUpcomingGigsByFilter(startIndex, count, filter);
         }
 
         public Gig GetGig(int gigId)
@@ -100,18 +152,6 @@ namespace GigHub.Persistence.Repositories
                 .Include(g => g.Genre)
                 .SingleOrDefault(g => g.Id == gigId);
         }
-        public IEnumerable<Gig> GetGigsUserAttending(string userId, int startIndex, int count)
-        {
-            IQueryable<Gig> query = _context.Attendances
-                .Where(a => a.AttendeeId == userId)
-                .Select(a => a.Gig)
-                .Include(g => g.Artist)
-                .Include(g => g.Genre)
-                .OrderBy(g => g.DateTime);
-
-            return query.Skip(startIndex).Take(count).ToList();
-        }
-
         public void Add(Gig gig)
         {
             var artist = _context.Users

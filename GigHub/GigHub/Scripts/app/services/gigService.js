@@ -29,25 +29,25 @@
             .fail(fail);
     }
 
-    var getMoreGigs = function (startIndex,query, done, fail) {
+    var getMoreGigs = function (startIndex,searchBy, query, done, fail) {
         $.ajax({
-            url:  "/gigs/more/" + startIndex +"?query="+query,
+            url:  "/gigs/more/" + startIndex +"?searchBy="+searchBy+"&query="+query,
                 method: "GET"
             })
             .done(done)
             .fail(fail);
     }
 
-    var getMoreMyAttendingGigs = function(startIndex,query, done, fail) {
+    var getMoreMyAttendingGigs = function(startIndex,searchBy,query, done, fail) {
         $.ajax({
-            url: "/gigs/attending/more/" + startIndex + "?query=" + query,
+            url: "/gigs/attending/more/" + startIndex + "?searchBy=" + searchBy + "&query=" + query,
                 method: "GET"
             })
             .done(done)
             .fail(fail);
     }
 
-
+   
     return {
         cancel: cancel,
         resume: resume,

@@ -31,21 +31,28 @@ namespace GigHub.Controllers
 
         [AuthorizeActivatedAccount]
         [AuthorizeSingleLogin]
-        public ViewResult Attending()
+        public ViewResult Attending(string searchBy, string query = null)
         {
             var viewModel = new GigsViewModel
             {
-                Heading = AppConst.TitleForMyAttendGigs
+                Heading = AppConst.TitleForMyAttendGigs,
+                SearchTerm = query,
+                SearchBy = searchBy ?? AppConst.SearchAll
             };
 
             return View("Gigs", viewModel);
         }
 
         [Route("Gigs/Attending/More/{startIndex}")]
-        public ActionResult GetMoreGigs(int startIndex)
+        public ActionResult GetMoreGigs(int startIndex, string searchBy, string query = null)
         {
+            GigFilterParams filter = new GigFilterParams
+            {
+                SearchTerm = query,
+                SearchBy = searchBy
+            };
             var userId = User.Identity.GetUserId();
-            var upcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId, startIndex, AppConst.PageSizeSm);
+            var upcomingGigs = _unitOfWork.Gigs.GetGigsUserAttending(userId, startIndex, AppConst.PageSizeSm, filter);
 
             if (!upcomingGigs.Any())
                 return Content(HttpStatusCode.NoContent.ToString());
@@ -159,7 +166,15 @@ namespace GigHub.Controllers
         [HttpPost]
         public ActionResult Search(GigsViewModel viewModel)
         {
-            return RedirectToAction("Index", "Home", new { query = viewModel.SearchTerm });
+            switch (viewModel.Heading)
+            {
+                case AppConst.TitleForHomeGigs:
+                    return RedirectToAction("Index", "Home", new { searchBy = viewModel.SearchBy, query = viewModel.SearchTerm });
+                case AppConst.TitleForMyAttendGigs:
+                    return RedirectToAction("Attending", "Gigs", new { searchBy = viewModel.SearchBy, query = viewModel.SearchTerm });
+                default:
+                    return HttpNotFound();
+            }
         }
 
         [AllowAnonymous]

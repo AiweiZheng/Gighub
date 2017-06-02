@@ -9,6 +9,7 @@
         this.startIndex = params.startIndex;
         this.sizePerLoad = params.sizePerLoad;
         this.query = params.query;
+        this.searchBy = params.searchBy;
         this.noMoreContent = params.noContent;
         this.cssHide = params.cssHideClass;
 
@@ -54,6 +55,7 @@
         else if (this.getMoreGigsAction === GigService.getMoreGigs) 
             this.getMoreGigsAction(
                 this.startIndex,
+                this.searchBy,
                 this.query,
                 this.done.bind(this),
                 this.fail.bind(this));
@@ -61,6 +63,7 @@
         else if (this.getMoreGigsAction === GigService.getMoreMyAttendingGigs)
             this.getMoreGigsAction(
                 this.startIndex,
+                this.searchBy,
                 this.query,
                 this.done.bind(this),
                 this.fail.bind(this));

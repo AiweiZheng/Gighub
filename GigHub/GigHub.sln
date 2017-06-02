@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigHub.Tests", "GigHub.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GigHub.IntegrationTests", "GigHub.IntegrationTests\GigHub.IntegrationTests.csproj", "{D7C3C414-BA16-4464-866B-A5998F22B90D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{B9440FEE-FF63-4B8D-BEAE-749E39B1A7EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,23 +29,12 @@ Global
 		{D7C3C414-BA16-4464-866B-A5998F22B90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C3C414-BA16-4464-866B-A5998F22B90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C3C414-BA16-4464-866B-A5998F22B90D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9440FEE-FF63-4B8D-BEAE-749E39B1A7EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9440FEE-FF63-4B8D-BEAE-749E39B1A7EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9440FEE-FF63-4B8D-BEAE-749E39B1A7EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9440FEE-FF63-4B8D-BEAE-749E39B1A7EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://aiweizhengproject.visualstudio.com/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = GigHub\\GigHub.csproj
-		SccProjectName1 = GigHub
-		SccLocalPath1 = GigHub
-		SccProjectUniqueName2 = GigHub.Tests\\GigHub.Tests.csproj
-		SccProjectName2 = GigHub.Tests
-		SccLocalPath2 = GigHub.Tests
-		SccProjectUniqueName3 = GigHub.IntegrationTests\\GigHub.IntegrationTests.csproj
-		SccProjectName3 = GigHub.IntegrationTests
-		SccLocalPath3 = GigHub.IntegrationTests
 	EndGlobalSection
 EndGlobal

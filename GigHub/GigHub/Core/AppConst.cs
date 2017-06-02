@@ -27,5 +27,11 @@ namespace GigHub.Core
         //bootstrap class wrapper
         public const string BsHide = "hide";
         public const string BsShow = "show";
+
+        //for gig search category
+        public const string SearchAll = "Anything";
+        public const string SearchByArtist = "Artist";
+        public const string SearchByGener = "Genre";
+        public const string SearchByVenue = "Venue";
     }
 }

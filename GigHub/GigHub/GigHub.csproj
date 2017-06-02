@@ -256,7 +256,6 @@
     <Compile Include="Controllers\ErrorMsg.cs" />
     <Compile Include="Controllers\LandingController.cs" />
     <Compile Include="Core\AppConst.cs" />
-    <Compile Include="Core\Filters\AccountAuthorization.cs" />
     <Compile Include="Core\HtmlLinkHelper.cs" />
     <Compile Include="Core\Dtos\GenreDto.cs" />
     <Compile Include="Core\Dtos\GigDto.cs" />
@@ -275,6 +274,7 @@
     <Compile Include="Core\Dtos\FollowingDto.cs" />
     <Compile Include="Core\Filters\AuthorizeActivatedAccount.cs" />
     <Compile Include="Core\Filters\AuthorizeSingleLogin.cs" />
+    <Compile Include="Core\Models\GigFilterParams.cs" />
     <Compile Include="Core\Models\Login.cs" />
     <Compile Include="Core\Models\RoleName.cs" />
     <Compile Include="Core\Models\SystemNotification.cs" />
@@ -608,6 +608,7 @@
     <Content Include="Scripts\app\controllers\moreGigsController.js" />
     <Content Include="Scripts\app\controllers\notificationController.js" />
     <Content Include="Scripts\app\controllers\readMoreOrLessController.js" />
+    <Content Include="Scripts\app\controllers\searchController.js" />
     <Content Include="Scripts\app\services\accountsService.js" />
     <Content Include="Scripts\app\services\accountRolesService.js" />
     <Content Include="Scripts\app\services\artistsService.js" />
@@ -938,6 +939,12 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utilities\Utilities.csproj">
+      <Project>{b9440fee-ff63-4b8d-beae-749e39b1a7eb}</Project>
+      <Name>Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

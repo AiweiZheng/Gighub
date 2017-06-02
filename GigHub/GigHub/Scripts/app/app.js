@@ -27,7 +27,6 @@
 }
 
 if (!window.antiForgery) {
-
     window.antiForgery = {
         addVerificaitonTokenToHeader: function (request) {
             var antiForgeryToken = $("input[name=__RequestVerificationToken]").val();

@@ -206,8 +206,14 @@ input[type=radio] {
     height: 1em;
 }
 
-#searchGigs {
-    width: 230px;
+.glyphicon-search {
+    color: #46b8da;
+}
+
+@media(min-width:467px) {
+    #searchGigs, #gigDateTime {
+        width: 400px;
+    }
 }
 
 .ui_ribbon {

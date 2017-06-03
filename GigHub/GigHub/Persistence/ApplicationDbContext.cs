@@ -16,6 +16,7 @@ namespace GigHub.Persistence
         public DbSet<UserNotification> UserNotifications { get; set; }
         public DbSet<SystemNotification> SystemNotifications { get; set; }
         public DbSet<Login> Logins { get; set; }
+        public DbSet<Venue> Venues { get; set; }
 
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
@@ -35,6 +36,7 @@ namespace GigHub.Persistence
             modelBuilder.Configurations.Add(new AttendanceConfiguration());
             modelBuilder.Configurations.Add(new FollowingConfiguration());
             modelBuilder.Configurations.Add(new GenreConfiguration());
+            modelBuilder.Configurations.Add(new VenueConfiguration());
             modelBuilder.Configurations.Add(new NotificationConfiguration());
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
 

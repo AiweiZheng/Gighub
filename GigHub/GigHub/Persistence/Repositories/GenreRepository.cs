@@ -12,10 +12,14 @@ namespace GigHub.Persistence.Repositories
         {
             _context = context;
         }
-        public IEnumerable<Genre> GetGenres()
+        public IEnumerable<Genre> GetGenres(string query = null)
         {
-            return _context.Genres.ToList();
+            if (query == null)
+                return _context.Genres.ToList();
+
+            return _context.Genres.Where(g => g.Name.Contains(query));
         }
+
 
         public void Dispose()
         {

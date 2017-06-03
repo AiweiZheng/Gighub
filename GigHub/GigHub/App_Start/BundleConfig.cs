@@ -30,7 +30,8 @@ namespace GigHub
                         "~/scripts/app/controllers/moreArtistsController.js",
                         "~/scripts/app/controllers/moreGigsController.js",
                         "~/scripts/app/controllers/moreFollowingsController.js",
-                        "~/scripts/app/controllers/SearchController.js",
+                        "~/scripts/app/controllers/searchController.js",
+                        "~/scripts/app/typeahead/typeaheadConfig.js",
                         "~/scripts/app/app.js"
             ));
 
@@ -44,7 +45,8 @@ namespace GigHub
                          "~/Scripts/dataTables/jquery.datatables.js",
                          "~/Scripts/dataTables/datatables.bootstrap.js",
                          "~/Scripts/moment.js",
-                         "~/Scripts/bootstrap-datetimepicker.js"
+                         "~/Scripts/bootstrap-datetimepicker.js",
+                         "~/Scripts/typeahead.bundle.js"
                          ));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -58,6 +60,7 @@ namespace GigHub
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/bootstrap.css",
                 "~/Content/font-awesome.min.css",
+                "~/Content/typeahead.css",
                 "~/Content/Animate.css"));
 
             bundles.Add(new StyleBundle("~/Content/web/css").Include(

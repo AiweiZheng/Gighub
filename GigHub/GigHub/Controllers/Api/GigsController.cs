@@ -1,7 +1,10 @@
-﻿using System.Net;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Net;
 using System.Web.Http;
 using GigHub.Controllers.Api.Filters;
 using GigHub.Core;
+using GigHub.Core.Models;
 using Microsoft.AspNet.Identity;
 
 namespace GigHub.Controllers.Api
@@ -17,6 +20,8 @@ namespace GigHub.Controllers.Api
         {
             _unitOfWork = unitOfWork;
         }
+
+
 
         [HttpDelete]
         public IHttpActionResult Cancel(int id)
@@ -56,5 +61,15 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/venues")]
+        public IEnumerable<Gig> GetVenues(string query) => _unitOfWork.Gigs.GetUpcomingGigs(null, null,
+            new GigFilterParams
+            {
+                SearchTerm = query,
+                SearchBy = AppConst.SearchByVenue
+            }
+        );
     }
 }

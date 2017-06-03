@@ -27,9 +27,9 @@
             @Html.HiddenFor(m => m.SearchBy, new { id = "search_by" })
            
             @Html.TextBoxFor(m => m.SearchTerm, new { @class = "form-control", placeholder = "Search term..." })
-
+            
             <span class="input-group-btn">
-                <button class="btn btn-default form-control" type="submit" id="#searchGigs">
+                <button class="btn btn-default form-control" type="submit">
                     <span class="glyphicon glyphicon-search"></span>
                 </button>
             </span>
@@ -46,12 +46,18 @@
         <script>
             $(document).ready(function () {
 
-                SearchController.init(".js-search-panel .dropdown-menu");
-
                 $('[data-toggle="popover"]').popover({
                     html: true,
                     placement: "right",
                     trigger: "hover"
+                });
+
+                SearchController.init({
+                    container: ".js-search-panel .dropdown-menu",
+                    searchConcept: ".js-search-panel #search_concept",
+                    searchBy: "#search_by",
+                    searchInput: "#SearchTerm",
+                    searchForm:"#searchForm"
                 });
 
                 GigsController.init("#content", "@AppConst.GoingText", "@AppConst.NotGoingYetText");

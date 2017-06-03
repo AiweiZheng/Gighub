@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
+using Utilities;
 
 namespace GigHub.Persistence.Repositories
 {
@@ -38,6 +41,26 @@ namespace GigHub.Persistence.Repositories
                 query.Skip(startIndex)
                 .Take(count)
                 .ToList();
+        }
+
+        public IEnumerable<ApplicationUser> GetUsersByRoleId(string roleId, string query = null)
+        {
+            Expression<Func<ApplicationUser, bool>> filterExpression = u =>
+                u.Activated
+                && u.Roles.Any(r => r.RoleId == roleId);
+
+            if (query == null)
+                return _context.Users
+                    .Where(filterExpression)
+                    .OrderBy(u => u.Name).ToList();
+            {
+                Expression<Func<ApplicationUser, bool>> nameFilter = u =>
+                    u.Name.Contains(query);
+                filterExpression = ExpressionCombiner.And(filterExpression, nameFilter);
+            }
+            return _context.Users
+                .Where(filterExpression)
+                .OrderBy(u => u.Name).ToList();
         }
 
         public int GetTotalNumberOfByRoleId(string roleId)

@@ -251,6 +251,7 @@
     <Compile Include="Controllers\Api\Filters\ApiAuthorizeActivatedAccount.cs" />
     <Compile Include="Controllers\Api\Filters\ApiValidateHeaderAntiForgeryToken.cs" />
     <Compile Include="Controllers\Api\FollowingsController.cs" />
+    <Compile Include="Controllers\Api\GenresController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\ErrorMsg.cs" />
@@ -278,6 +279,7 @@
     <Compile Include="Core\Models\Login.cs" />
     <Compile Include="Core\Models\RoleName.cs" />
     <Compile Include="Core\Models\SystemNotification.cs" />
+    <Compile Include="Core\Models\Venue.cs" />
     <Compile Include="Core\Repositories\ILoginRepository.cs" />
     <Compile Include="Core\Repositories\IRoleRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
@@ -374,6 +376,10 @@
     <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.Designer.cs">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\201706032240173_AddVenue.cs" />
+    <Compile Include="Persistence\Migrations\201706032240173_AddVenue.Designer.cs">
+      <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
     <Compile Include="Core\Models\Attendance.cs" />
@@ -391,6 +397,7 @@
     <Compile Include="Persistence\Repositories\LoginRepository.cs" />
     <Compile Include="Persistence\Repositories\RoleRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
+    <Compile Include="Persistence\VenueConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persistence\Repositories\AttendanceRepository.cs" />
     <Compile Include="Persistence\Repositories\FollowingRepository.cs" />
@@ -429,6 +436,7 @@
     <Content Include="Content\img\screenshots\main.png" />
     <Content Include="Content\img\screenshots\mygigs.png" />
     <Content Include="Content\img\screenshots\notification.png" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="Content\_bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -616,6 +624,9 @@
     <Content Include="Scripts\app\services\followingService.js" />
     <Content Include="Scripts\app\services\gigService.js" />
     <Content Include="Scripts\app\services\notificationService.js" />
+    <Content Include="Scripts\app\typeahead\typeaheadConfig.js" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
@@ -792,6 +803,10 @@
     <Content Include="Scripts\moment-with-locales.min.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\npm.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\_jquery.timepicker.js" />
     <Content Include="Scripts\jquery.timepicker.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -879,9 +894,11 @@
   <ItemGroup>
     <EmbeddedResource Include="Persistence\Migrations\201704270202083_InitialModel.resx">
       <DependentUpon>201704270202083_InitialModel.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201704270218452_CreateGigTable.resx">
       <DependentUpon>201704270218452_CreateGigTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201704270244031_OverrideConventionsForGigsAndGenres.resx">
       <DependentUpon>201704270244031_OverrideConventionsForGigsAndGenres.cs</DependentUpon>
@@ -935,6 +952,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201705121937142_AddSystemnotifications.resx">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201706032240173_AddVenue.resx">
+      <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

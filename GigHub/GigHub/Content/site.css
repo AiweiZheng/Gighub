@@ -210,10 +210,16 @@ input[type=radio] {
     color: #46b8da;
 }
 
+.twitter-typeahead > .form-control.tt-input {
+    width: 100%;
+    max-width: 280px;
+}
+    
 @media(min-width:467px) {
-    #searchGigs, #gigDateTime {
+    #searchGigs, #gigDateTime, .twitter-typeahead>.form-control.tt-input {
         width: 400px;
     }
+
 }
 
 .ui_ribbon {

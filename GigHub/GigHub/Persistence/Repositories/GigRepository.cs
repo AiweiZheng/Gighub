@@ -59,7 +59,7 @@ namespace GigHub.Persistence.Repositories
                 .SingleOrDefault(g => g.Id == gigId);
         }
 
-        public IEnumerable<Gig> GetUpcomingGigs(int startIndex, int count, GigFilterParams filter)
+        public IEnumerable<Gig> GetUpcomingGigs(int? startIndex, int? count, GigFilterParams filter)
         {
             var gigFilterExpression = _getGigFilterExpression(filter);
 
@@ -69,7 +69,10 @@ namespace GigHub.Persistence.Repositories
                .Where(gigFilterExpression)
                .OrderBy(g => g.DateTime);
 
-            return query.Skip(startIndex).Take(count).ToList();
+            if (!startIndex.HasValue || !count.HasValue)
+                return query.ToList();
+
+            return query.Skip(startIndex.Value).Take(count.Value).ToList();
         }
 
         private Expression<Func<Gig, bool>> _getGigFilterExpression(GigFilterParams filter)
@@ -120,7 +123,7 @@ namespace GigHub.Persistence.Repositories
                 case AppConst.SearchByVenue:
 
                     Expression<Func<Gig, bool>> venueExpression = g =>
-                       g.Genre.Name.Contains(searchTerm);
+                       g.Venue.Contains(searchTerm);
 
                     return venueExpression;
 

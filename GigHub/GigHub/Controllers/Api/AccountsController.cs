@@ -39,6 +39,20 @@ namespace GigHub.Controllers.Api
         }
 
         [HttpGet]
+        [AllowAnonymous]
+        [Route("api/accounts/artists")]
+        public IHttpActionResult GetArtists(string query = null)
+        {
+            var artistRoleId = _unitOfWork.Roles.GetRoleIdBy(RoleName.Artist);
+            var artists = _unitOfWork.Users.GetUsersByRoleId(artistRoleId, query);
+            var accountDtos = artists
+               .ToList()
+               .Select(Mapper.Map<ApplicationUser, UserDto>);
+
+            return Ok(accountDtos);
+        }
+
+        [HttpGet]
         public IHttpActionResult GetAccount(string id)
         {
             var user = _unitOfWork.Users.GetUser(id);

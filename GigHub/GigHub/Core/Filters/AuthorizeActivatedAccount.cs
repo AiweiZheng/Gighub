@@ -9,7 +9,7 @@ namespace GigHub.Core.Filters
 {
     public sealed class AuthorizeActivatedAccount : AuthorizeAttribute
     {
-        private bool _isAuthorized = false;
+        private bool _isAuthorized;
 
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {

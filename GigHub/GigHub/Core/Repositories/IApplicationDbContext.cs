@@ -8,6 +8,7 @@ namespace GigHub.Core.Repositories
     {
         DbSet<Gig> Gigs { get; set; }
         DbSet<Genre> Genres { get; set; }
+        DbSet<Venue> Venues { get; set; }
         DbSet<Attendance> Attendances { get; set; }
         DbSet<Following> Followings { get; set; }
         DbSet<Notification> Notifications { get; set; }

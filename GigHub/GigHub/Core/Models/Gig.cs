@@ -17,11 +17,13 @@ namespace GigHub.Core.Models
 
         public DateTime DateTime { get; set; }
 
-        public string Venue { get; set; }
+        //        public string Venue { get; set; }
+        public Venue Venue { get; set; }
 
         public Genre Genre { get; set; }
 
         public Byte GenreId { get; set; }
+        public Byte VenueId { get; set; }
 
         public ICollection<Attendance> Attendances { get; private set; }
 
@@ -59,11 +61,11 @@ namespace GigHub.Core.Models
                 attendee.Notify(notification);
         }
 
-        public void Modify(string venue, DateTime dateTime, byte genreId)
+        public void Modify(Venue venue, DateTime dateTime, byte genreId)
         {
-            var notificaition = Notification.GigUpdated(this, DateTime, Venue);
+            var notificaition = Notification.GigUpdated(this, DateTime, venue.Name);
 
-            Venue = venue;
+            VenueId = venue.Id;
             DateTime = dateTime;
             GenreId = genreId;
 

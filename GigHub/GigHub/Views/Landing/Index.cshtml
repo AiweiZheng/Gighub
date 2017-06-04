@@ -115,35 +115,42 @@
         <div class="carousel-inner carousel container" role="listbox">
             
             @{ Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
-               {
-                   Source = "../../Content/img/screenshots/main.png",
-                   Active = true,
-                   Title = "Home Page"
-               });
+                {
+                    Source = "../../Content/img/screenshots/main.png",
+                    Active = true,
+                    Title = "Home Page"
+                });
+
+                Html.RenderPartial("_CarouselImage", new CarouselImageViewModel()
+                {
+                    Source = "../../Content/img/screenshots/autocompleteSearch.png",
+                    Title = "Auto Complete Search Page"
+                });
+
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/artists.png",
                     Title = "Artists Page"
                 });
-            
+
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/notification.png",
                     Title = "Notifications Page"
                 });
-            
+
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/createAgig.png",
                     Title = "Create Gig Page ( Artist role only )"
                 });
-            
+
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/mygigs.png",
                     Title = "My Gigs Page ( Artist role only )"
                 });
-            
+
                 Html.RenderPartial("_CarouselImage",new CarouselImageViewModel()
                 {
                     Source = "../../Content/img/screenshots/accounts.png",
@@ -166,6 +173,7 @@
         <h2>Features</h2>
         @{
             Html.RenderPartial("_FeatureItem", "Follow / Unfollow artists, attend / skip a gig.");
+            Html.RenderPartial("_FeatureItem", "Auto Complete Search.");
             Html.RenderPartial("_FeatureItem", "Narrow upcoming gigs result by searching artist, gig genre, gig venue.");
             Html.RenderPartial("_FeatureItem", "Send Notifications to followers when newly gigs created.");
             Html.RenderPartial("_FeatureItem", "Send Notifications to attendees when gigs are updated or cancelled.");

@@ -216,8 +216,11 @@ input[type=radio] {
 }
     
 @media(min-width:467px) {
-    #searchGigs, #gigDateTime, .twitter-typeahead>.form-control.tt-input {
+    #searchGigs,.twitter-typeahead>.form-control.tt-input {
         width: 400px;
+    }
+    #gigDateTime {
+        width: 300px;
     }
 
 }

@@ -253,6 +253,7 @@
     <Compile Include="Controllers\Api\FollowingsController.cs" />
     <Compile Include="Controllers\Api\GenresController.cs" />
     <Compile Include="Controllers\Api\RolesController.cs" />
+    <Compile Include="Controllers\Api\VenuesController.cs" />
     <Compile Include="Controllers\ArtistsController.cs" />
     <Compile Include="Controllers\ErrorMsg.cs" />
     <Compile Include="Controllers\LandingController.cs" />
@@ -283,6 +284,8 @@
     <Compile Include="Core\Repositories\ILoginRepository.cs" />
     <Compile Include="Core\Repositories\IRoleRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
+    <Compile Include="Core\Repositories\IVenueRepository.cs" />
+    <Compile Include="Core\Repositories\VenueRepository.cs" />
     <Compile Include="Core\ViewModels\ArtistsViewModel.cs" />
     <Compile Include="Core\ViewModels\ArtistWithGigsViewModel.cs" />
     <Compile Include="Core\ViewModels\GigViewModel.cs" />
@@ -376,9 +379,15 @@
     <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.Designer.cs">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
     </Compile>
+    <Compile Include="Persistence\Migrations\201706032028422_AddVenue1.cs" />
+    <Compile Include="Persistence\Migrations\201706032028422_AddVenue1.designer.cs" />
     <Compile Include="Persistence\Migrations\201706032240173_AddVenue.cs" />
     <Compile Include="Persistence\Migrations\201706032240173_AddVenue.Designer.cs">
       <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.cs" />
+    <Compile Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.Designer.cs">
+      <DependentUpon>201706032333476_ModifyVenueInGig.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -432,6 +441,7 @@
     <Content Include="Content\bootstrap-theme-custom.css" />
     <Content Include="Content\img\screenshots\accounts.png" />
     <Content Include="Content\img\screenshots\artists.png" />
+    <Content Include="Content\img\screenshots\autoCompleteSearch.png" />
     <Content Include="Content\img\screenshots\createAgig.png" />
     <Content Include="Content\img\screenshots\main.png" />
     <Content Include="Content\img\screenshots\mygigs.png" />
@@ -953,8 +963,12 @@
     <EmbeddedResource Include="Persistence\Migrations\201705121937142_AddSystemnotifications.resx">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201706032028422_AddVenue1.resx" />
     <EmbeddedResource Include="Persistence\Migrations\201706032240173_AddVenue.resx">
       <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.resx">
+      <DependentUpon>201706032333476_ModifyVenueInGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

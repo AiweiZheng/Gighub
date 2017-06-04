@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web.Mvc;
 using GigHub.Core;
 using GigHub.Core.Models;
 using GigHub.Core.Repositories;
@@ -27,6 +26,7 @@ namespace GigHub.Persistence.Repositories
                 .Where(g => g.ArtistId == artistId
                             && g.DateTime > DateTime.Now)
                 .Include(g => g.Genre)
+                .Include(g => g.Venue)
                 .ToList();
         }
 
@@ -36,7 +36,8 @@ namespace GigHub.Persistence.Repositories
                 .Where(g => g.ArtistId == artistId
                             && !g.IsCancelled
                             && g.DateTime > DateTime.Now)
-                .Include(g => g.Genre);
+                .Include(g => g.Genre)
+                .Include(g => g.Venue);
 
             return query.OrderByDescending(g => g.DateTime)
                         .Skip(startIndex)
@@ -66,6 +67,7 @@ namespace GigHub.Persistence.Repositories
             IQueryable<Gig> query = _context.Gigs
                .Include(g => g.Artist)
                .Include(g => g.Genre)
+               .Include(g => g.Venue)
                .Where(gigFilterExpression)
                .OrderBy(g => g.DateTime);
 
@@ -104,7 +106,7 @@ namespace GigHub.Persistence.Repositories
                     Expression<Func<Gig, bool>> allExpression = g =>
                      g.Artist.Name.Contains(searchTerm) ||
                           g.Genre.Name.Contains(searchTerm) ||
-                          g.Venue.Contains(searchTerm);
+                          g.Venue.Name.Contains(searchTerm);
 
                     return allExpression;
 
@@ -123,7 +125,7 @@ namespace GigHub.Persistence.Repositories
                 case AppConst.SearchByVenue:
 
                     Expression<Func<Gig, bool>> venueExpression = g =>
-                       g.Venue.Contains(searchTerm);
+                       g.Venue.Name.Contains(searchTerm);
 
                     return venueExpression;
 
@@ -142,6 +144,7 @@ namespace GigHub.Persistence.Repositories
                 .Select(a => a.Gig)
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
+                .Include(g => g.Venue)
                 .Where(gigFilterExpression)
                 .OrderBy(g => g.DateTime);
 
@@ -153,6 +156,7 @@ namespace GigHub.Persistence.Repositories
             return _context.Gigs
                 .Include(g => g.Artist)
                 .Include(g => g.Genre)
+                .Include(g => g.Venue)
                 .SingleOrDefault(g => g.Id == gigId);
         }
         public void Add(Gig gig)
@@ -176,6 +180,7 @@ namespace GigHub.Persistence.Repositories
         {
             IEnumerable<Gig> query = _context.Gigs
                 .Include(g => g.Genre)
+                .Include(g => g.Venue)
                 .Where(
                     g => !g.IsCancelled
                          && g.DateTime > DateTime.Now

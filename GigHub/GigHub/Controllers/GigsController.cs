@@ -76,6 +76,7 @@ namespace GigHub.Controllers
             var viewModel = new GigFormViewModel
             {
                 Genres = _unitOfWork.Genres.GetGenres(),
+                Venues = _unitOfWork.Venues.GetVenues(),
                 Heading = "Add a Gig"
             };
 
@@ -91,6 +92,7 @@ namespace GigHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _unitOfWork.Genres.GetGenres();
+                viewModel.Venues = _unitOfWork.Venues.GetVenues();
                 return View("GigForm", viewModel);
             }
 
@@ -99,7 +101,7 @@ namespace GigHub.Controllers
                 ArtistId = User.Identity.GetUserId(),
                 DateTime = viewModel.DateTime,
                 GenreId = viewModel.Genre,
-                Venue = viewModel.Venue
+                VenueId = viewModel.Venue
             };
 
             _unitOfWork.Gigs.Add(gig);
@@ -127,9 +129,10 @@ namespace GigHub.Controllers
                 Heading = "Edit a Gig",
                 Id = gig.Id,
                 Genres = _unitOfWork.Genres.GetGenres(),
+                Venues = _unitOfWork.Venues.GetVenues(),
                 DateTime = gig.DateTime,
                 Genre = gig.GenreId,
-                Venue = gig.Venue
+                Venue = gig.VenueId
             };
 
             return View("GigForm", viewModel);
@@ -144,6 +147,7 @@ namespace GigHub.Controllers
             if (!ModelState.IsValid)
             {
                 viewModel.Genres = _unitOfWork.Genres.GetGenres();
+                viewModel.Venues = _unitOfWork.Venues.GetVenues();
                 return View("GigForm", viewModel);
             }
 
@@ -155,7 +159,8 @@ namespace GigHub.Controllers
             if (gig.ArtistId != User.Identity.GetUserId())
                 return new HttpUnauthorizedResult();
 
-            gig.Modify(viewModel.Venue, viewModel.DateTime, viewModel.Genre);
+
+            gig.Modify(_unitOfWork.Venues.GetVenueById(viewModel.Venue), viewModel.DateTime, viewModel.Genre);
 
             _unitOfWork.Complete();
 

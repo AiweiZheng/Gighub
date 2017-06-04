@@ -61,15 +61,6 @@ namespace GigHub.Controllers.Api
             return Ok();
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("api/venues")]
-        public IEnumerable<Gig> GetVenues(string query) => _unitOfWork.Gigs.GetUpcomingGigs(null, null,
-            new GigFilterParams
-            {
-                SearchTerm = query,
-                SearchBy = AppConst.SearchByVenue
-            }
-        );
+
     }
 }

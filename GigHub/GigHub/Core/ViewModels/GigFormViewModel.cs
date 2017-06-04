@@ -13,7 +13,7 @@ namespace GigHub.Core.ViewModels
         public int Id { get; set; }
 
         [Required]
-        public string Venue { get; set; }
+        public byte Venue { get; set; }
 
         [Required]
         public DateTime DateTime { get; set; }
@@ -22,6 +22,8 @@ namespace GigHub.Core.ViewModels
         public byte Genre { get; set; }
 
         public IEnumerable<Genre> Genres { get; set; }
+
+        public IEnumerable<Venue> Venues { get; set; }
 
         public string Heading { get; set; }
 

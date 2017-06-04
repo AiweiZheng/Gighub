@@ -9,11 +9,12 @@
 @using (Html.BeginForm(Model.Action, "Gigs",FormMethod.Post, new { dirtyCheck=true }))
 {
     <p class="alert alert-info">All fields are <strong>required</strong>.</p>
-    @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken() 
     @Html.HiddenFor(m => m.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Venue)
-        @Html.TextBoxFor(m => m.Venue, new {@class = "form-control", autofocus="autofoucs"})
+        @Html.DropDownListFor(m => m.Venue,
+            new SelectList(Model.Venues, "Id", "Name"), "", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Venue)
     </div>
 

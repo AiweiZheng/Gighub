@@ -14,7 +14,7 @@
         @Model.Gig.Artist.Name
     </h2>
 
-    <p>Performing at @Model.Gig.Venue on @Model.Gig.DateTime.ToString("d MMM") at @Model.Gig.DateTime.ToString("HH:mm")</p>
+    <p>Performing at @Model.Gig.Venue.Name on @Model.Gig.DateTime.ToString("d MMM") at @Model.Gig.DateTime.ToString("HH:mm")</p>
 
     @if (Model.IsAttending)
     {

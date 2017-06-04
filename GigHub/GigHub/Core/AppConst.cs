@@ -1,7 +1,4 @@
-﻿
-using System.Security.Cryptography.X509Certificates;
-
-namespace GigHub.Core
+﻿namespace GigHub.Core
 {
     public static class AppConst
     {

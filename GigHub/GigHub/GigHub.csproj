@@ -49,6 +49,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.5.0.2, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
@@ -170,10 +173,6 @@
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
-    </Reference>
-    <Reference Include="Antlr3.Runtime">
-      <Private>True</Private>
-      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -363,31 +362,9 @@
     <Compile Include="Persistence\Migrations\201705050234595_AddLoginModel.Designer.cs">
       <DependentUpon>201705050234595_AddLoginModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\201705120135042_Changes.cs" />
-    <Compile Include="Persistence\Migrations\201705120135042_Changes.Designer.cs">
-      <DependentUpon>201705120135042_Changes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\201705121727577_AddDescription.cs" />
-    <Compile Include="Persistence\Migrations\201705121727577_AddDescription.Designer.cs">
-      <DependentUpon>201705121727577_AddDescription.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\201705121738012_changes3.cs" />
-    <Compile Include="Persistence\Migrations\201705121738012_changes3.Designer.cs">
-      <DependentUpon>201705121738012_changes3.cs</DependentUpon>
-    </Compile>
     <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.cs" />
     <Compile Include="Persistence\Migrations\201705121937142_AddSystemnotifications.Designer.cs">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\201706032028422_AddVenue1.cs" />
-    <Compile Include="Persistence\Migrations\201706032028422_AddVenue1.designer.cs" />
-    <Compile Include="Persistence\Migrations\201706032240173_AddVenue.cs" />
-    <Compile Include="Persistence\Migrations\201706032240173_AddVenue.Designer.cs">
-      <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.cs" />
-    <Compile Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.Designer.cs">
-      <DependentUpon>201706032333476_ModifyVenueInGig.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Persistence\ApplicationDbContext.cs" />
@@ -951,24 +928,8 @@
     <EmbeddedResource Include="Persistence\Migrations\201705050234595_AddLoginModel.resx">
       <DependentUpon>201705050234595_AddLoginModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201705120135042_Changes.resx">
-      <DependentUpon>201705120135042_Changes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201705121727577_AddDescription.resx">
-      <DependentUpon>201705121727577_AddDescription.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201705121738012_changes3.resx">
-      <DependentUpon>201705121738012_changes3.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\201705121937142_AddSystemnotifications.resx">
       <DependentUpon>201705121937142_AddSystemnotifications.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201706032028422_AddVenue1.resx" />
-    <EmbeddedResource Include="Persistence\Migrations\201706032240173_AddVenue.resx">
-      <DependentUpon>201706032240173_AddVenue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\201706032333476_ModifyVenueInGig.resx">
-      <DependentUpon>201706032333476_ModifyVenueInGig.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

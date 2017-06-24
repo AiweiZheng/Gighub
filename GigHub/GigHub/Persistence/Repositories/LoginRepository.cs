@@ -37,10 +37,5 @@ namespace GigHub.Persistence.Repositories
 
             return isLoggedIn;
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

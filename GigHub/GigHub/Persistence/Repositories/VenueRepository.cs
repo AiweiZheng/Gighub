@@ -1,8 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using GigHub.Core.Models;
+using GigHub.Core.Repositories;
 
-namespace GigHub.Core.Repositories
+namespace GigHub.Persistence.Repositories
 {
     public class VenueRepository : IVenueRepository
     {
@@ -22,10 +23,6 @@ namespace GigHub.Core.Repositories
         public Venue GetVenueById(byte id)
         {
             return _context.Venues.Single(v => v.Id == id);
-        }
-        public void Dispose()
-        {
-            _context.Dispose();
         }
     }
 }

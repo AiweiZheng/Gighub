@@ -36,10 +36,5 @@ namespace GigHub.Persistence.Repositories
         {
             _context.Attendances.Remove(attendance);
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

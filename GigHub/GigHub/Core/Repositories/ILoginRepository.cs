@@ -6,6 +6,5 @@ namespace GigHub.Core.Repositories
     {
         void PutOrPostLogin(Login login);
         bool IsLoggedIn(string user, string session);
-        void Dispose();
     }
 }

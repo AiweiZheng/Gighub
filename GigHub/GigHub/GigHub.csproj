@@ -284,7 +284,6 @@
     <Compile Include="Core\Repositories\IRoleRepository.cs" />
     <Compile Include="Core\Repositories\IUserRepository.cs" />
     <Compile Include="Core\Repositories\IVenueRepository.cs" />
-    <Compile Include="Core\Repositories\VenueRepository.cs" />
     <Compile Include="Core\ViewModels\ArtistsViewModel.cs" />
     <Compile Include="Core\ViewModels\ArtistWithGigsViewModel.cs" />
     <Compile Include="Core\ViewModels\GigViewModel.cs" />
@@ -302,6 +301,7 @@
     <Compile Include="Persistence\EntityConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Core\Repositories\IApplicationDbContext.cs" />
+    <Compile Include="Persistence\EntityConfigurations\VenueConfiguration.cs" />
     <Compile Include="Persistence\Migrations\201704270202083_InitialModel.cs" />
     <Compile Include="Persistence\Migrations\201704270202083_InitialModel.Designer.cs">
       <DependentUpon>201704270202083_InitialModel.cs</DependentUpon>
@@ -382,8 +382,8 @@
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Persistence\Repositories\LoginRepository.cs" />
     <Compile Include="Persistence\Repositories\RoleRepository.cs" />
+    <Compile Include="Persistence\Repositories\VenueRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
-    <Compile Include="Persistence\VenueConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persistence\Repositories\AttendanceRepository.cs" />
     <Compile Include="Persistence\Repositories\FollowingRepository.cs" />
@@ -955,7 +955,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>60067</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

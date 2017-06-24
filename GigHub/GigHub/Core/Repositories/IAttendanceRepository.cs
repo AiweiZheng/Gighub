@@ -9,6 +9,5 @@ namespace GigHub.Core.Repositories
         Attendance GetAttendance(int gigId, string userId);
         void Add(Attendance attendance);
         void Remove(Attendance attendance);
-        void Dispose();
     }
 }

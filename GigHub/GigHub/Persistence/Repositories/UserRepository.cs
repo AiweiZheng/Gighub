@@ -76,10 +76,5 @@ namespace GigHub.Persistence.Repositories
         {
             return _context.Users.Single(u => u.Id == id).Description;
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

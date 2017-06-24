@@ -41,14 +41,7 @@ namespace GigHub.Persistence
 
         public void Dispose()
         {
-            Gigs.Dispose();
-            Attendances.Dispose();
-            Followings.Dispose();
-            Genres.Dispose();
-            UserNotifications.Dispose();
-            Users.Dispose();
-            Roles.Dispose();
-            //  UserDescriptions.Dispose();
+            _context.Dispose();
         }
     }
 }

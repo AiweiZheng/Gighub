@@ -15,6 +15,5 @@ namespace GigHub.Core.Repositories
         IEnumerable<Gig> GetGigsUserAttending(string userId, int startIndex, int count, GigFilterParams filter);
         void Add(Gig gig);
         List<ArtistWithGigsViewMode> GetCountOfUpcomingGigsPerformedBy(IEnumerable<string> artists, int count);
-        void Dispose();
     }
 }

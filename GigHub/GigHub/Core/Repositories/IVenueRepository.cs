@@ -7,6 +7,5 @@ namespace GigHub.Core.Repositories
     {
         IEnumerable<Venue> GetVenues(string query = null);
         Venue GetVenueById(byte id);
-        void Dispose();
     }
 }

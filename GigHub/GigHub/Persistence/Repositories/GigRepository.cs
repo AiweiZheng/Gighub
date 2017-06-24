@@ -194,10 +194,5 @@ namespace GigHub.Persistence.Repositories
                      ArtistId = v.Key
                  }).ToList();
         }
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

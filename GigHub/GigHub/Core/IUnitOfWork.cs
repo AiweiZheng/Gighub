@@ -1,8 +1,9 @@
+using System;
 using GigHub.Core.Repositories;
 
 namespace GigHub.Core
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IGigRepository Gigs { get; }
         IAttendanceRepository Attendances { get; }
@@ -15,6 +16,5 @@ namespace GigHub.Core
         ILoginRepository Logins { get; }
         //   IUserDescriptionRepository UserDescriptions { get; }
         void Complete();
-        void Dispose();
     }
 }

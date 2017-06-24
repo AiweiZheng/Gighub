@@ -19,11 +19,5 @@ namespace GigHub.Persistence.Repositories
 
             return _context.Genres.Where(g => g.Name.Contains(query));
         }
-
-
-        public void Dispose()
-        {
-            _context.Dispose();
-        }
     }
 }

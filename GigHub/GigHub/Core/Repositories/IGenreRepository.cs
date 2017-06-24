@@ -6,6 +6,5 @@ namespace GigHub.Core.Repositories
     public interface IGenreRepository
     {
         IEnumerable<Genre> GetGenres(string query = null);
-        void Dispose();
     }
 }

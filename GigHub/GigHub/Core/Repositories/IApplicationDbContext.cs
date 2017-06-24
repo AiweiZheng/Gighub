@@ -16,6 +16,5 @@ namespace GigHub.Core.Repositories
         DbSet<Login> Logins { get; set; }
         IDbSet<ApplicationUser> Users { get; set; }
         IDbSet<IdentityRole> Roles { get; set; }
-        void Dispose();
     }
 }

@@ -9,6 +9,5 @@ namespace GigHub.Core.Repositories
         Following GetFollowing(string artistId, string userId);
         void Add(Following following);
         void Remove(Following following);
-        void Dispose();
     }
 }
